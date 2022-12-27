@@ -40,6 +40,18 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
+                                    @if(session()->has('success'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+
+                                    @if(session()->has('danger'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ session('danger') }}
+                                        </div>
+                                    @endif
+
                                     <form class="user" method="POST"
                                         action="{{ route('attempt-login') }}">
                                         @csrf
@@ -47,7 +59,8 @@
                                             <input type="email"
                                                 class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="email">
+                                                placeholder="Enter Email Address..." name="email"
+                                                value="{{ old('email') }}">
                                             @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('email') }}

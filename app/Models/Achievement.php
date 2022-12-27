@@ -9,6 +9,9 @@ class Achievement extends Model
 {
     use HasFactory;
     protected $table = 'tr_prestasi';
+    protected $casts = [
+        'tanggal' => 'date',
+    ];
 
     protected $fillable = [
         'id_pegawai',

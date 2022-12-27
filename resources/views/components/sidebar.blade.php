@@ -103,6 +103,33 @@
             <span>Tables</span></a>
     </li>
 
+    @can('admin')
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <div class="sidebar-heading">
+            Pegawai
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('user') }}">
+                <i class="fas fa-fw  fa-users"></i>
+                <span>Daftar Pegawai</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('user/create') }}">
+                <i class="fas fa-fw fa-plus-circle"></i>
+                <span>Tambah Pegawai</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('placement') }}">
+                <i class="fas fa-fw fa-plus-circle"></i>
+                <span>Penempatan</span></a>
+        </li>
+    @endcan
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

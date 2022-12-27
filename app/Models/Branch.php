@@ -9,4 +9,9 @@ class Branch extends Model
 {
     use HasFactory;
     protected $table = 'mstr_cabang';
+
+    public function placements()
+    {
+        return $this->hasMany(Placement::class, 'id_cabang');
+    }
 }

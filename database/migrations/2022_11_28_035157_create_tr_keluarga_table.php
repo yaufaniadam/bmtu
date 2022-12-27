@@ -18,10 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pegawai');
             $table->string('nama');
             $table->string('status');
+            $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
-            $table->string('bpjs');
-            $table->string('bpjs_ketenagakerjaan');
+            $table->string('bpjs')->nullable();
+            $table->string('bpjs_ketenagakerjaan')->nullable();
             $table->timestamps();
         });
 

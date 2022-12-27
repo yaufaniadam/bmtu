@@ -20,4 +20,19 @@ class Placement extends Model
         'file_sk',
         'surat_penempatan'
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'id_pegawai');
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'id_cabang');
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class, 'id_posisi');
+    }
 }

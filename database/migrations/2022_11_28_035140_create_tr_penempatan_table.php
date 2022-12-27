@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pegawai')->nullable();
             $table->unsignedBigInteger('id_cabang')->nullable();
             $table->unsignedBigInteger('id_posisi')->nullable();
-            $table->unsignedBigInteger('status_pegawai')->nullable();
             $table->date('tanggal_mulai')->nullable();
             $table->date('tanggal_selesai')->nullable();
             $table->string('file_sk')->nullable();
@@ -30,7 +29,6 @@ return new class extends Migration
             $table->foreign('id_pegawai')->references('id')->on('tr_pegawai')->onDelete('cascade');
             $table->foreign('id_cabang')->references('id')->on('mstr_cabang')->onDelete('cascade');
             $table->foreign('id_posisi')->references('id')->on('mstr_posisi')->onDelete('cascade');
-            $table->foreign('status_pegawai')->references('id')->on('mstr_status_pegawai')->onDelete('cascade');
         });
     }
 
