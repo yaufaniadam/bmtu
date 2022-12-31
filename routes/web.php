@@ -54,7 +54,7 @@ Route::middleware('custom_auth')->group(function () {
     //     return Placement::factory();
     // });
 
-    Route::resource('financing', FinancingPartnerController::class);
+    Route::resource('financing-partner', FinancingPartnerController::class);
 
     Route::resource('user', UserController::class);
 

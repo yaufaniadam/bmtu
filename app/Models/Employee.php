@@ -33,4 +33,14 @@ class Employee extends Model
     {
         return $this->hasMany(Placement::class, 'id_pegawai');
     }
+
+    public function partners()
+    {
+        return $this->hasMany(FinancingPartner::class, 'id_pegawai');
+    }
+
+    public function marketingReports()
+    {
+        return $this->hasMany(MarketingReport::class, 'id_pegawai');
+    }
 }

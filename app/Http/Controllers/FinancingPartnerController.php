@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFinancingPartnerRequest;
+use App\Models\Employee;
+use App\Services\PartnerService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FinancingPartnerController extends Controller
 {
@@ -13,7 +17,12 @@ class FinancingPartnerController extends Controller
      */
     public function index()
     {
-        return view('employee.financing.index');
+        return view('employee.financing.index')
+            ->with(
+                [
+                    'partners' => PartnerService::PartnerIndex()
+                ]
+            );
     }
 
     /**
@@ -23,7 +32,7 @@ class FinancingPartnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee.financing.create');
     }
 
     /**
@@ -32,9 +41,10 @@ class FinancingPartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFinancingPartnerRequest $request)
     {
-        //
+        $employee_id = Employee::where('user_id', '=', Auth::id())->first()->id;
+        PartnerService::StoreFinancingPartner($request->validated(), $employee_id);
     }
 
     /**
@@ -43,9 +53,15 @@ class FinancingPartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($financing_partner_id)
     {
-        //
+        // dd(PartnerService::DetailPartner($financing_partner_id)->get());
+        return view('employee.financing.detail')
+            ->with(
+                [
+                    'partner' => PartnerService::DetailPartner($financing_partner_id)->get()
+                ]
+            );
     }
 
     /**

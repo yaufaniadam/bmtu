@@ -16,16 +16,6 @@ class EmployeeFactory extends Factory
      */
     public function definition()
     {
-        // return [
-        //     'nama_lengkap' => 'Admin',
-        //     'email' => 'messcarry32@gmail.com',
-        //     'telepon' => $this->faker->phoneNumber(),
-        //     'nip' => $this->faker->creditCardNumber(),
-        //     'alamat' => $this->faker->address(),
-        //     'tempat_lahir' => $this->faker->city(),
-        //     'tanggal_lahir' => $this->faker->date(),
-        // ];
-
         return [
             'nama_lengkap' => $this->faker->name(),
             'email' => $this->faker->email(),

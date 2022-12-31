@@ -8,16 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class FinancingPartner extends Model
 {
     use HasFactory;
-    protected $table = 'mitra_pembiayaan';
+    protected $table = 'tr_mitra_pembiayaan';
 
     protected $fillable = [
+        'id_pegawai',
         'nama_lengkap',
         'alamat',
         'kabupaten',
         'telepon',
         'email',
-        'jenis_pembiayaan',
         'pekerjaan',
-        'pendidikan_terakhir'
+        'pendidikan_terakhir',
+        'foto'
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'id_pegawai');
+    }
 }

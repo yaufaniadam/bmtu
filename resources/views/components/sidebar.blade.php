@@ -130,6 +130,12 @@
         </li>
     @endcan
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('financing-partner.index') }}">
+            <i class="fas fa-fw fa-plus-circle"></i>
+            <span>Mitra Pembiayaan</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

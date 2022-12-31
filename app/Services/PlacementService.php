@@ -89,8 +89,6 @@ class PlacementService
             function () use ($request) {
                 $user_id = Employee::find($request['id_pegawai'])->user_id;
 
-                $file = $request['file_sk'];
-                $fileName = $file->getClientOriginalName();
 
                 $placement = Placement::create(
                     [
@@ -101,6 +99,9 @@ class PlacementService
                         'tanggal_selesai' => $request['tanggal_selesai'],
                     ]
                 );
+
+                $file = $request['file_sk'];
+                $fileName = $file->getClientOriginalName();
 
                 $fileLocation = 'users/file_sk/' . $user_id . '/' . $placement->id . '/';
                 $file->move($fileLocation, $fileName);

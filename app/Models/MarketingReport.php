@@ -9,6 +9,9 @@ class MarketingReport extends Model
 {
     use HasFactory;
     protected $table = 'tr_laporan_marketing';
+    protected $casts = [
+        'tanggal' => 'date',
+    ];
 
     protected $fillable = [
         'id_mitra_pembiayaan',
@@ -17,4 +20,9 @@ class MarketingReport extends Model
         'foto',
         'keterangan'
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'id_pegawai');
+    }
 }

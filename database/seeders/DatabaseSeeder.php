@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
                 BranchSeeder::class,
                 AdminSeeder::class,
                 UserSeeder::class,
+                PartnerSeeder::class,
+                MarketingReportSeeder::class
             ]
         );
     }

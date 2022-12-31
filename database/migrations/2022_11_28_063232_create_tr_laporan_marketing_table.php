@@ -16,16 +16,17 @@ return new class extends Migration
         Schema::create('tr_laporan_marketing', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_mitra_pembiayaan');
-            $table->unsignedBigInteger('id_cycle');
-            $table->date('tanggal');
-            $table->string('foto');
+            $table->unsignedBigInteger('id_pegawai');
+            $table->string('jenis_pembiayaan');
+            $table->integer('nominal');
             $table->string('keterangan');
+            $table->date('tanggal');
             $table->timestamps();
         });
 
         Schema::table('tr_laporan_marketing', function (Blueprint $table) {
-            $table->foreign('id_mitra_pembiayaan')->references('id')->on('tr_pegawai')->onDelete('cascade');
-            $table->foreign('id_cycle')->references('id')->on('mstr_cycle')->onDelete('cascade');
+            $table->foreign('id_mitra_pembiayaan')->references('id')->on('tr_mitra_pembiayaan')->onDelete('cascade');
+            $table->foreign('id_pegawai')->references('id')->on('tr_pegawai')->onDelete('cascade');
         });
     }
 

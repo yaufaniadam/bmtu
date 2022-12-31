@@ -15,15 +15,20 @@ return new class extends Migration
     {
         Schema::create('tr_mitra_pembiayaan', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_pegawai');
             $table->string('nama_lengkap');
             $table->string('alamat');
             $table->string('kabupaten');
             $table->string('telepon');
             $table->string('email');
-            $table->string('jenis_pembiayaan');
             $table->string('pekerjaan');
             $table->string('pendidikan_terakhir');
+            $table->text('foto')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('tr_mitra_pembiayaan', function (Blueprint $table) {
+            $table->foreign('id_pegawai')->references('id')->on('tr_pegawai')->onDelete('cascade');
         });
     }
 
