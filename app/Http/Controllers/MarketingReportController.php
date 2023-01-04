@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreFinancingPartnerRequest;
-use App\Models\Employee;
-use App\Services\PartnerService;
+use App\Http\Requests\MarketingReportRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class FinancingPartnerController extends Controller
+class MarketingReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +14,7 @@ class FinancingPartnerController extends Controller
      */
     public function index()
     {
-        return view('employee.financing-partner.index')
-            ->with(
-                [
-                    'partners' => PartnerService::PartnerIndex()
-                ]
-            );
+        //
     }
 
     /**
@@ -30,9 +22,13 @@ class FinancingPartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($partner_id)
     {
-        return view('employee.financing-partner.create');
+        return view('employee.financing-partner.financing.create')->with(
+            [
+                'partner_id' => $partner_id
+            ]
+        );
     }
 
     /**
@@ -41,11 +37,9 @@ class FinancingPartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFinancingPartnerRequest $request)
+    public function store($partner_id, MarketingReportRequest $request)
     {
-        $employee_id = Employee::where('user_id', '=', Auth::id())->first()->id;
-        $partner_id = PartnerService::StoreFinancingPartner($request->validated(), $employee_id);
-        return redirect()->to(route('financing-partner.show', $partner_id));
+        dd($request->validated());
     }
 
     /**
@@ -54,15 +48,9 @@ class FinancingPartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($financing_partner_id)
+    public function show($id)
     {
-        // dd(PartnerService::DetailPartner($financing_partner_id)->get());
-        return view('employee.financing-partner.detail')
-            ->with(
-                [
-                    'partner' => PartnerService::DetailPartner($financing_partner_id)->get()
-                ]
-            );
+        //
     }
 
     /**
@@ -73,7 +61,7 @@ class FinancingPartnerController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        //
     }
 
     /**
@@ -85,7 +73,7 @@ class FinancingPartnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        //
     }
 
     /**
@@ -96,6 +84,6 @@ class FinancingPartnerController extends Controller
      */
     public function destroy($id)
     {
-        abort(404);
+        //
     }
 }

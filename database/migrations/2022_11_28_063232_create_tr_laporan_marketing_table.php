@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_mitra_pembiayaan');
             $table->unsignedBigInteger('id_pegawai');
             $table->string('jenis_pembiayaan');
-            $table->integer('nominal');
+            $table->integer('nominal')->nullable();
             $table->string('keterangan');
             $table->date('tanggal');
             $table->timestamps();

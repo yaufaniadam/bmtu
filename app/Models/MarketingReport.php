@@ -15,9 +15,10 @@ class MarketingReport extends Model
 
     protected $fillable = [
         'id_mitra_pembiayaan',
-        'id_cycle',
+        'id_pembiayaan',
+        'jenis_pembiayaan',
+        'nominal',
         'tanggal',
-        'foto',
         'keterangan'
     ];
 

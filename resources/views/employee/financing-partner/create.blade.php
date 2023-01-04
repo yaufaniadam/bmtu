@@ -23,7 +23,7 @@
                         <input type="text"
                             class="form-control
                             {{ $errors->has('nama_lengkap') ? 'is-invalid' : '' }}"
-                            name="nama_lengkap" id="nama_lengkap">
+                            name="nama_lengkap" id="nama_lengkap" value="{{ old('nama_lengkap') }}">
                         <div class="invalid-feedback">
                             {{ $errors->first('nama_lengkap') }}
                         </div>
@@ -32,7 +32,7 @@
                         <label for="branch" class="col-form-label">Alamat</label>
                         <textarea name="alamat" id="alamat"
                             class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}"
-                            cols="30" rows="3"></textarea>
+                            cols="30" rows="3">{{ old('alamat') }}</textarea>
                         <div class="invalid-feedback">
                             {{ $errors->first('alamat') }}
                         </div>
@@ -42,7 +42,7 @@
                         <input type="text"
                             class="form-control
                             {{ $errors->has('kabupaten') ? 'is-invalid' : '' }}"
-                            name="kabupaten" id="kabupaten">
+                            name="kabupaten" id="kabupaten" value="{{ old('kabupaten') }}">
                         <div class="invalid-feedback">
                             {{ $errors->first('kabupaten') }}
                         </div>
@@ -52,7 +52,7 @@
                         <input type="number"
                             class="form-control
                             {{ $errors->has('telepon') ? 'is-invalid' : '' }}"
-                            name="telepon" id="telepon">
+                            name="telepon" id="telepon" value="{{ old('telepon') }}">
                         <div class="invalid-feedback">
                             {{ $errors->first('telepon') }}
                         </div>
@@ -62,7 +62,7 @@
                         <input type="email"
                             class="form-control
                             {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                            name="email" id="email">
+                            name="email" id="email" {{ old('email') }}>
                         <div class="invalid-feedback">
                             {{ $errors->first('email') }}
                         </div>
@@ -72,7 +72,7 @@
                         <input type="text"
                             class="form-control
                             {{ $errors->has('pekerjaan') ? 'is-invalid' : '' }}"
-                            name="pekerjaan" id="pekerjaan">
+                            name="pekerjaan" id="pekerjaan" value="{{ old('pekerjaan') }}">
                         <div class="invalid-feedback">
                             {{ $errors->first('pekerjaan') }}
                         </div>
@@ -82,7 +82,8 @@
                         <input type="text"
                             class="form-control
                             {{ $errors->has('pendidikan_terakhir') ? 'is-invalid' : '' }}"
-                            name="pendidikan_terakhir" id="pendidikan_terakhir">
+                            name="pendidikan_terakhir" id="pendidikan_terakhir"
+                            value="{{ old('pendidikan_terakhir') }}">
                         <div class="invalid-feedback">
                             {{ $errors->first('pendidikan_terakhir') }}
                         </div>

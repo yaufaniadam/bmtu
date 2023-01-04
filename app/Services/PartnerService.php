@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class PartnerService
 {
     protected static $financing_partner;
+    protected static $partner_id;
 
     public static function PartnerIndex()
     {
@@ -18,7 +19,6 @@ class PartnerService
 
     public static function StoreFinancingPartner($request, $employee_id)
     {
-        // dd($request);
         DB::transaction(
             function () use ($request, $employee_id) {
                 $financing_partner = FinancingPartner::create(
@@ -46,8 +46,12 @@ class PartnerService
                         'foto' => $fileLocation . $fileName,
                     ]
                 );
+
+                self::$partner_id = $financing_partner->id;
             }
         );
+
+        return self::$partner_id;
     }
 
     public static function DetailPartner($financing_partner_id)

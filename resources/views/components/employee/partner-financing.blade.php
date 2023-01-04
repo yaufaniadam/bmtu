@@ -1,5 +1,5 @@
 @foreach($financing_histories as $history)
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header">
             Keterangan Pembiayaan
         </div>
@@ -34,7 +34,11 @@
             </div>
         </div>
     </div>
+
+    <x-employee.marketing-cycle :financing-id="$history->id" />
 @endforeach
+
+
 
 <div class="mt-3">
     {{ $financing_histories->links() }}

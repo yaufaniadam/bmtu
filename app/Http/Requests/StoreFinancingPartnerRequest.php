@@ -28,7 +28,7 @@ class StoreFinancingPartnerRequest extends FormRequest
             'alamat' => ['required', 'string', 'max:255'],
             'kabupaten' => ['required', 'string', 'max:255'],
             'telepon' => ['required', 'string', 'max:255'],
-            'email' => ['email:filter', 'max:255'],
+            'email' => ['email:filter', 'max:255', 'nullable'],
             'pekerjaan' => ['required', 'string', 'max:255'],
             'pendidikan_terakhir' => ['required', 'string', 'max:255'],
             'foto' => ['required', 'image', 'mimes:jpg,png']

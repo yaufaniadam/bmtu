@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
                 AdminSeeder::class,
                 UserSeeder::class,
                 PartnerSeeder::class,
-                MarketingReportSeeder::class
+                MarketingReportSeeder::class,
+                PlacementSeeder::class,
+                CycleSeeder::class,
             ]
         );
     }

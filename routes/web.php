@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FinancingPartnerController;
+use App\Http\Controllers\MarketingReportController;
 use App\Http\Controllers\PlacementController;
 use App\Http\Controllers\UserController;
 use App\Jobs\SendMailJob;
@@ -39,32 +40,20 @@ Route::put('/reset_password', [AuthController::class, 'ResetUserPassword'])->mid
 Route::middleware('custom_auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('test', function () {
-        Gate::authorize('admin');
-
-
-        // dispatch(new SendMailJob('waskitodamar51@gmail.com', url('')));
-
-        // $mail = new ResetPassword(url(''));
-        // return $mail->render();
-        Mail::to('waskitodamar51@gmail.com')->send(new ResetPassword(url('')));
-        dd('authorized as admin');
-    });
-    // Route::get('dummy_penempatan', function () {
-    //     return Placement::factory();
+    // Route::get('test', function () {
+    //     Gate::authorize('admin');
     // });
 
+    Route::middleware('can:employee,marketing_manager,marketing_employee')->group(function () {
+        Route::resource('financing-partner/{partner_id}/financing', MarketingReportController::class);
+    });
+
     Route::resource('financing-partner', FinancingPartnerController::class);
-
     Route::resource('user', UserController::class);
-
     Route::resource('placement', PlacementController::class);
-
     Route::resource('user/{id}/family-member', FamilyController::class);
     Route::resource('user/{id}/education', EducationController::class);
     Route::resource('user/{id}/achievement', AchievementController::class);
-
-    // Route::get('profile', [UserController::class, 'show']);
 
     // update user email route
     Route::get('user/{id}/change-email-address', [ChangeUserCredentialController::class, 'EditEmail'])->where('id', '[0-9]+')->name('edit-email');

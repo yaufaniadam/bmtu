@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('kabupaten');
             $table->string('telepon');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('pekerjaan');
             $table->string('pendidikan_terakhir');
             $table->text('foto')->nullable();
