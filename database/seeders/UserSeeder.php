@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                         return ['email' => $user['email']];
                     })
             )
-            ->count(100)
+            ->count(1)
             ->create();
     }
 }

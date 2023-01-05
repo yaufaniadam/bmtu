@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css ') }}" rel="stylesheet"
@@ -19,14 +19,14 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
 
     {{-- per pages --}}
     @stack('css')
 
 </head>
 
-<body id="page-top">
+<body id="page-top" >
 
     <!-- Page Wrapper -->
     <div id="wrapper">

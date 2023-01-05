@@ -8,13 +8,13 @@
             <h1 class="h4 text-gray-800 mr-1">
                 <i class="fas fa-fw fa-users"></i>
             </h1>
-            <h1 class="h3 text-gray-800">Users</h1>
+            <h1 class="h3 text-gray-800">Daftar Pegawai</h1>
         </div>
     </x-slot:title>
 
     <div class="mb-2">
         <a href="{{ url('user/create') }}" class="btn btn-success">
-            <i class="fas fa-fw fa-plus-circle"></i> Add new user
+            <i class="fas fa-fw fa-plus-circle"></i> Tambah
         </a>
     </div>
 
