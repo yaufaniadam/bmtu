@@ -15,6 +15,7 @@ class MarketingReport extends Model
 
     protected $fillable = [
         'id_mitra_pembiayaan',
+        'id_pegawai',
         'id_pembiayaan',
         'jenis_pembiayaan',
         'nominal',
@@ -25,5 +26,10 @@ class MarketingReport extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'id_pegawai');
+    }
+
+    public function cycles()
+    {
+        return $this->hasMany(FinancingCycle::class, 'id_laporan_marketing');
     }
 }

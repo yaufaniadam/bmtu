@@ -18,6 +18,7 @@
                 <form action="{{ route('financing.store',$partner_id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="id_mitra_pembiayaan" value="{{ $partner_id }}">
                     <div class="form-group">
                         <label for="jenis_pembiayaan" class="col-form-label">Jenis Pembiayaan</label>
                         <input type="text"

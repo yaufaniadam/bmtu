@@ -9,4 +9,9 @@ class Cycle extends Model
 {
     use HasFactory;
     protected $table = 'mstr_cycle';
+
+    public function financingCycles()
+    {
+        return $this->hasMany(FinancingCycle::class, 'id_cycle');
+    }
 }

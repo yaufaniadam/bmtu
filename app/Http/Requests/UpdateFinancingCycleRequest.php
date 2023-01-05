@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MarketingReportRequest extends FormRequest
+class UpdateFinancingCycleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,8 @@ class MarketingReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_mitra_pembiayaan' => ['string', 'required', 'max:255', 'exists:tr_mitra_pembiayaan,id'],
-            'jenis_pembiayaan' => ['string', 'required', 'max:255'],
-            'keterangan' => ['string', 'required', 'max:255'],
-            'nominal' => ['numeric', 'required'],
+            'keterangan' => ['required', 'string', 'max:255'],
+            'foto' => ['file', 'mimes:jpg,png']
         ];
     }
 }
