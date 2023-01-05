@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_laporan_marketing');
             $table->unsignedBigInteger('id_cycle');
-            $table->string('keterangan');
-            $table->text('foto');
-            $table->date('tanggal');
+            $table->string('keterangan')->nullable();
+            $table->text('foto')->nullable();
+            $table->date('tanggal')->nullable();
             $table->timestamps();
         });
 

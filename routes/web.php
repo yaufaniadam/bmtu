@@ -6,6 +6,7 @@ use App\Http\Controllers\ChangeUserCredentialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\FinancingCycleController;
 use App\Http\Controllers\FinancingPartnerController;
 use App\Http\Controllers\MarketingReportController;
 use App\Http\Controllers\PlacementController;
@@ -46,7 +47,9 @@ Route::middleware('custom_auth')->group(function () {
 
     Route::middleware('can:employee,marketing_manager,marketing_employee')->group(function () {
         Route::resource('financing-partner/{partner_id}/financing', MarketingReportController::class);
+        Route::post('financing-cycle/{financing_cycle_id}/update', [FinancingCycleController::class, 'update'])->name('financing-cycle.update');
     });
+
 
     Route::resource('financing-partner', FinancingPartnerController::class);
     Route::resource('user', UserController::class);

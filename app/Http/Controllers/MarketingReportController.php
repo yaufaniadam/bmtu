@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MarketingReportRequest;
+use App\Models\Employee;
+use App\Services\MarketingReportService;
 use Illuminate\Http\Request;
 
 class MarketingReportController extends Controller
@@ -14,7 +16,7 @@ class MarketingReportController extends Controller
      */
     public function index()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -37,9 +39,11 @@ class MarketingReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($partner_id, MarketingReportRequest $request)
-    {
-        dd($request->validated());
+    public function store(MarketingReportRequest $request)
+    {;
+        $employee_id = Employee::where('user_id', '=', auth()->id())->firstOrFail()->id;
+        MarketingReportService::StoreMarketingReport($employee_id, $request->validated());
+        return redirect()->to(route('financing-partner.show', $request->id_mitra_pembiayaan));
     }
 
     /**
@@ -50,7 +54,7 @@ class MarketingReportController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -61,7 +65,7 @@ class MarketingReportController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -73,7 +77,7 @@ class MarketingReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -84,6 +88,6 @@ class MarketingReportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 }
