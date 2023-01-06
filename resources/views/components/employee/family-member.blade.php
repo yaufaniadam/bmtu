@@ -1,11 +1,13 @@
 <div class="card">
     <div class="card-header">
         Anggota Keluarga
+        @can('admin')
         <button type="button" class="btn btn-warning btn-sm float-right" data-toggle="modal"
             data-target="#createFamilyMemberModal">
             <i class="fas fa-fw fa-plus-circle"></i>
             Tambah Data
         </button>
+        @endcan
     </div>
     <div class="card-body">
         <table class="table rounded overflow-hidden">

@@ -2,7 +2,7 @@
 
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800 d-none">Dashboard</h1>
         </div>
     </x-slot:title>
 
@@ -107,8 +107,7 @@
                             </div>
                         </div>
                         
-                    </div>
-                    <div class="row">
+                    
                         <div class="col-xl-3 col-lg-3 col-4">                            
                             <div class="text-center">
                                 <img src="{{ asset('img/marketing-report.png') }}" />

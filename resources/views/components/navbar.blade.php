@@ -5,7 +5,7 @@
         <i class="fa fa-bars"></i>
     </button>
 
-    <h3 class="d-md-none d-block">Dashboard</h3>
+    <!-- <h3 class="d-md-none d-block">Dashboard</h3> -->
     
 
     <!-- Topbar Search -->

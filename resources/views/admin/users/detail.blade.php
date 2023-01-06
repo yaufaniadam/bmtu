@@ -160,7 +160,7 @@
             </form>
         </div>
     </div>
-    @can('admin')
+    <!-- @can('admin') -->
         <div class="row mb-3">
             <div class="col-md-6">
                 <x-employee.family-member :employee-id="$user->employee->id" />
@@ -174,6 +174,6 @@
                 <x-employee.achievement :employee-id="$user->employee->id" />
             </div>
         </div>
-    @endcan
+    <!-- @endcan -->
 
 </x-layout>
