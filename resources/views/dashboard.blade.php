@@ -12,7 +12,7 @@
         
 
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-4 col-md-6 mb-4">
+        <!-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -27,9 +27,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-4 col-md-6 mb-4">
+        <!-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -44,9 +44,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-4 col-md-6 mb-4">
+        <!-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     @endcan
@@ -78,17 +78,21 @@
 
                 @can('admin')
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-4">                            
+                        <div class="col-xl-3 col-lg-3 col-4">  
+                            <a href="{{ url('user') }}">                          
                             <div class="text-center">
                                 <img src="{{ asset('img/pegawai.png') }}" />
                                 <p>Pegawai</p>
                             </div>
+                            </a>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-4">                            
+                        <div class="col-xl-3 col-lg-3 col-4">  
+                            <a class="nav-link" href="{{ url('placement') }}">                      
                             <div class="text-center">
                                 <img src="{{ asset('img/sk-penempatan.png') }}" />
                                 <p>SK Penempatan</p>
                             </div>
+                            </a> 
                         </div>
                         <div class="col-xl-3 col-lg-3 col-4">                            
                             <div class="text-center">

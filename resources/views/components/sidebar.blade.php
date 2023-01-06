@@ -2,9 +2,9 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div>
+        <!-- <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-user"></i>
+        </div> -->
         <div class="sidebar-brand-text mx-3">BMTUMY SIP</div>
     </a>
 
@@ -44,13 +44,16 @@
                 <i class="fas fa-fw fa-plus-circle"></i>
                 <span>Penempatan</span></a>
         </li>
-    @endcan
 
-    <li class="nav-item">
+         <!-- <li class="nav-item">
         <a class="nav-link" href="{{ route('financing-partner.index') }}">
             <i class="fas fa-fw fa-plus-circle"></i>
             <span>Mitra Pembiayaan</span></a>
-    </li>
+    </li> -->
+    
+    @endcan
+
+   
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
