@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class profile extends Component
 {
+    public $employee_name;
     /**
      * Create a new component instance.
      *
@@ -15,7 +16,8 @@ class profile extends Component
      */
     public function __construct()
     {
-        //
+        $employee = Employee::where('user_id', Auth::id())->first();
+        $this->employee_name = $employee->nama_lengkap;
     }
 
     /**
@@ -25,9 +27,6 @@ class profile extends Component
      */
     public function render()
     {
-        $employee = Employee::where('user_id', Auth::id())->first();
-        return view('components.profile', [
-            'employee_name' => $employee->nama_lengkap
-        ]);
+        return view('components.profile');
     }
 }
