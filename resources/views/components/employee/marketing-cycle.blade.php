@@ -1,11 +1,4 @@
 <div class="card pb-4">
-    {{-- @php --}}
-    {{-- foreach ($financing_cycles as $financing_cycle) { --}}
-    {{-- dump($financing_cycle->cycle); --}}
-    {{-- } --}}
-    {{-- die(); --}}
-    {{-- @endphp --}}
-
     <div class="card-header">
         Marketing Cycle
     </div>

@@ -1,11 +1,6 @@
 <x-layout>
     <x-slot:title>
-        <div class="d-flex mb-3">
-            <h1 class="h4 text-gray-800 mr-1">
-                <i class="fas fa-fw fa-key"></i>
-            </h1>
-            <h1 class="h3 text-gray-800">Ubah Password</h1>
-        </div>
+        Ubah Password
     </x-slot:title>
 
     <div class="card col-8 mx-auto">

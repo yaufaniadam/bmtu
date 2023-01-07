@@ -27,13 +27,18 @@ class FinancingCycleService
                     ]
                 );
 
-                if (in_array($financing_cycle->id_cycle, [1, 2, 3, 4])) {
-                    FinancingCycle::create(
-                        [
-                            'id_laporan_marketing' => $financing_cycle->id_laporan_marketing,
-                            'id_cycle' => $financing_cycle->id_cycle + 1,
-                        ]
-                    );
+                if (empty(FinancingCycle::where([
+                    ['id_laporan_marketing', '=', $financing_cycle->id_laporan_marketing],
+                    ['id_cycle', '=', $financing_cycle->id_cycle + 1],
+                ]))) {
+                    if (in_array($financing_cycle->id_cycle, [1, 2, 3, 4])) {
+                        FinancingCycle::create(
+                            [
+                                'id_laporan_marketing' => $financing_cycle->id_laporan_marketing,
+                                'id_cycle' => $financing_cycle->id_cycle + 1,
+                            ]
+                        );
+                    }
                 }
             }
         );

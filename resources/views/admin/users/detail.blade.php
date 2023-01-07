@@ -1,11 +1,6 @@
 <x-layout>
     <x-slot:title>
-        <div class="d-flex mb-3">
-            <h1 class="h4 text-gray-800 mr-1">
-                <i class="fas fa-fw fa-plus-circle"></i>
-            </h1>
-            <h1 class="h3 text-gray-800">Data Pegawai</h1>
-        </div>
+        Data Pegawai
     </x-slot:title>
 
     @if(session()->has('success'))
@@ -160,20 +155,18 @@
             </form>
         </div>
     </div>
-    @can('admin')
-        <div class="row mb-3">
-            <div class="col-6">
-                <x-employee.family-member :employee-id="$user->employee->id" />
-            </div>
-            <div class="col-6">
-                <x-employee.education-history :employee-id="$user->employee->id" />
-            </div>
+    <div class="row mb-3">
+        <div class="col-6">
+            <x-employee.family-member :employee-id="$user->employee->id" />
         </div>
-        <div class="row mb-3">
-            <div class="col-6">
-                <x-employee.achievement :employee-id="$user->employee->id" />
-            </div>
+        <div class="col-6">
+            <x-employee.education-history :employee-id="$user->employee->id" />
         </div>
-    @endcan
+    </div>
+    <div class="row mb-3">
+        <div class="col-6">
+            <x-employee.achievement :employee-id="$user->employee->id" />
+        </div>
+    </div>
 
 </x-layout>

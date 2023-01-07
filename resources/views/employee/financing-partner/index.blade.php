@@ -1,11 +1,6 @@
 <x-layout>
     <x-slot:title>
-        <div class="d-flex mb-3">
-            <h1 class="h4 text-gray-800 mr-1">
-                <i class="fas fa-fw fa-users"></i>
-            </h1>
-            <h1 class="h3 text-gray-800">Mitra</h1>
-        </div>
+        Mitra
     </x-slot:title>
 
     <div class="mb-2">

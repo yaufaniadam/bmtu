@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAchievementRequest;
 use App\Http\Requests\UpdateAchievementRequest;
 use App\Services\AchievementService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AchievementController extends Controller
 {
@@ -16,7 +17,7 @@ class AchievementController extends Controller
      */
     public function index()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -26,7 +27,7 @@ class AchievementController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -37,6 +38,8 @@ class AchievementController extends Controller
      */
     public function store(StoreAchievementRequest $request)
     {
+        Gate::authorize('admin');
+
         AchievementService::StoreAchievement($request->all());
         return redirect()->back()->with('success', 'Prestasi pegawai berhasil ditambahkan');
     }
@@ -49,7 +52,7 @@ class AchievementController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -60,6 +63,8 @@ class AchievementController extends Controller
      */
     public function edit($user_id, $achievement_id)
     {
+        Gate::authorize('admin');
+
         $achievement = AchievementService::DetailAchievement($achievement_id)->get();
 
         return view('achievements.edit')
@@ -78,6 +83,8 @@ class AchievementController extends Controller
      */
     public function update(UpdateAchievementRequest $request, $user_id, $achievement_id)
     {
+        Gate::authorize('admin');
+
         AchievementService::DetailAchievement($achievement_id)->UpdateAchievement($request->all());
         return redirect()->to(route('user.show', $user_id))->with('success', 'Perubahan data prestasi berhasil disimpan');
     }
@@ -90,6 +97,8 @@ class AchievementController extends Controller
      */
     public function destroy($user_id, $achievement_id)
     {
+        Gate::authorize('admin');
+
         AchievementService::DetailAchievement($achievement_id)->DeleteAchievement();
         return redirect()->back()->with('success', 'Prestasi dihapus');
     }

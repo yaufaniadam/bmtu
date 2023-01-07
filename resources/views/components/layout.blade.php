@@ -42,14 +42,14 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <x-navbar />
+                <x-navbar :title="$title" />
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    {{ $title }}
+                    {{-- {{ $title }} --}}
 
                     <!-- Content Row -->
                     {{ $slot }}

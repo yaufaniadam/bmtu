@@ -4,12 +4,7 @@
     @endpush
 
     <x-slot:title>
-        <div class="d-flex mb-3">
-            <h1 class="h4 text-gray-800 mr-1">
-                <i class="fas fa-fw fa-plus-circle"></i>
-            </h1>
-            <h1 class="h3 text-gray-800">Tambah Pegawai</h1>
-        </div>
+        Tambah Pegawai
     </x-slot:title>
 
     <div class="col-lg-7 mx-auto">

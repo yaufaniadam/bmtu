@@ -6,6 +6,7 @@ use App\Http\Requests\StoreEducationRequest;
 use App\Http\Requests\UpdateEducationRequest;
 use App\Services\EducationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class EducationController extends Controller
 {
@@ -16,7 +17,7 @@ class EducationController extends Controller
      */
     public function index()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -26,7 +27,7 @@ class EducationController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -37,6 +38,7 @@ class EducationController extends Controller
      */
     public function store(StoreEducationRequest $request)
     {
+        Gate::authorize('admin');
         EducationService::StoreEducationHistory($request->validated());
         return redirect()->back()->with('success', 'Riwayat pendidikan ditambahkan.');
     }
@@ -49,7 +51,7 @@ class EducationController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -60,8 +62,7 @@ class EducationController extends Controller
      */
     public function edit($user_id, $education_id)
     {
-        // dd(EducationService::DetailEducation($education_id)->get());
-        // dd($education_id);
+        Gate::authorize('admin');
         $education = EducationService::DetailEducation($education_id)->get();
         return view('educations.edit')->with(
             [
@@ -86,8 +87,7 @@ class EducationController extends Controller
      */
     public function update(UpdateEducationRequest $request, $user_id, $education_id)
     {
-        // dd($education_id);
-
+        Gate::authorize('admin');
         EducationService::DetailEducation($education_id)->UpdateEducation($user_id, $request->validated());
         return redirect()->to(route('user.show', $user_id))->with('success', 'Perubahan data riwayat pendidikan selesai');
     }
@@ -100,6 +100,7 @@ class EducationController extends Controller
      */
     public function destroy($user_id, $education_id)
     {
+        Gate::authorize('admin');
         EducationService::DetailEducation($education_id)->DeleteEducation();
         return redirect()->to(route('user.show', $user_id))->with('success', 'Perubahan data riwayat pendidikan selesai');
     }

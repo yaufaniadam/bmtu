@@ -28,7 +28,8 @@ class MarketingReportController extends Controller
     {
         return view('employee.financing-partner.financing.create')->with(
             [
-                'partner_id' => $partner_id
+                'partner_id' => $partner_id,
+                'title' => 'Tambah Mitra Pembiayaan'
             ]
         );
     }

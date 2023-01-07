@@ -6,7 +6,7 @@
     </button>
 
     <!-- Topbar Search -->
-    {{-- <x-search /> --}}
+    <x-search :title="$title" />
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
