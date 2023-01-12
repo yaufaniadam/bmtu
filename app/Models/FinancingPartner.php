@@ -26,4 +26,9 @@ class FinancingPartner extends Model
     {
         return $this->belongsTo(Employee::class, 'id_pegawai');
     }
+
+    public function marketingReports()
+    {
+        return $this->hasMany(MarketingReport::class, 'id_mitra_pembiayaan');
+    }
 }

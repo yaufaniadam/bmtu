@@ -2,7 +2,9 @@
 
 namespace App\View\Components\Employee;
 
+use App\Models\Employee;
 use App\Models\MarketingReport;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class PartnerFinancing extends Component
@@ -15,7 +17,12 @@ class PartnerFinancing extends Component
      */
     public function __construct($partnerId)
     {
-        $this->financing_histories = MarketingReport::where('id_mitra_pembiayaan', '=', $partnerId)->paginate(1)->withPath($partnerId);
+        $this->financing_histories = MarketingReport::where(
+            [
+                ['id_mitra_pembiayaan', '=', $partnerId],
+                ['id_pegawai', '=', Employee::where('user_id', '=', Auth::id())->first()->id]
+            ]
+        )->paginate(1)->withPath($partnerId);
     }
 
     /**

@@ -1,6 +1,7 @@
 <x-layout>
     @push('css')
-        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}"
+            rel="stylesheet">
     @endpush
 
     <x-slot:title>

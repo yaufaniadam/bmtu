@@ -28,6 +28,11 @@ class MarketingReport extends Model
         return $this->belongsTo(Employee::class, 'id_pegawai');
     }
 
+    public function partner()
+    {
+        return $this->belongsTo(FinancingPartner::class, 'id_mitra_pembiayaan');
+    }
+
     public function cycles()
     {
         return $this->hasMany(FinancingCycle::class, 'id_laporan_marketing');

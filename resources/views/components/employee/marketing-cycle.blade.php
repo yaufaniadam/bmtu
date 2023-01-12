@@ -40,10 +40,10 @@
                         </div>
                         <div class="form-group">
                             <input type="file"
-                                class="form-control-file {{ $errors->has('file') ? 'is-invalid' : '' }}"
+                                class="form-control-file {{ $errors->has('foto') ? 'is-invalid' : '' }}"
                                 id="exampleFormControlFile1" name="foto">
                             <div class="invalid-feedback">
-                                {{ $errors->first('file') }}
+                                {{ $errors->first('foto') }}
                             </div>
                         </div>
                         <div class="d-flex flex-row align-items-center text-dark mb-1">

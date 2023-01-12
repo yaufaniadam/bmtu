@@ -1,1 +1,1 @@
-<a href="{{ $url }}">{{ $placeholder }}</a>
+<a href="{{ $url }}">{!! $placeholder !!}</a>

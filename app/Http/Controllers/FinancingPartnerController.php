@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Services\PartnerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class FinancingPartnerController extends Controller
 {
@@ -32,6 +33,8 @@ class FinancingPartnerController extends Controller
      */
     public function create()
     {
+        Gate::authorize('employee,marketing_manager,marketing_employee');
+
         return view('employee.financing-partner.create');
     }
 
@@ -43,6 +46,8 @@ class FinancingPartnerController extends Controller
      */
     public function store(StoreFinancingPartnerRequest $request)
     {
+        Gate::authorize('employee,marketing_manager,marketing_employee');
+
         $employee_id = Employee::where('user_id', '=', Auth::id())->first()->id;
         $partner_id = PartnerService::StoreFinancingPartner($request->validated(), $employee_id);
         return redirect()->to(route('financing-partner.show', $partner_id));
@@ -57,6 +62,7 @@ class FinancingPartnerController extends Controller
     public function show($financing_partner_id)
     {
         // dd(PartnerService::DetailPartner($financing_partner_id)->get());
+        // dd(auth()->id());
         return view('employee.financing-partner.detail')
             ->with(
                 [

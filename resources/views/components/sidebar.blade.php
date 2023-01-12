@@ -103,7 +103,26 @@
             <span>Tables</span></a>
     </li>
 
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="sidebar-heading">
+        Marketing
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('financing-partner.index') }}">
+            <i class="fa-solid fa-handshake"></i>
+            <span>Mitra Pembiayaan</span></a>
+    </li>
+
     @can('admin')
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('marketing-reports.index') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Marketing Reports</span></a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -125,16 +144,10 @@
 
         <li class="nav-item">
             <a class="nav-link" href="{{ url('placement') }}">
-                <i class="fas fa-fw fa-plus-circle"></i>
-                <span>Penempatan</span></a>
+                <i class="fa-solid fa-id-card"></i>
+                <span>SK Penempatan</span></a>
         </li>
     @endcan
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('financing-partner.index') }}">
-            <i class="fas fa-fw fa-plus-circle"></i>
-            <span>Mitra Pembiayaan</span></a>
-    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
