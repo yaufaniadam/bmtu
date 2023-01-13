@@ -59,10 +59,14 @@ class FinancingPartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($financing_partner_id)
+    public function show($financing_partner_id, Request $request)
     {
-        // dd(PartnerService::DetailPartner($financing_partner_id)->get());
-        // dd(auth()->id());
+        if (auth()->user()->role == 1) {
+            if ($request->ajax()) {
+                return PartnerService::DetailPartner($financing_partner_id)->PartnerFinancingJson();
+            }
+        }
+
         return view('employee.financing-partner.detail')
             ->with(
                 [

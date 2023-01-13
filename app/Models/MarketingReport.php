@@ -37,4 +37,9 @@ class MarketingReport extends Model
     {
         return $this->hasMany(FinancingCycle::class, 'id_laporan_marketing');
     }
+
+    public function financingStatus()
+    {
+        return $this->hasOne(FinancingStatus::class, 'id_laporan_marketing');
+    }
 }

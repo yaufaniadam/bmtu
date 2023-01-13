@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\Cycle;
 use App\Models\FinancingPartner;
+use App\Models\MarketingReport;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class PartnerService
 {
@@ -13,7 +16,6 @@ class PartnerService
     public static function PartnerIndex()
     {
         $partners = FinancingPartner::paginate(10);
-        $partners->withPath('financing-partner');
         return $partners;
     }
 
@@ -58,6 +60,35 @@ class PartnerService
     {
         static::$financing_partner = FinancingPartner::findOrFail($financing_partner_id);
         return new static;
+    }
+
+    public static function PartnerFinancingJson()
+    {
+        $financing_partner = static::$financing_partner;
+
+        $financings = [];
+        $q = MarketingReport::where('id_mitra_pembiayaan', '=', $financing_partner->id)->get();
+        $index = 1;
+        foreach ($q as $key => $value) {
+            $financings[] = [
+                'id' => $value->id,
+                'no' => $index++,
+                'jenis_pembiayaan' => $value->jenis_pembiayaan,
+                'tanggal' => $value->tanggal->isoFormat('D MMMM Y'),
+                'status' => Cycle::find($value->financingStatus->id_cycle)->cycle,
+                'id_status' => Cycle::find($value->financingStatus->id_cycle)->id,
+                'marketing' => $value->employee->nama_lengkap
+            ];
+        }
+
+        return DataTables::of($financings)
+            ->editColumn('jenis_pembiayaan', function ($financing) {
+                return view('datatables.link')->with([
+                    'url' => route('marketing-report.detail', $financing['id']),
+                    'placeholder' => $financing['jenis_pembiayaan']
+                ]);
+            })
+            ->toJson();
     }
 
     public static function get()

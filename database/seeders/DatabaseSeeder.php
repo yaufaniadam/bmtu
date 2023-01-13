@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
                 BranchSeeder::class,
                 AdminSeeder::class,
                 UserSeeder::class,
+                CycleSeeder::class,
                 PartnerSeeder::class,
                 MarketingReportSeeder::class,
                 PlacementSeeder::class,
-                CycleSeeder::class,
             ]
         );
     }
