@@ -50,6 +50,11 @@ Route::middleware('custom_auth')->group(function () {
         Route::post('financing-cycle/{financing_cycle_id}/update', [FinancingCycleController::class, 'update'])->name('financing-cycle.update');
     });
 
+    Route::middleware('can:admin')->group(function () {
+        Route::resource('marketing-reports', MarketingReportController::class);
+        Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
+    });
+
 
     Route::resource('financing-partner', FinancingPartnerController::class);
     Route::resource('user', UserController::class);

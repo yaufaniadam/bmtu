@@ -42,14 +42,14 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <x-navbar />
+                <x-navbar :title="$title" />
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    {{ $title }}
+                    {{-- {{ $title }} --}}
 
                     <!-- Content Row -->
                     {{ $slot }}
@@ -84,7 +84,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-
+    {{-- font awesome --}}
+    <script src="https://kit.fontawesome.com/ae9ecceff1.js" crossorigin="anonymous"></script>
     <!-- Page level plugins -->
     @stack('js')
 

@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        Riwayat Pendidikan
+        Riwayat Penempatan
     </div>
     <div class="card-body">
         <table class="table rounded overflow-hidden">

@@ -24,7 +24,7 @@
         <div class="card-body bg-light">
             <div class="row">
                 <div class="col-3">Plafon Pembiayaan</div>
-                <div class="col-9">Rp 30.000.000</div>
+                <div class="col-9">Rp {{ $history->nominal }}</div>
             </div>
         </div>
         <div class="card-body">
@@ -37,8 +37,6 @@
 
     <x-employee.marketing-cycle :financing-id="$history->id" />
 @endforeach
-
-
 
 <div class="mt-3">
     {{ $financing_histories->links() }}

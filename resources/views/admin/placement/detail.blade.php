@@ -1,11 +1,6 @@
 <x-layout>
     <x-slot:title>
-        <div class="d-flex mb-3">
-            <h1 class="h4 text-gray-800 mr-1">
-                <i class="fas fa-fw fa-plus-circle"></i>
-            </h1>
-            <h1 class="h3 text-gray-800">Data Pegawai</h1>
-        </div>
+        Data Penempatan Pegawai
     </x-slot:title>
 
     @if(session()->has('success'))

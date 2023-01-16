@@ -1,11 +1,6 @@
 <x-layout>
     <x-slot:title>
-        <div class="d-flex mb-3">
-            <h1 class="h4 text-gray-800 mr-1">
-                <i class="fas fa-fw fa-graduation-cap"></i>
-            </h1>
-            <h1 class="h3 text-gray-800">Edit Riwayat Pendidikan</h1>
-        </div>
+        Edit Riwayat Pendidikan
     </x-slot:title>
 
     <div class="card col-7 mx-auto">

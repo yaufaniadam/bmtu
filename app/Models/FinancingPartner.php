@@ -9,6 +9,9 @@ class FinancingPartner extends Model
 {
     use HasFactory;
     protected $table = 'tr_mitra_pembiayaan';
+    protected $casts = [
+        'created_at' => 'date',
+    ];
 
     protected $fillable = [
         'id_pegawai',
@@ -25,5 +28,10 @@ class FinancingPartner extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'id_pegawai');
+    }
+
+    public function marketingReports()
+    {
+        return $this->hasMany(MarketingReport::class, 'id_mitra_pembiayaan');
     }
 }

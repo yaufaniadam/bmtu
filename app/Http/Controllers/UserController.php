@@ -109,6 +109,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        if (Auth::user()->role != 1 && UserService::DetailUser($id)->get()->id != Auth::id()) {
+            abort(403);
+        }
         UserService::DetailUser($id)->DeleteUser($id);
         return redirect()->back()->with('success', 'Data pegawai dihapus.');
     }

@@ -4,12 +4,7 @@
         <link href="{{ asset('css/select2-bootstrap4.min.css') }}" rel="stylesheet">
     @endpush
     <x-slot:title>
-        <div class="d-flex mb-3">
-            <h1 class="h4 text-gray-800 mr-1">
-                <i class="fas fa-fw fa-user"></i>
-            </h1>
-            <h1 class="h3 text-gray-800">Edit Data Penempatan Pegawai</h1>
-        </div>
+        Edit Data Penempatan Pegawai
     </x-slot:title>
 
     <div class="card col-8 mx-auto">

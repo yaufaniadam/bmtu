@@ -1,20 +1,16 @@
 <x-layout>
     @push('css')
-        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}"
+            rel="stylesheet">
     @endpush
 
     <x-slot:title>
-        <div class="d-flex mb-3">
-            <h1 class="h4 text-gray-800 mr-1">
-                <i class="fas fa-fw fa-users"></i>
-            </h1>
-            <h1 class="h3 text-gray-800">Daftar Pegawai</h1>
-        </div>
+        Users
     </x-slot:title>
 
     <div class="mb-2">
         <a href="{{ url('user/create') }}" class="btn btn-success">
-            <i class="fas fa-fw fa-plus-circle"></i> Tambah
+            <i class="fas fa-fw fa-plus-circle"></i> Tambah Pegawai
         </a>
     </div>
 
