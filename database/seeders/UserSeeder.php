@@ -17,17 +17,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory()
-        //     ->has(
-        //         Employee::factory()
-        //             ->count(1)
-        //             ->state(function (array $attributes, User $user) {
-        //                 return ['email' => $user['email']];
-        //             })
-        //     )
-        //     ->count(100)
-        //     ->create();
-
 
         $users = [
             [
@@ -39,7 +28,7 @@ class UserSeeder extends Seeder
                 'telepon' => '081904278277',
                 'email' => 'uwangwari@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '1210 001',
+                'nip' => '1210001',
                 'role' => 4,
             ],
             [
@@ -51,7 +40,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085292197258',
                 'email' => 'cahyohalimistiqlal@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '0211 002',
+                'nip' => '0211002',
                 'role' => 4,
             ],
             [
@@ -63,7 +52,7 @@ class UserSeeder extends Seeder
                 'telepon' => '0813126191354',
                 'email' => 'siwiekalani_0909@yahoo.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '0211 008',
+                'nip' => '0211008',
                 'role' => 4,
             ],
             [
@@ -75,7 +64,7 @@ class UserSeeder extends Seeder
                 'telepon' => '089669698221',
                 'email' => 'belvashafwa@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '0712 021',
+                'nip' => '0712021',
                 'role' => 4,
             ],
             [
@@ -87,7 +76,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085743145046',
                 'email' => 'phypyt383@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '0413 023',
+                'nip' => '0413023',
                 'role' => 4,
             ],
             [
@@ -99,7 +88,7 @@ class UserSeeder extends Seeder
                 'telepon' => '082136470390',
                 'email' => 'elhasan92@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '0215 029',
+                'nip' => '0215029',
                 'role' => 4,
             ],
             [
@@ -111,7 +100,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085643998780',
                 'email' => 'muhammaditsnan90@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '0415 030',
+                'nip' => '0415030',
                 'role' => 4,
             ],
             [
@@ -123,7 +112,7 @@ class UserSeeder extends Seeder
                 'telepon' => '089626365038',
                 'email' => 'rezabmtumy@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '1017 037',
+                'nip' => '1017037',
                 'role' => 4,
             ],
             [
@@ -135,7 +124,7 @@ class UserSeeder extends Seeder
                 'telepon' => '081327384300',
                 'email' => 'rahmawan.bmtumy@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '1017 038',
+                'nip' => '1017038',
                 'role' => 4,
             ],
             [
@@ -147,7 +136,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085326720369',
                 'email' => 'tiara.fatmasari.tf@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '0418 040',
+                'nip' => '0418040',
                 'role' => 4,
             ],
             [
@@ -159,7 +148,7 @@ class UserSeeder extends Seeder
                 'telepon' => '081802780357',
                 'email' => 'viandwi@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '0218 039',
+                'nip' => '0218039',
                 'role' => 4,
             ],
             [
@@ -171,7 +160,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085643661105',
                 'email' => 'fenthalari@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '0518 043',
+                'nip' => '0518043',
                 'role' => 4,
             ],
             [
@@ -183,7 +172,7 @@ class UserSeeder extends Seeder
                 'telepon' => '083869758977',
                 'email' => 'armaw302@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '0219 045',
+                'nip' => '0219045',
                 'role' => 4,
             ],
             [
@@ -195,7 +184,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085740043204',
                 'email' => 'khoirulummah13@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '0519 047',
+                'nip' => '0519047',
                 'role' => 4,
             ],
             [
@@ -207,7 +196,7 @@ class UserSeeder extends Seeder
                 'telepon' => '082238840405',
                 'email' => 'malhas25@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '0719 048',
+                'nip' => '0719048',
                 'role' => 4,
             ],
             [
@@ -219,7 +208,7 @@ class UserSeeder extends Seeder
                 'telepon' => '082220117114',
                 'email' => 'asanta343@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '1119 050',
+                'nip' => '1119050',
                 'role' => 4,
             ],
             [
@@ -231,7 +220,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085374481377',
                 'email' => 'habibistrong@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '1119 051',
+                'nip' => '1119051',
                 'role' => 4,
             ],
             [
@@ -243,7 +232,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085290084774',
                 'email' => 'purnama.nur@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '1119 052',
+                'nip' => '1119052',
                 'role' => 4,
             ],
             [
@@ -255,7 +244,7 @@ class UserSeeder extends Seeder
                 'telepon' => '087773391371',
                 'email' => 'marliantari29@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '0320 053',
+                'nip' => '0320053',
                 'role' => 4,
             ],
             [
@@ -267,7 +256,7 @@ class UserSeeder extends Seeder
                 'telepon' => '081229880703',
                 'email' => 'muhnovahakim@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '0920 054',
+                'nip' => '0920054',
                 'role' => 4,
             ],
             [
@@ -279,7 +268,7 @@ class UserSeeder extends Seeder
                 'telepon' => '971568304474',
                 'email' => 'asyrozimike@gmail.com',
                 'jenis_kelamin' => 'L',
-                'nip' => '1220 055',
+                'nip' => '1220055',
                 'role' => 4,
             ],
             [
@@ -291,7 +280,7 @@ class UserSeeder extends Seeder
                 'telepon' => '085802731254',
                 'email' => 'luthfyar17@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '1220 056',
+                'nip' => '1220056',
                 'role' => 4,
             ],
             [
@@ -303,7 +292,55 @@ class UserSeeder extends Seeder
                 'telepon' => '085643655159',
                 'email' => 'novera104@gmail.com',
                 'jenis_kelamin' => 'P',
-                'nip' => '1121 057',
+                'nip' => '1121057',
+                'role' => 4,
+            ],
+            [
+                'user_name' => 'khaputrishy@gmail.com',
+                'nama_lengkap' => 'Khairunisa Putri Imani.,S.Akt',
+                'alamat' => 'Perum Jatimas Blok P.16 Balecatur, Gamping, Sleman ,Yogyakarta',
+                'tempat_lahir' => 'Sleman',
+                'tanggal_lahir' => date("Y/m/d", strtotime('13 November 1997')),
+                'telepon' => '083869512514',
+                'email' => 'Khaputrishy@gmail.com',
+                'jenis_kelamin' => 'P',
+                'nip' => '1121058',
+                'role' => 4,
+            ],
+            [
+                'user_name' => 'sgardhawari01@gmail.com',
+                'nama_lengkap' => 'Sampuraning Gardhawari, S.Akt',
+                'alamat' => 'Sarirejo no 19 Rt/Rw 06/47 Maguwoharjo, Depok, Sleman, Yogyakarta',
+                'tempat_lahir' => 'Sleman',
+                'tanggal_lahir' => date("Y/m/d", strtotime('13 November 1997')),
+                'telepon' => '08995995095',
+                'email' => 'sgardhawari01@gmail.com',
+                'jenis_kelamin' => 'P',
+                'nip' => '1121059',
+                'role' => 4,
+            ],
+            [
+                'user_name' => 'Agata.Khoirunisa',
+                'nama_lengkap' => 'Agata Khoirunisa,S.H.',
+                'alamat' => 'Tegalyoso Babadan Rt/Rw 003/000 Sitimulyo Piyungan Bantul',
+                'tempat_lahir' => 'Bantul',
+                'tanggal_lahir' => date("Y/m/d", strtotime('13 November 1997')),
+                'telepon' => '085225994878',
+                'email' => 'Agata@gmail.com',
+                'jenis_kelamin' => 'P',
+                'nip' => '1121060',
+                'role' => 4,
+            ],
+            [
+                'user_name' => 'Arroyan',
+                'nama_lengkap' => 'Arroyan Abdul Jabar',
+                'alamat' => '087766500097',
+                'tempat_lahir' => 'Batu',
+                'tanggal_lahir' => date("Y/m/d", strtotime('13 November 1997')),
+                'telepon' => '087766500097',
+                'email' => 'Arroyan@gmail.com',
+                'jenis_kelamin' => 'P',
+                'nip' => '1121061',
                 'role' => 4,
             ],
         ];

@@ -1,0 +1,13 @@
+.text-center.menu {
+    border:1px solid #ddd;
+}
+.text-center.menu img {
+    width:80%;
+}
+
+@media (max-width: 767.98px) { 
+    .container-fluid {
+        padding-left:0;
+        padding-right:0;
+    }
+}

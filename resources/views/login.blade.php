@@ -9,76 +9,83 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>{{ config('app.name') }} - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-success">
 
     <div class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-xl-5 col-lg-9 col-md-6">
+            <div class="col-xl-10 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-12 mx-auto">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
                                 <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                    <div class="text-center  mt-5 mb-5">
+                                        <img src="{{ asset('img/logobmtumy.png') }}" alt="BMT UMY" />
                                     </div>
                                     @if(session()->has('success'))
-                                        <div class="alert alert-success" role="alert">
-                                            {{ session('success') }}
-                                        </div>
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('success') }}
+                                    </div>
                                     @endif
 
                                     @if(session()->has('danger'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{ session('danger') }}
-                                        </div>
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ session('danger') }}
+                                    </div>
                                     @endif
 
-                                    <form class="user" method="POST"
-                                        action="{{ route('attempt-login') }}">
+                                    <form class="user" method="POST" action="{{ route('attempt-login') }}">
                                         @csrf
-                                        <div class="form-group">
-                                            <input type="email"
-                                                class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="email"
-                                                value="{{ old('email') }}">
+
+
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend {{ $errors->has('email') ? 'is-invalid' : '' }}">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email Anda 
+                                                
+                                                ..." name="email" value="{{ old('email') }}">
                                             @error('email')
-                                                <div class="invalid-feedback">
-                                                    {{ $errors->first('email') }}
-                                                </div>
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('email') }}
+                                            </div>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password"
-                                                class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                                                id="exampleInputPassword" placeholder="Password" name="password">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend {{ $errors->has('password') ? 'is-invalid' : '' }}">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="exampleInputPassword" placeholder="Password" name="password">
                                             @error('password')
-                                                <div class="invalid-feedback">
-                                                    {{ $errors->first('password') }}
-                                                </div>
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('password') }}
+                                            </div>
                                             @enderror
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                        <button type="submit" class="btn btn-success btn-block">Login</button>
+
+                                        <div class="text-center  mt-3 mb-5 ">
+                                            <a href="" class="text-black">Lupa password?</a>
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>

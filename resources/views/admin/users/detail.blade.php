@@ -10,14 +10,14 @@
     @endif
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 col-12">
             <div class="mx-auto" style="max-width: 300px; max-height: 300px;min-width: 300px; min-height: 300px">
                 <div class="img-thumbnail rounded-circle" style="background-image: url( {{ asset($user->employee->foto) }});
                     background-size:cover;background-position: center;height: 300px;">
                 </div>
             </div>
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-md-6 col-12 mb-3">
             <form action="{{ url('user/'.$user->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
