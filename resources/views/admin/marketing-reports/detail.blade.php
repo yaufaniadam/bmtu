@@ -88,7 +88,7 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     @foreach($financing_cycles as $cycle)
                         <li class="nav-item">
-                            <a class="nav-link {{ $cycle->cycle->id == 1 ? 'active' : '' }}"
+                            <a class="nav-link {{ $cycle->cycle->id == $financing_status ? 'active' : '' }}"
                                 id="{{ $cycle->cycle->cycle }}-tab" data-toggle="tab"
                                 href="#{{ $cycle->cycle->cycle }}" role="tab"
                                 aria-controls="{{ $cycle->cycle->cycle }}"
@@ -98,7 +98,7 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     @foreach($financing_cycles as $cycle)
-                        <div class="tab-pane fade {{ $cycle->cycle->id == 1 ? 'show active' : '' }} border-right border-left border-bottom"
+                        <div class="tab-pane fade {{ $cycle->cycle->id == $financing_status ? 'show active' : '' }} border-right border-left border-bottom"
                             id="{{ $cycle->cycle->cycle }}" role="tabpanel" aria-labelledby="home-tab">
                             <div class="p-3">
                                 <div class="row">

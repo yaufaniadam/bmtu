@@ -22,7 +22,9 @@ class PartnerFinancing extends Component
                 ['id_mitra_pembiayaan', '=', $partnerId],
                 ['id_pegawai', '=', Employee::where('user_id', '=', Auth::id())->first()->id]
             ]
-        )->paginate(1)->withPath($partnerId);
+        )
+            ->orderBy('created_at', 'DESC')
+            ->paginate(1)->withPath($partnerId);
     }
 
     /**

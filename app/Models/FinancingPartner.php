@@ -9,6 +9,9 @@ class FinancingPartner extends Model
 {
     use HasFactory;
     protected $table = 'tr_mitra_pembiayaan';
+    protected $casts = [
+        'created_at' => 'date',
+    ];
 
     protected $fillable = [
         'id_pegawai',

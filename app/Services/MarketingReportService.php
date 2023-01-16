@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Employee;
 use App\Models\FinancingCycle;
+use App\Models\FinancingStatus;
 use App\Models\MarketingReport;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -73,6 +74,13 @@ class MarketingReportService
                 );
 
                 FinancingCycle::create(
+                    [
+                        'id_laporan_marketing' => $marketing_report->id,
+                        'id_cycle' => 1,
+                    ]
+                );
+
+                FinancingStatus::create(
                     [
                         'id_laporan_marketing' => $marketing_report->id,
                         'id_cycle' => 1,

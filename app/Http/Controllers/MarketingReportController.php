@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MarketingReportRequest;
 use App\Models\Employee;
+use App\Models\FinancingStatus;
 use App\Services\EmployeeService;
 use App\Services\FinancingCycleService;
 use App\Services\MarketingReportService;
@@ -21,6 +22,7 @@ class MarketingReportController extends Controller
     public function index()
     {
         Gate::authorize('admin');
+        // dd(MarketingReportService::MarketingReportIndex());
 
         return view('admin.marketing-reports.index')
             ->with(
@@ -53,6 +55,7 @@ class MarketingReportController extends Controller
      */
     public function store(MarketingReportRequest $request)
     {;
+        Gate::authorize('marketing_manager', 'marketing_employee', 'employee');
         $employee_id = Employee::where('user_id', '=', auth()->id())->firstOrFail()->id;
         MarketingReportService::StoreMarketingReport($employee_id, $request->validated());
         return redirect()->to(route('financing-partner.show', $request->id_mitra_pembiayaan));
@@ -67,7 +70,6 @@ class MarketingReportController extends Controller
     public function show($employee_id, Request $request)
     {
         // return MarketingReportService::MarketingReportByEmployee($employee_id);
-
         if ($request->ajax()) {
             return MarketingReportService::MarketingReportByEmployee($employee_id);
         }
@@ -82,14 +84,15 @@ class MarketingReportController extends Controller
 
     public function detail($marketing_report_id)
     {
-        $marketing_report = MarketingReportService::MarketingReportDetail($marketing_report_id)->get();
         // dd(FinancingCycleService::FinancingCycles($marketing_report_id));
+        $marketing_report = MarketingReportService::MarketingReportDetail($marketing_report_id)->get();
         return view('admin.marketing-reports.detail')
             ->with(
                 [
                     'marketing_report' => $marketing_report,
                     'partner' => PartnerService::DetailPartner($marketing_report->id_mitra_pembiayaan)->get(),
-                    'financing_cycles' => FinancingCycleService::FinancingCycles($marketing_report_id)
+                    'financing_cycles' => FinancingCycleService::FinancingCycles($marketing_report_id),
+                    'financing_status' => FinancingStatus::where('id_laporan_marketing', '=', $marketing_report_id)->first()->id_cycle
                 ]
             );
     }

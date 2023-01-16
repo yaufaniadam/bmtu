@@ -15,7 +15,7 @@ class PartnerService
 
     public static function PartnerIndex()
     {
-        $partners = FinancingPartner::paginate(10);
+        $partners = FinancingPartner::orderBy('created_at', 'DESC')->paginate(10);
         return $partners;
     }
 
@@ -67,7 +67,7 @@ class PartnerService
         $financing_partner = static::$financing_partner;
 
         $financings = [];
-        $q = MarketingReport::where('id_mitra_pembiayaan', '=', $financing_partner->id)->get();
+        $q = MarketingReport::where('id_mitra_pembiayaan', '=', $financing_partner->id)->orderBy('created_at', 'DESC')->get();
         $index = 1;
         foreach ($q as $key => $value) {
             $financings[] = [
