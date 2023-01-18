@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\EmployeeEducation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class EducationService
 {
@@ -20,7 +21,8 @@ class EducationService
                 $file = $request['file_ijazah'];
                 $fileName = $file->getClientOriginalName();
                 $fileLocation = 'users/ijazah/' . $user_id . '/';
-                $file->move($fileLocation, $fileName);
+                Storage::putFileAs($fileLocation, $file, $fileName);
+                // $file->move($fileLocation, $fileName);
 
                 EmployeeEducation::create(
                     [
@@ -45,19 +47,19 @@ class EducationService
 
     public static function UpdateEducation($user_id, $request)
     {
-        // dd(static::$education);
         $education = static::$education;
         DB::transaction(
             function () use ($user_id, $request, $education) {
                 if (isset($request['file_ijazah'])) {
-                    if (File::exists(public_path($education->file_ijazah))) {
-                        File::delete(public_path($education->file_ijazah));
+                    if (Storage::exists($education->file_ijazah)) {
+                        Storage::delete($education->file_ijazah);
                     }
 
                     $file = $request['file_ijazah'];
                     $fileName = $file->getClientOriginalName();
                     $fileLocation = 'users/ijazah/' . $user_id . '/';
-                    $file->move($fileLocation, $fileName);
+                    Storage::putFileAs($fileLocation, $file, $fileName);
+                    // $file->move($fileLocation, $fileName);
                     $education->update(
                         [
                             'file_ijazah' => $fileLocation . $fileName

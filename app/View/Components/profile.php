@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class profile extends Component
 {
     public $employee_name;
+    public $employee_photo;
     /**
      * Create a new component instance.
      *
@@ -18,6 +19,7 @@ class profile extends Component
     {
         $employee = Employee::where('user_id', Auth::id())->first();
         $this->employee_name = $employee->nama_lengkap;
+        $this->employee_photo = $employee->foto;
     }
 
     /**

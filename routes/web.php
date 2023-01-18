@@ -6,6 +6,7 @@ use App\Http\Controllers\ChangeUserCredentialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\FinancingCycleController;
 use App\Http\Controllers\FinancingPartnerController;
 use App\Http\Controllers\MarketingReportController;
@@ -15,9 +16,12 @@ use App\Jobs\SendMailJob;
 use App\Mail\ResetPassword;
 use App\Models\Placement;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +45,18 @@ Route::put('/reset_password', [AuthController::class, 'ResetUserPassword'])->mid
 Route::middleware('custom_auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    // Route::get('test', function () {
-    //     Gate::authorize('admin');
-    // });
+    Route::get('test', function () {
+        Gate::authorize('admin');
+        if (Storage::disk('local')->exists('users/photo/55/dummy.jpg')) {
+            $content = Storage::get('users/photo/55/dummy.jpg');
+            $mime = Storage::mimeType('users/photo/55/dummy.jpg');
+            $response = Response::make($content, 200);
+            $response->header("Content-Type", $mime);
+            return $response;
+        }
+    });
+
+    Route::get('image', [FileController::class, 'displayImage'])->name('image');
 
     Route::middleware('can:employee,marketing_manager,marketing_employee')->group(function () {
         Route::resource('financing-partner/{partner_id}/financing', MarketingReportController::class);
@@ -54,7 +67,6 @@ Route::middleware('custom_auth')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
         Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
     });
-
 
     Route::resource('financing-partner', FinancingPartnerController::class);
     Route::resource('user', UserController::class);

@@ -25,9 +25,21 @@ class MarketingReportService
         return $employees;
     }
 
-    public static function MarketingReportByEmployee($employee_id)
+    public static function MarketingReportByEmployee($employee_id, $request)
     {
-        $model = MarketingReport::where('id_pegawai', '=', $employee_id);
+        $model = MarketingReport::select('tr_laporan_marketing.*')
+            ->leftJoin('tr_mitra_pembiayaan', 'tr_mitra_pembiayaan.id', '=', 'tr_laporan_marketing.id_mitra_pembiayaan')
+            ->where('tr_laporan_marketing.id_pegawai', '=', $employee_id)
+            ->when(!empty($request->term), function ($q) use ($request) {
+                $q->where('tr_mitra_pembiayaan.nama_lengkap', 'like', "%" . $request->term . "%");
+            })
+            ->when(!empty($request->month), function ($q) use ($request) {
+                $q->whereRaw("MONTH(tr_laporan_marketing.tanggal) =" . $request->month);
+            })
+            ->when(!empty($request->year), function ($q) use ($request) {
+                $q->whereRaw("YEAR(tr_laporan_marketing.tanggal) =" . $request->year);
+            });
+
 
         $marketing_reports = DataTables::eloquent($model)
             ->addColumn('partnerName', function (MarketingReport $marketing_report) {
@@ -56,6 +68,37 @@ class MarketingReportService
             ->toJson();
 
         return $marketing_reports;
+    }
+
+    public static function MarketingReportsMonth($employee_id)
+    {
+        $months = [];
+
+        $q = MarketingReport::where('id_pegawai', '=', $employee_id)->orderBy(DB::raw("Month(tanggal)"))->get();
+
+        foreach ($q as $q) {
+            $months[] = [
+                'id' => date_format($q->tanggal, 'n'),
+                'name' => $q->tanggal->isoFormat("MMMM"),
+            ];
+        }
+
+        return $months;
+    }
+
+    public static function MarketingReportsYear($employee_id)
+    {
+        $years = [];
+
+        $q = MarketingReport::where('id_pegawai', '=', $employee_id)->orderBy('tanggal')->get();
+
+        foreach ($q as $q) {
+            $years[] = [
+                'id' => date_format($q->tanggal, 'Y'),
+            ];
+        }
+
+        return $years;
     }
 
     public static function StoreMarketingReport($employee_id, $request)

@@ -70,14 +70,18 @@ class MarketingReportController extends Controller
     public function show($employee_id, Request $request)
     {
         // return MarketingReportService::MarketingReportByEmployee($employee_id);
+        // return MarketingReportService::MarketingReportByEmployee($employee_id, $request);
+
         if ($request->ajax()) {
-            return MarketingReportService::MarketingReportByEmployee($employee_id);
+            return MarketingReportService::MarketingReportByEmployee($employee_id, $request);
         }
 
         return view('admin.marketing-reports.detail-employee')
             ->with(
                 [
                     'employee' => EmployeeService::DetailEmployee($employee_id)->get(),
+                    'months' => MarketingReportService::MarketingReportsMonth($employee_id),
+                    'years' => MarketingReportService::MarketingReportsYear($employee_id),
                 ]
             );
     }

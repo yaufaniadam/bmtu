@@ -39,7 +39,7 @@
                         <td class="text-center">
                             <small>
                                 <b>
-                                    <a href="{{ asset($education_history->file_ijazah) }}">
+                                    <a href="{{ url('image?file='.$education_history->file_ijazah) }}">
                                         <i class="fas fa-fw fa-file-pdf"></i>
                                     </a>
                                 </b>

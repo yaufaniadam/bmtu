@@ -1,4 +1,5 @@
-<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion @can('employee') toggled @endcan" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion @can('employee') toggled @endcan"
+    id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
@@ -18,18 +19,11 @@
             <span>Dashboard</span></a>
     </li>
 
-   
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
     @can('admin')
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('marketing-reports.index') }}">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Marketing Reports</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
         <div class="sidebar-heading">
             Pegawai
         </div>
@@ -37,30 +31,45 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ url('user') }}">
                 <i class="fas fa-fw  fa-users"></i>
-                <span>Daftar Pegawai</span></a>
+                <span>Daftar Pegawai</span>
+            </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ url('user/create') }}">
                 <i class="fas fa-fw fa-plus-circle"></i>
-                <span>Tambah Pegawai</span></a>
+                <span>Tambah Pegawai</span>
+            </a>
         </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('placement') }}">
-                <i class="fa-solid fa-id-card"></i>
-                <span>SK Penempatan</span></a>
-        </li>
-
-         <li class="nav-item">
-        <a class="nav-link" href="{{ route('financing-partner.index') }}">
-            <i class="fas fa-fw fa-plus-circle"></i>
-            <span>Mitra Pembiayaan</span></a>
-    </li>
-    
     @endcan
 
-   
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('placement') }}">
+            <i class="fa-solid fa-id-card"></i>
+            <span>SK Penempatan</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="sidebar-heading">
+        Pegawai
+    </div>
+
+    @can('admin')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('marketing-reports.index') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Marketing Reports</span></a>
+        </li>
+    @endcan
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('financing-partner.index') }}">
+            <i class="fa-solid fa-handshake"></i>
+            <span>Mitra Pembiayaan</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
