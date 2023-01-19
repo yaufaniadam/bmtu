@@ -9,6 +9,7 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FinancingCycleController;
 use App\Http\Controllers\FinancingPartnerController;
+use App\Http\Controllers\KajianController;
 use App\Http\Controllers\MarketingReportController;
 use App\Http\Controllers\PlacementController;
 use App\Http\Controllers\UserController;
@@ -58,9 +59,13 @@ Route::middleware('custom_auth')->group(function () {
 
     Route::get('image', [FileController::class, 'displayImage'])->name('image');
 
+    Route::get('kajian', [KajianController::class, 'index'])->name('kajian.index');
+
     Route::middleware('can:employee,marketing_manager,marketing_employee')->group(function () {
         Route::resource('financing-partner/{partner_id}/financing', MarketingReportController::class);
         Route::post('financing-cycle/{financing_cycle_id}/update', [FinancingCycleController::class, 'update'])->name('financing-cycle.update');
+        Route::get('kajian/create', [KajianController::class, 'create'])->name('kajian.create');
+        Route::post('kajian/create', [KajianController::class, 'store'])->name('kajian.store');
     });
 
     Route::middleware('can:admin')->group(function () {

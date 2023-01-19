@@ -9,6 +9,9 @@ class Kajian extends Model
 {
     use HasFactory;
     protected $table = 'tr_kajian';
+    protected $casts = [
+        'tanggal' => 'date',
+    ];
 
     protected $fillable = [
         'id_pegawai',
@@ -16,4 +19,9 @@ class Kajian extends Model
         'foto',
         'tanggal'
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'id_pegawai');
+    }
 }

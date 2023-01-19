@@ -18,10 +18,11 @@ class FinancingPartnerController extends Controller
      */
     public function index()
     {
+        // dd(Employee::where('user_id', '=', auth()->id())->first()->id);
         return view('employee.financing-partner.index')
             ->with(
                 [
-                    'partners' => PartnerService::PartnerIndex()
+                    'partners' => PartnerService::PartnerIndex(auth()->user()->role, Employee::where('user_id', '=', auth()->id())->first()->id)
                 ]
             );
     }
@@ -33,7 +34,7 @@ class FinancingPartnerController extends Controller
      */
     public function create()
     {
-        Gate::authorize('employee,marketing_manager,marketing_employee');
+        Gate::authorize('employee', 'marketing_manager', 'marketing_employee');
 
         return view('employee.financing-partner.create');
     }
@@ -44,9 +45,10 @@ class FinancingPartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(StoreFinancingPartnerRequest $request)
     {
-        Gate::authorize('employee,marketing_manager,marketing_employee');
+        Gate::authorize('employee', 'marketing_manager', 'marketing_employee');
 
         $employee_id = Employee::where('user_id', '=', Auth::id())->first()->id;
         $partner_id = PartnerService::StoreFinancingPartner($request->validated(), $employee_id);

@@ -43,4 +43,9 @@ class Employee extends Model
     {
         return $this->hasMany(MarketingReport::class, 'id_pegawai');
     }
+
+    public function sermons()
+    {
+        return $this->hasMany(Kajian::class, 'id_pegawai');
+    }
 }

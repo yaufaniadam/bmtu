@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_pegawai');
             $table->string('faidah');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('tanggal');
             $table->timestamps();
         });

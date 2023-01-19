@@ -54,7 +54,7 @@ class MarketingReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(MarketingReportRequest $request)
-    {;
+    {
         Gate::authorize('marketing_manager', 'marketing_employee', 'employee');
         $employee_id = Employee::where('user_id', '=', auth()->id())->firstOrFail()->id;
         MarketingReportService::StoreMarketingReport($employee_id, $request->validated());
@@ -69,9 +69,6 @@ class MarketingReportController extends Controller
      */
     public function show($employee_id, Request $request)
     {
-        // return MarketingReportService::MarketingReportByEmployee($employee_id);
-        // return MarketingReportService::MarketingReportByEmployee($employee_id, $request);
-
         if ($request->ajax()) {
             return MarketingReportService::MarketingReportByEmployee($employee_id, $request);
         }

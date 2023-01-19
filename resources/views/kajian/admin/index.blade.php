@@ -5,25 +5,8 @@
     @endpush
 
     <x-slot:title>
-        Marketing Report
+        Laporan Kajian
     </x-slot:title>
-
-    <div class="col-6 mx-auto">
-        <div class="d-flex flex-row align-items-center mb-3">
-            <div class="col-3">
-                <div class="" style="max-width: 100px; max-height: 100px;min-width: 100px; min-height: 100px">
-                    <div class="img-thumbnail rounded-circle" style="background-image: url( {{ asset($employee->foto) }});
-                        background-size:cover;background-position: center;height: 100px;">
-                    </div>
-                </div>
-            </div>
-            <div class="col-9 text-dark">
-                <h6 class="mb-0"><b>{{ $employee->nama_lengkap }}</b></h6>
-                <small>Jumlah Mitra : 200</small><br>
-                <small>Akad : 20</small>
-            </div>
-        </div>
-    </div>
 
     <div class="card">
         <div class="card-body">
@@ -59,14 +42,9 @@
                 <table class="table rounded overflow-hidden" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col" style="width: 20%">Nama</th>
-                            <th scope="col">Bulan</th>
-                            <th scope="col" class="text-center">Tahun</th>
-                            <th scope="col" style="width: 20%">Jenis Pembiayaan</th>
-                            <th scope="col" class="text-center">Status</th>
-                            <th scope="col">Telp</th>
-                            <th scope="col" class="text-center" style="width: 30%">Alamat</th>
-                            <th scope="col"></th>
+                            <th scope="col" style="width: 25%">Nama</th>
+                            <th scope="col" style="width: 25%" class="text-center">Tanggal</th>
+                            <th scope="col">Faidah</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,8 +74,12 @@
                 },
                 pageLength: 5,
                 ordering: false,
+                columnDefs: [{
+                    targets: 1,
+                    className: "text-center"
+                }],
                 ajax: {
-                    url: "{{ route('marketing-reports.show',$employee->id) }}",
+                    url: "{{ route('marketing-reports.show',10) }}",
                     type: "GET",
                     data: function (data) {
                         data.term = $('#term').val();
@@ -116,29 +98,6 @@
                     {
                         data: 'year',
                         name: 'year'
-                    },
-                    {
-                        data: 'jenis_pembiayaan',
-                        name: 'jenis_pembiayaan'
-                    },
-                    {
-                        data: 'phone',
-                        name: 'phone'
-                    },
-                    {
-                        data: 'phone',
-                        name: 'phone'
-                    },
-                    {
-                        data: 'address',
-                        name: 'address'
-                    },
-                    {
-                        data: 'detail',
-                        name: 'detail',
-                        render: function (data) {
-                            return data
-                        }
                     },
                 ]
             });

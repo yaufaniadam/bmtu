@@ -16,7 +16,8 @@
     <li class="nav-item active">
         <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
 
@@ -53,7 +54,7 @@
     <hr class="sidebar-divider d-none d-md-block">
 
     <div class="sidebar-heading">
-        Pegawai
+        Marketing
     </div>
 
     @can('admin')
@@ -73,6 +74,17 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="sidebar-heading">
+        Kajian
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('kajian.index') }}">
+            <i class="fa-solid fa-book-quran"></i>
+            <span>Laporan Kajian</span>
+        </a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
