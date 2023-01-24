@@ -51,6 +51,15 @@
         </a>
     </li>
 
+    @can('admin')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('attendance.index') }}">
+                <i class="fa-solid fa-clipboard-user"></i>
+                <span>Presensi</span>
+            </a>
+        </li>
+    @endcan
+
     <hr class="sidebar-divider d-none d-md-block">
 
     <div class="sidebar-heading">

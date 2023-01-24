@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChangeUserCredentialController;
 use App\Http\Controllers\DashboardController;
@@ -71,6 +72,7 @@ Route::middleware('custom_auth')->group(function () {
     Route::middleware('can:admin')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
         Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
+        Route::resource('attendance', AttendanceController::class);
     });
 
     Route::resource('financing-partner', FinancingPartnerController::class);

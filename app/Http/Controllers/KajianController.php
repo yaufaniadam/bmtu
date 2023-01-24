@@ -16,8 +16,15 @@ class KajianController extends Controller
             if ($request->ajax()) {
                 return KajianService::kajianIndexJson($request);
             }
-
-            return view('kajian.admin.index');
+            // dd(KajianService::kajiansEmployee());
+            return view('kajian.admin.index')
+                ->with(
+                    [
+                        'years' => KajianService::kajiansYear(),
+                        'months' => KajianService::kajiansMonth(),
+                        'employees' => KajianService::kajiansEmployee(),
+                    ]
+                );
         }
 
         $employee_id = Employee::where('user_id', '=', Auth::id())->first()->id;
