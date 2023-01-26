@@ -13,6 +13,7 @@ use App\Http\Controllers\FinancingPartnerController;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\MarketingReportController;
 use App\Http\Controllers\PlacementController;
+use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\UserController;
 use App\Jobs\SendMailJob;
 use App\Mail\ResetPassword;
@@ -73,6 +74,12 @@ Route::middleware('custom_auth')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
         Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
         Route::resource('attendance', AttendanceController::class);
+        // Route::resource('salary', SalaryController::class);
+        Route::group(['prefix' => 'salary'], function () {
+            Route::get('month/{month}', [SalaryController::class, 'index'])->name('salary.index');
+            Route::get('create', [SalaryController::class, 'create'])->name('salary.create');
+            Route::post('create', [SalaryController::class, 'store'])->name('salary.store');
+        });
     });
 
     Route::resource('financing-partner', FinancingPartnerController::class);

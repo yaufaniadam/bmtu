@@ -58,6 +58,12 @@
                 <span>Presensi</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('salary.create') }}">
+                <i class="fa-solid fa-money-check-dollar"></i>
+                <span>Gaji</span>
+            </a>
+        </li>
     @endcan
 
     <hr class="sidebar-divider d-none d-md-block">
