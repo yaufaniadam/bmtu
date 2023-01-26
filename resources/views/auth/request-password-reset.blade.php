@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>{{ config('app.name') }} - Lupa Password</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset("vendor/fontawesome-free/css/all.min.css") }}" rel="stylesheet"
@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-success">
 
     <div class="container">
 
@@ -39,7 +39,7 @@
                             <div class="col-lg-12 mx-auto">
                                 <div class="p-5">
                                     <div class="text-center mb-4">
-                                        <h1 class="h4 text-gray-900">Forgot Password</h1>
+                                        <h1 class="h4 text-gray-900">Lupa Password</h1>
                                         <small>Link untuk mereset password akan dikirimkan ke email anda.</small>
                                     </div>
                                     @if(session()->has('success'))
@@ -61,7 +61,7 @@
                                                 </div>
                                             @enderror
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Kirim</button>
+                                        <button type="submit" class="btn btn-success btn-block">Kirim</button>
                                     </form>
                                 </div>
                             </div>

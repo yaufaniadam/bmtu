@@ -83,7 +83,7 @@
                                         <button type="submit" class="btn btn-success btn-block">Login</button>
 
                                         <div class="text-center  mt-3 mb-5 ">
-                                            <a href="" class="text-black">Lupa password?</a>
+                                            <a href="{{ route("password.forgot") }}" class="text-black">Lupa password?</a>
                                         </div>
 
                                     </form>
