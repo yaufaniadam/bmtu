@@ -5,31 +5,14 @@
     @endpush
 
     <x-slot:title>
-        Marketing Report
+        Laporan Kajian
     </x-slot:title>
-
-    <div class="col-6 mx-auto">
-        <div class="d-flex flex-row align-items-center mb-3">
-            <div class="col-3">
-                <div class="" style="max-width: 100px; max-height: 100px;min-width: 100px; min-height: 100px">
-                    <div class="img-thumbnail rounded-circle" style="background-image: url( {{ asset($employee->foto) }});
-                        background-size:cover;background-position: center;height: 100px;">
-                    </div>
-                </div>
-            </div>
-            <div class="col-9 text-dark">
-                <h6 class="mb-0"><b>{{ $employee->nama_lengkap }}</b></h6>
-                <small>Jumlah Mitra : 200</small><br>
-                <small>Akad : 20</small>
-            </div>
-        </div>
-    </div>
 
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <div class="form-group d-flex align-items-center">
-                    <select class="form-control form-control-sm col-6 mr-3 filter" id="year">
+                    <select class="form-control form-control-sm col-4 mr-3 filter" id="year">
                         <option value="">Pilih Tahun</option>
                         @if(!empty($years))
                             @foreach($years as $year)
@@ -39,12 +22,22 @@
                             @endforeach
                         @endif
                     </select>
-                    <select class="form-control form-control-sm col-6 filter" id="month">
+                    <select class="form-control form-control-sm col-4 mr-3 filter" id="month">
                         <option value="">Pilih Bulan</option>
                         @if(!empty($months))
                             @foreach($months as $month)
                                 <option value="{{ $month['id'] }}">
                                     {{ $month['name'] }}
+                                </option>
+                            @endforeach
+                        @endif
+                    </select>
+                    <select class="form-control form-control-sm col-7 filter" id="employee">
+                        <option value="">Pilih Pegawai</option>
+                        @if(!empty($employees))
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee['id'] }}">
+                                    {{ $employee['name'] }}
                                 </option>
                             @endforeach
                         @endif
@@ -59,14 +52,9 @@
                 <table class="table rounded overflow-hidden" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col" style="width: 20%">Nama</th>
-                            <th scope="col">Bulan</th>
-                            <th scope="col" class="text-center">Tahun</th>
-                            <th scope="col" style="width: 20%">Jenis Pembiayaan</th>
-                            <th scope="col" class="text-center">Status</th>
-                            <th scope="col">Telp</th>
-                            <th scope="col" class="text-center" style="width: 30%">Alamat</th>
-                            <th scope="col"></th>
+                            <th scope="col" style="width: 25%">Nama</th>
+                            <th scope="col" style="width: 25%" class="text-center">Tanggal</th>
+                            <th scope="col">Faidah</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,51 +82,33 @@
                         previous: "‹",
                     }
                 },
-                pageLength: 5,
+                pageLength: 10,
                 ordering: false,
+                columnDefs: [{
+                    targets: 1,
+                    className: "text-center"
+                }],
                 ajax: {
-                    url: "{{ route('marketing-reports.show',$employee->id) }}",
+                    url: "{{ route('kajian.index') }}",
                     type: "GET",
                     data: function (data) {
                         data.term = $('#term').val();
                         data.month = $('#month').val();
                         data.year = $('#year').val();
+                        data.employee = $('#employee').val();
                     }
                 },
                 columns: [{
-                        data: 'partnerName',
-                        name: 'partnerName'
+                        data: 'employeeName',
+                        name: 'employeeName'
                     },
                     {
-                        data: 'month',
-                        name: 'month'
+                        data: 'tanggal',
+                        name: 'tanggal'
                     },
                     {
-                        data: 'year',
-                        name: 'year'
-                    },
-                    {
-                        data: 'jenis_pembiayaan',
-                        name: 'jenis_pembiayaan'
-                    },
-                    {
-                        data: 'phone',
-                        name: 'phone'
-                    },
-                    {
-                        data: 'phone',
-                        name: 'phone'
-                    },
-                    {
-                        data: 'address',
-                        name: 'address'
-                    },
-                    {
-                        data: 'detail',
-                        name: 'detail',
-                        render: function (data) {
-                            return data
-                        }
+                        data: 'faidah',
+                        name: 'faidah'
                     },
                 ]
             });
@@ -159,10 +129,33 @@
                 $(".filter").change(function () {
                     month = $('#month').val();
                     year = $('#year').val();
+                    employee = $('#employee').val();
                     table.draw(true);
-                    console.log(month, year)
                 });
             });
+
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
 
         </script>
     @endpush

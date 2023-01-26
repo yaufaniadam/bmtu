@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-6 col-12">
             <div class="mx-auto" style="max-width: 300px; max-height: 300px;min-width: 300px; min-height: 300px">
-                <div class="img-thumbnail rounded-circle" style="background-image: url( {{ asset($user->employee->foto) }});
+                <div class="img-thumbnail rounded-circle" style="background-image: url( {{ url('image?file='.$user->employee->foto) }});
                     background-size:cover;background-position: center;height: 300px;">
                 </div>
             </div>

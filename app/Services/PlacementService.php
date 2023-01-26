@@ -8,6 +8,7 @@ use App\Models\Placement;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class PlacementService
@@ -104,7 +105,8 @@ class PlacementService
                 $fileName = $file->getClientOriginalName();
 
                 $fileLocation = 'users/file_sk/' . $user_id . '/' . $placement->id . '/';
-                $file->move($fileLocation, $fileName);
+                // $file->move($fileLocation, $fileName);
+                Storage::putFileAs($fileLocation, $file, $fileName);
 
                 $placement->update(
                     [
@@ -136,14 +138,15 @@ class PlacementService
 
             if (isset($request['file_sk'])) {
                 $user_id = Employee::find($placement->id_pegawai)->user_id;
-                if (File::exists(public_path($placement->file_sk))) {
-                    File::delete(public_path($placement->file_sk));
+                if (Storage::exists($placement->file_sk)) {
+                    Storage::delete($placement->file_sk);
                 }
 
                 $file = $request['file_sk'];
                 $fileName = $file->getClientOriginalName();
                 $fileLocation = 'users/file_sk/' . $user_id . '/' . $placement->id . '/';
-                $file->move($fileLocation, $fileName);
+                // $file->move($fileLocation, $fileName);
+                Storage::putFileAs($fileLocation, $file, $fileName);
 
                 $placement->update(
                     [

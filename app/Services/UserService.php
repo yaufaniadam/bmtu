@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class UserService
 {
@@ -77,7 +78,17 @@ class UserService
                     $file = $request['foto'];
                     $fileName = $file->getClientOriginalName();
                     $fileLocation = 'users/photo/' . $user->id . '/';
-                    $file->move($fileLocation, $fileName);
+                    // $file->move($fileLocation, $fileName);
+
+
+
+                    Storage::putFileAs($fileLocation, $file, $fileName);
+
+                    // disk('local')->put();
+
+                    // $file->storeAs($fileLocation . $fileName, $file);
+                    // die();
+
 
                     Employee::create(
                         [
@@ -122,14 +133,14 @@ class UserService
                         isset($request['foto']),
                         function ($q) use ($request, $user) {
 
-                            if (File::exists(public_path($user->employee->foto))) {
-                                File::delete(public_path($user->employee->foto));
+                            if (Storage::exists($user->employee->foto)) {
+                                Storage::delete($user->employee->foto);
                             }
 
                             $file = $request['foto'];
                             $fileName = $file->getClientOriginalName();
                             $fileLocation = 'users/photo/' . $user->id . '/';
-                            $file->move($fileLocation, $fileName);
+                            Storage::putFileAs($fileLocation, $file, $fileName);
 
                             $q->update(
                                 [

@@ -10,7 +10,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table border-right border-left border-bottom">
                     <thead class="bg-light">
                         <tr>
                             <th scope="col">Jabatan</th>

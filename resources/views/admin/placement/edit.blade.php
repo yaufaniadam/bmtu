@@ -92,7 +92,8 @@
                         </div>
                     </div>
                     <div class="col-sm-2 px-1">
-                        <a href="{{ asset($placement->file_sk) }}" class="btn btn-success">
+                        <a href="{{ url('image?file='.$placement->file_sk) }}"
+                            class="btn btn-success">
                             {{-- <i class="fas fa-fw fa-download"></i> --}}
                             download
                         </a>

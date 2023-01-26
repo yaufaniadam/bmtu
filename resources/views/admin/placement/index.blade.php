@@ -52,7 +52,15 @@
         <script>
             $('#dataTable').DataTable({
                 searching: false,
-                "lengthChange": false,
+                ordering: false,
+                lengthChange: false,
+                bInfo: false,
+                language: {
+                    paginate: {
+                        next: "›",
+                        previous: "‹",
+                    }
+                },
                 "columnDefs": [{
                     className: "align-middle",
                     "targets": [1, 2, 3, 4, 5, 6]

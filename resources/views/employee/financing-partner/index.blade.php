@@ -24,19 +24,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($partners as $partner)
-                                <tr>
-                                    <td>{{ $partner->nama_lengkap }}</td>
-                                    <td>{{ $partner->created_at->isoFormat('MMMM') }}</td>
-                                    <td>{{ $partner->created_at->isoFormat('Y') }}</td>
-                                    <td>{{ $partner->employee->nama_lengkap }}</td>
-                                    <td><a
-                                            href="{{ route('financing-partner.show',$partner->id) }}">
-                                            <i class="fas fa-fw fa-eye"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @if(!empty($partners))
+                                @foreach($partners as $partner)
+                                    <tr>
+                                        <td>{{ $partner->nama_lengkap }}</td>
+                                        <td>{{ $partner->created_at->isoFormat('MMMM') }}</td>
+                                        <td>{{ $partner->created_at->isoFormat('Y') }}</td>
+                                        <td>{{ $partner->employee->nama_lengkap }}</td>
+                                        <td><a
+                                                href="{{ route('financing-partner.show',$partner->id) }}">
+                                                <i class="fas fa-fw fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                Mitra tidak ditemukan.
+                            @endif
                         </tbody>
                     </table>
                     {{ $partners->links() }}
@@ -47,7 +51,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table border-right border-left border-bottom">
                         <thead class="bg-light">
                             <tr>
                                 <th scope="col">Nama</th>
@@ -57,18 +61,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($partners as $partner)
-                                <tr>
-                                    <td><a
-                                            href="{{ route('financing-partner.show',$partner->id) }}">
-                                            {{ $partner->nama_lengkap }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $partner->alamat }}</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            @endforeach
+                            @if(!empty($partners))
+                                @foreach($partners as $partner)
+                                    <tr>
+                                        <td><a
+                                                href="{{ route('financing-partner.show',$partner->id) }}">
+                                                {{ $partner->nama_lengkap }}
+                                            </a>
+                                        </td>
+                                        <td>{{ $partner->alamat }}</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>Mitra tidak ditemukan.</tr>
+                            @endif
                         </tbody>
                     </table>
                     {{ $partners->links() }}
