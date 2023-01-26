@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tr_presensi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_pegawai');
+            $table->string('nip')->nullable();
             $table->date('tanggal');
             $table->date('bulan');
             $table->year('tahun');

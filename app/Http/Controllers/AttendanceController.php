@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\AttendanceImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceController extends Controller
 {
@@ -34,7 +36,8 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        dd(Excel::toArray(new AttendanceImport, $request->file_excel));
     }
 
     /**
@@ -45,7 +48,7 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.attendance.detail');
     }
 
     /**

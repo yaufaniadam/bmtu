@@ -9,7 +9,9 @@
                 Import Rekap Presensi
             </div>
             <div class="card-body">
-                <form action="">
+                <form action="{{ route('attendance.store') }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group d-flex align-items-center">
                         <span for="bulan" class="col-4">Bulan</span>
                         <select name="bulan" id="bulan" class="form-control col-5">
@@ -49,10 +51,11 @@
                     </div>
                     <div class="form-group d-flex align-items-center mt-3">
                         <span for="bulan" class="col-4"></span>
-                        <button class="btn btn-warning btn-block">
+                        <a href="{{ route('attendance.show',1) }}"
+                            class="btn btn-warning btn-block">
                             <i class="fa-solid fa-clipboard-user"></i>
                             Tampilkan Presensi
-                        </button>
+                        </a>
                         <span for="bulan" class="col-4"></span>
                     </div>
                 </form>
