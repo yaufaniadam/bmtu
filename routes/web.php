@@ -68,6 +68,9 @@ Route::middleware('custom_auth')->group(function () {
         Route::post('financing-cycle/{financing_cycle_id}/update', [FinancingCycleController::class, 'update'])->name('financing-cycle.update');
         Route::get('kajian/create', [KajianController::class, 'create'])->name('kajian.create');
         Route::post('kajian/create', [KajianController::class, 'store'])->name('kajian.store');
+        Route::group(['prefix' => 'salary'], function () {
+            Route::get('show/{year?}/{month?}', [SalaryController::class, 'employee_salary'])->name('salary.employee-salary');
+        });
     });
 
     Route::middleware('can:admin')->group(function () {
@@ -78,6 +81,8 @@ Route::middleware('custom_auth')->group(function () {
         Route::group(['prefix' => 'salary'], function () {
             Route::get('month/{month}', [SalaryController::class, 'index'])->name('salary.index');
             Route::get('create', [SalaryController::class, 'create'])->name('salary.create');
+            Route::get('index', [SalaryController::class, 'index'])->name('salary.index');
+            Route::get('show/{year}/{month}/{nip}', [SalaryController::class, 'show'])->name('salary.show');
             Route::post('create', [SalaryController::class, 'store'])->name('salary.store');
         });
     });

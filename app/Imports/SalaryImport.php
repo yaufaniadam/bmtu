@@ -17,9 +17,4 @@ class SalaryImport implements ToModel
     {
         return new Salary();
     }
-
-    // public function collection(Collection $collection)
-    // {
-    //     //
-    // }
 }
