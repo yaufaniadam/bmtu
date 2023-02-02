@@ -22,7 +22,6 @@ class MarketingReportController extends Controller
     public function index()
     {
         Gate::authorize('admin');
-        // dd(MarketingReportService::MarketingReportIndex());
 
         return view('admin.marketing-reports.index')
             ->with(
@@ -55,7 +54,7 @@ class MarketingReportController extends Controller
      */
     public function store(MarketingReportRequest $request)
     {
-        Gate::authorize('marketing_manager', 'marketing_employee', 'employee');
+        // Gate::authorize('marketing_manager', 'marketing_employee', 'employee');
         $employee_id = Employee::where('user_id', '=', auth()->id())->firstOrFail()->id;
         MarketingReportService::StoreMarketingReport($employee_id, $request->validated());
         return redirect()->to(route('financing-partner.show', $request->id_mitra_pembiayaan));

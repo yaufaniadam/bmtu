@@ -106,8 +106,6 @@
                                     <span>SK Penempatan</span>
                                 </div>
                             </div>
-
-
                             <div class="col-xl-3 col-lg-3 col-4">
                                 <div class="text-center menu rounded">
                                     <img src="{{ asset('img/marketing-report.png') }}" />
@@ -115,10 +113,12 @@
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center menu rounded">
-                                    <img src="{{ asset('img/mitra-pembiayaan.png') }}" />
-                                    <p>Mitra Pembiayaan</p>
-                                </div>
+                                <a href="{{ route('financing-partner.index') }}">
+                                    <div class="text-center menu rounded">
+                                        <img src="{{ asset('img/mitra-pembiayaan.png') }}" />
+                                        <p>Mitra Pembiayaan</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
                                 <a href="{{ route('kajian.index') }}">

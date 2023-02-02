@@ -22,6 +22,10 @@ class EmployeeService
         return new static;
     }
 
+    // public static function EmployeePartners($employee_id){
+    //     return 
+    // }
+
     public static function get(): Employee
     {
         return static::$employee;

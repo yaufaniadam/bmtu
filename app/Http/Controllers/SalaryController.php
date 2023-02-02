@@ -114,8 +114,6 @@ class SalaryController extends Controller
         $nip = Employee::where('user_id', '=', Auth::user()->id)->firstOrFail()->nip;
         $available_date = SalaryService::AvailableSalaryDate($nip);
 
-        // dd(SalaryService::LatestSalaryDate($nip));
-
         if ($year == null) {
             $year = date('Y');
         }
