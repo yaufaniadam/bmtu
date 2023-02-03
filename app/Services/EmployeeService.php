@@ -15,6 +15,17 @@ class EmployeeService
         return new static;
     }
 
+    public static function DetailEmployeeByNip($employee_nip): EmployeeService
+    {
+        static::$employee = Employee::where('nip', '=', $employee_nip)->firstOrFail();
+
+        return new static;
+    }
+
+    // public static function EmployeePartners($employee_id){
+    //     return 
+    // }
+
     public static function get(): Employee
     {
         return static::$employee;

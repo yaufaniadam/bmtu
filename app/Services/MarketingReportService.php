@@ -57,6 +57,9 @@ class MarketingReportService
             ->addColumn('address', function (MarketingReport $marketing_report) {
                 return $marketing_report->partner->alamat;
             })
+            ->addColumn('status', function ($q) {
+                return $q->financingStatus->statusName->cycle;
+            })
             ->addColumn('detail', function ($query) {
                 return view('datatables.link')->with(
                     [

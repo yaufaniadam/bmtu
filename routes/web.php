@@ -13,6 +13,7 @@ use App\Http\Controllers\FinancingPartnerController;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\MarketingReportController;
 use App\Http\Controllers\PlacementController;
+use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\UserController;
 use App\Jobs\SendMailJob;
 use App\Mail\ResetPassword;
@@ -67,12 +68,23 @@ Route::middleware('custom_auth')->group(function () {
         Route::post('financing-cycle/{financing_cycle_id}/update', [FinancingCycleController::class, 'update'])->name('financing-cycle.update');
         Route::get('kajian/create', [KajianController::class, 'create'])->name('kajian.create');
         Route::post('kajian/create', [KajianController::class, 'store'])->name('kajian.store');
+        Route::group(['prefix' => 'salary'], function () {
+            Route::get('show/{year?}/{month?}', [SalaryController::class, 'employee_salary'])->name('salary.employee-salary');
+        });
     });
 
     Route::middleware('can:admin')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
         Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
         Route::resource('attendance', AttendanceController::class);
+        // Route::resource('salary', SalaryController::class);
+        Route::group(['prefix' => 'salary'], function () {
+            Route::get('month/{month}', [SalaryController::class, 'index'])->name('salary.index');
+            Route::get('create', [SalaryController::class, 'create'])->name('salary.create');
+            Route::get('index', [SalaryController::class, 'index'])->name('salary.index');
+            Route::get('show/{year}/{month}/{nip}', [SalaryController::class, 'show'])->name('salary.show');
+            Route::post('create', [SalaryController::class, 'store'])->name('salary.store');
+        });
     });
 
     Route::resource('financing-partner', FinancingPartnerController::class);

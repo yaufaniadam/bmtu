@@ -19,8 +19,8 @@
             </div>
             <div class="col-9 text-dark">
                 <h6 class="mb-0"><b>{{ $employee->nama_lengkap }}</b></h6>
-                <small>Jumlah Mitra : 200</small><br>
-                <small>Akad : 20</small>
+                <small>Jumlah Mitra : {{ $employee->partners->count() }}</small><br>
+                <small>Akad : {{ $employee->marketingReportsDone->count() }}</small>
             </div>
         </div>
     </div>
@@ -69,8 +69,6 @@
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -122,8 +120,8 @@
                         name: 'jenis_pembiayaan'
                     },
                     {
-                        data: 'phone',
-                        name: 'phone'
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'phone',

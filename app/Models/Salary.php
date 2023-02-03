@@ -11,13 +11,11 @@ class Salary extends Model
     protected $table = 'tr_gaji';
 
     protected $fillable = [
-        'id_pegawai',
         'bulan',
-        'gaji_pokok',
-        'tunjangan',
-        'potongan',
-        'total',
-        'sisa_cuti',
-        'hari_kerja'
+        'tahun',
+        'nip',
+        'judul',
+        'style',
+        'value',
     ];
 }

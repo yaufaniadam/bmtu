@@ -22,7 +22,7 @@
                                 <td>{{ $employee->nama_lengkap }}
                                 </td>
                                 <td class="text-center">{{ $employee->marketingReports->count() }}</td>
-                                <td class="text-center">{{ $employee->marketingReports->count() }}</td>
+                                <td class="text-center">{{ $employee->marketingReportsDone->count() }}</td>
                                 <td>
                                     <a
                                         href="{{ route('marketing-reports.show',$employee->id) }}">

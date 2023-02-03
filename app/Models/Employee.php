@@ -43,6 +43,12 @@ class Employee extends Model
     {
         return $this->hasMany(MarketingReport::class, 'id_pegawai');
     }
+    public function marketingReportsDone()
+    {
+        return $this->marketingReports()
+            ->leftJoin('tr_status_pembiayaan', 'tr_status_pembiayaan.id_laporan_marketing', '=', 'tr_laporan_marketing.id')
+            ->where('tr_status_pembiayaan.id_cycle', '>=', 4);
+    }
 
     public function sermons()
     {
