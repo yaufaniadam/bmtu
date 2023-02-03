@@ -40,6 +40,18 @@ class PlacementController extends Controller
             );
     }
 
+    public function create_new_contract($employee_id)
+    {
+        Gate::authorize('admin');
+        return view('admin.placement.new-contract')
+            ->with(
+                [
+                    'employee' => EmployeeService::DetailEmployee($employee_id)->get(),
+                    'positions' => Position::all(),
+                ]
+            );
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -63,6 +75,8 @@ class PlacementController extends Controller
             ]);
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -84,6 +98,7 @@ class PlacementController extends Controller
      */
     public function show($employee_id)
     {
+        Gate::authorize('admin');
         return view('admin.placement.detail')
             ->with(
                 [

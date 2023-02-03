@@ -18,7 +18,7 @@ class PlacementHistory extends Component
     public function __construct($employeeId)
     {
         $this->employee_id = $employeeId;
-        $this->placements = Placement::where('id_pegawai', '=', $this->employee_id)->get();
+        $this->placements = Placement::where('id_pegawai', '=', $this->employee_id)->orderBy('created_at', 'DESC')->get();
     }
 
     /**

@@ -1,6 +1,10 @@
 <div class="card">
     <div class="card-header">
-        Riwayat Penempatan
+        <div class="d-flex justify-content-between align-items-center">
+            Riwayat Penempatan
+            <a href="{{ route('placement.new-contract',$employee_id) }}"
+                class="btn btn-warning">Perbarui Kontrak</a>
+        </div>
     </div>
     <div class="card-body">
         <table class="table rounded overflow-hidden">

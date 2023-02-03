@@ -85,6 +85,7 @@ Route::middleware('custom_auth')->group(function () {
             Route::get('show/{year}/{month}/{nip}', [SalaryController::class, 'show'])->name('salary.show');
             Route::post('create', [SalaryController::class, 'store'])->name('salary.store');
         });
+        Route::get('placement/{employee_id}/new_contract', [PlacementController::class, 'create_new_contract'])->name('placement.new-contract');
     });
 
     Route::resource('financing-partner', FinancingPartnerController::class);

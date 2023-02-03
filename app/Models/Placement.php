@@ -18,7 +18,8 @@ class Placement extends Model
         'tanggal_mulai',
         'tanggal_selesai',
         'file_sk',
-        'surat_penempatan'
+        'surat_penempatan',
+        'status_penempatan',
     ];
 
     public function employee()
