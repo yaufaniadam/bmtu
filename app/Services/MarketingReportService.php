@@ -13,14 +13,31 @@ class MarketingReportService
 {
     protected static $marketing_report;
 
-    public static function MarketingReportIndex()
+    public static function MarketingReportIndex($request)
     {
-        $employees = Employee::select('tr_pegawai.*')
+        $q = Employee::select('tr_pegawai.*')
             ->leftJoin('users', 'users.id', '=', 'tr_pegawai.user_id')
             ->where('users.role', '!=', 1)
-            ->has('marketingReports')
-            ->paginate(10)
-            ->withPath('marketing-reports');
+            ->when(!empty($request->term), function ($q) use ($request) {
+                $q->where('tr_pegawai.nama_lengkap', 'like', '%' . $request->term . '%');
+            })
+            ->has('marketingReports');
+
+        $employees = DataTables::eloquent($q)
+            ->editColumn('nama_lengkap', function ($q) {
+                return view('datatables.link')->with([
+                    'url' => route('marketing-reports.show', $q->id),
+                    'placeholder' => $q->nama_lengkap
+                ]);
+            })
+            ->addColumn('reports', function (Employee $employee) {
+                return $employee->marketingReports->count();
+            })
+            ->addColumn('finished_reports', function (Employee $employee) {
+                return $employee->marketingReportsDone->count();
+            })
+
+            ->toJson();
 
         return $employees;
     }

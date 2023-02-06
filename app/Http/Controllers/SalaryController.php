@@ -89,6 +89,8 @@ class SalaryController extends Controller
      */
     public function store(ImportSalaryRequest $request)
     {
+        // $raw = Excel::toArray(new SalaryImport, $request->file_excel);
+        // dd($raw);
         SalaryService::ImportSalaryFromExcel($request->validated());
         return redirect()->back()->with('success', 'Laporan gaji pegawai berhasil diimport');
     }
