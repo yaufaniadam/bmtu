@@ -24,17 +24,18 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'unique:users,name'],
-            'email' => ['required', 'string', 'email:filter', 'unique:users,email'],
-            'role' => ['required', 'string', 'exists:roles,id'],
-            'password' => ['required', 'string', 'confirmed'],
-            'nama_lengkap' => ['required', 'string'],
-            'telepon' => ['required', 'string'],
-            'nip' => ['required', 'string'],
-            'alamat' => ['required', 'string'],
-            'tempat_lahir' => ['required', 'string'],
-            'tanggal_lahir' => ['required', 'date'],
-            'foto' => ['required', 'image', 'mimes:jpg,png']
+            'name' => ['required', 'string', 'unique:users,name', 'max:255'],
+            'email' => ['required', 'string', 'email:filter', 'unique:users,email', 'max:255'],
+            'role' => ['required', 'string', 'exists:roles,id', 'max:255'],
+            'password' => ['required', 'string', 'confirmed', 'max:255'],
+            'nama_lengkap' => ['required', 'string', 'max:255'],
+            'nip' => ['required', 'string', 'max:255'],
+            'telepon' => ['required', 'string', 'max:255'],
+            'nip' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'tempat_lahir' => ['required', 'string', 'max:255'],
+            'tanggal_lahir' => ['required', 'date', 'max:255'],
+            'foto' => ['required', 'image', 'mimes:jpg,png', 'max:255']
         ];
     }
 }

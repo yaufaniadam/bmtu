@@ -16,8 +16,14 @@ class FinancingPartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (auth()->user()->role == 1) {
+            if ($request->ajax()) {
+                return PartnerService::PartnerIndexJson($request);
+            }
+            return view('admin.financing-partner.index');
+        }
         // dd(Employee::where('user_id', '=', auth()->id())->first()->id);
         return view('employee.financing-partner.index')
             ->with(

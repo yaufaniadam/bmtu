@@ -15,7 +15,7 @@ class PlacementService
 {
     static $placement;
 
-    public static function PlacementIndex()
+    public static function PlacementIndex($request)
     {
         $model = Placement::select(
             'tr_penempatan.*',
@@ -31,6 +31,9 @@ class PlacementService
             ->join('mstr_cabang', 'mstr_cabang.id', '=', 'tr_penempatan.id_cabang')
             ->join('mstr_posisi', 'mstr_posisi.id', '=', 'tr_penempatan.id_posisi')
             ->where('tr_penempatan.status_penempatan', '=', 1)
+            ->when(!empty($request->term), function ($q) use ($request) {
+                $q->where('tr_pegawai.nama_lengkap', 'like', '%' . $request->term . '%');
+            })
             ->orderBy('remaining_days', 'ASC');
 
         $placements = DataTables::eloquent($model)
@@ -94,11 +97,13 @@ class PlacementService
 
                 $old_placement = Placement::where('id_pegawai', '=', $user_id)->latest()->first();
 
-                $old_placement->update(
-                    [
-                        'status_penempatan' => 0
-                    ]
-                );
+                if ($old_placement != null) {
+                    $old_placement->update(
+                        [
+                            'status_penempatan' => 0
+                        ]
+                    );
+                }
 
                 $placement = Placement::create(
                     [

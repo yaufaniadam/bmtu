@@ -26,7 +26,7 @@ class PlacementController extends Controller
         if (Auth::user()->role == 1) {
             Gate::authorize('admin');
             if ($request->ajax()) {
-                return PlacementService::PlacementIndex();
+                return PlacementService::PlacementIndex($request);
             }
             return view('admin.placement.index');
         }

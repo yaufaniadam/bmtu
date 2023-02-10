@@ -94,6 +94,7 @@ class UserService
                         [
                             'user_id' => $user->id,
                             'nama_lengkap' => $request['nama_lengkap'],
+                            'nip' => $request['nip'],
                             'email' => $request['email'],
                             'telepon' => $request['telepon'],
                             'nip' => $request['nip'],

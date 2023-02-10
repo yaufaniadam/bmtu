@@ -38,6 +38,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="fullname" class="col-sm-4 col-form-label">NIP</label>
+                        <div class="col-sm-8">
+                            <input type="number" name="nip"
+                                class="form-control {{ $errors->has('nip') ? 'is-invalid' : '' }}"
+                                id="fullname" value="{{ old('nip') }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('nip') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="place-of-birth" class="col-sm-4 col-form-label">Tempat lahir</label>
                         <div class="col-sm-8">
                             <input type="text" name="tempat_lahir"

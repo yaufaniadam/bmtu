@@ -33,4 +33,8 @@ class FileController extends Controller
             abort(404);
         }
     }
+
+    public function downloadFile()
+    {
+    }
 }
