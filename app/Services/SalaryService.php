@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Salary;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpParser\Node\Expr\Cast\Array_;
 use Yajra\DataTables\Facades\DataTables;
@@ -59,23 +60,50 @@ class SalaryService
     public static function ImportSalaryFromExcel($request): Void
     {
         $raws = Excel::toArray(new SalaryImport, $request['file_excel']);
+
         foreach ($raws as $key => $value) {
-            $nip = $value[0][2];
+            $column_name = $value[0];
             foreach ($value as $key => $value) {
                 if ($key > 0) {
-                    Salary::create(
-                        [
-                            'bulan' => $request['month'],
-                            'tahun' => $request['year'],
-                            'nip' => $nip,
-                            'judul' => $value[0],
-                            'style' => $value[1],
-                            'value' => $value[2]
-                        ]
-                    );
+                    $nip = $value[0];
+                    foreach ($value as $key => $value) {
+                        if ($key > 0) {
+                            DB::transaction(
+                                function () use ($column_name, $value, $request, $nip, $key) {
+                                    Salary::create(
+                                        [
+                                            'bulan' => $request['month'],
+                                            'tahun' => $request['year'],
+                                            'nip' => $nip,
+                                            'judul' => $column_name[$key],
+                                            'value' => $value
+                                        ]
+                                    );
+                                }
+                            );
+                        }
+                    }
                 }
             }
         }
+
+        // foreach ($raws as $key => $value) {
+        //     $nip = $value[0][2];
+        //     foreach ($value as $key => $value) {
+        //         if ($key > 0) {
+        //             Salary::create(
+        //                 [
+        //                     'bulan' => $request['month'],
+        //                     'tahun' => $request['year'],
+        //                     'nip' => $nip,
+        //                     'judul' => $value[0],
+        //                     'style' => $value[1],
+        //                     'value' => $value[2]
+        //                 ]
+        //             );
+        //         }
+        //     }
+        // }
     }
 
     public static function SalaryReportYear(): Collection

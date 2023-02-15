@@ -20,21 +20,39 @@
                     @csrf
                     <div class="form-group d-flex align-items-center">
                         <span for="month" class="col-4">Bulan</span>
-                        <select name="month" id="month" class="form-control col-4">
-                            <option value="">Pilih Bulan</option>
-                            @foreach($months as $id => $name)
-                                <option value="{{ $id }}">{{ $name }}</option>
-                            @endforeach
-                        </select>
+                        <div class="col-4 row">
+                            <select name="month" id="month"
+                                class="form-control {{ $errors->has('month') ? 'is-invalid' : '' }}">
+                                <option value="">Pilih Bulan</option>
+                                @foreach($months as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                            <div class="invalid-feedback">
+                                {{ $errors->first('month') }}
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <span for="year" class="col-4">Tahun</span>
-                        <input type="number" name="year" id="" class="form-control col-4">
+                        <div class="col-4 row">
+                            <input type="number" name="year" id=""
+                                class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('year') }}
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="d-flex align-items-center">
                             <span for="excel" class="col-4">File Excel</span>
-                            <input type="file" name="file_excel" id="excel" class="form-control col-7">
+                            <div class="col-7 row">
+                                <input type="file" name="file_excel" id="excel"
+                                    class="form-control {{ $errors->has('file_excel') ? 'is-invalid' : '' }}">
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('file_excel') }}
+                                </div>
+                            </div>
                         </div>
                         <div class="row mt-1">
                             <span for="excel" class="col-4"></span>

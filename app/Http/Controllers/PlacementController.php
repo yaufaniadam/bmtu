@@ -26,7 +26,7 @@ class PlacementController extends Controller
         if (Auth::user()->role == 1) {
             Gate::authorize('admin');
             if ($request->ajax()) {
-                return PlacementService::PlacementIndex();
+                return PlacementService::PlacementIndex($request);
             }
             return view('admin.placement.index');
         }
@@ -36,6 +36,18 @@ class PlacementController extends Controller
             ->with(
                 [
                     'placements' => PlacementService::LaravelPaginatedPlacementIndex(Auth::id())
+                ]
+            );
+    }
+
+    public function create_new_contract($employee_id)
+    {
+        Gate::authorize('admin');
+        return view('admin.placement.new-contract')
+            ->with(
+                [
+                    'employee' => EmployeeService::DetailEmployee($employee_id)->get(),
+                    'positions' => Position::all(),
                 ]
             );
     }
@@ -63,6 +75,8 @@ class PlacementController extends Controller
             ]);
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -84,6 +98,7 @@ class PlacementController extends Controller
      */
     public function show($employee_id)
     {
+        Gate::authorize('admin');
         return view('admin.placement.detail')
             ->with(
                 [

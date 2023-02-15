@@ -24,6 +24,25 @@ class PartnerService
         return $partners;
     }
 
+    public static function PartnerIndexJson($request)
+    {
+        $q = FinancingPartner::orderBy('created_at', 'DESC');
+        $index = DataTables::eloquent($q)
+            ->editColumn('nama_lengkap', function ($q) {
+                return view('datatables.link')
+                    ->with([
+                        'url' => route('financing-partner.show', $q->id),
+                        'placeholder' => $q->nama_lengkap
+                    ]);
+            })
+            ->addColumn('employee', function ($q) {
+                return $q->employee->nama_lengkap;
+            })
+            ->toJson();
+
+        return $index;
+    }
+
     public static function StoreFinancingPartner($request, $employee_id)
     {
         DB::transaction(

@@ -15,7 +15,7 @@ class PlacementService
 {
     static $placement;
 
-    public static function PlacementIndex()
+    public static function PlacementIndex($request)
     {
         $model = Placement::select(
             'tr_penempatan.*',
@@ -30,6 +30,10 @@ class PlacementService
             ->join('tr_pegawai', 'tr_pegawai.id', '=', 'tr_penempatan.id_pegawai')
             ->join('mstr_cabang', 'mstr_cabang.id', '=', 'tr_penempatan.id_cabang')
             ->join('mstr_posisi', 'mstr_posisi.id', '=', 'tr_penempatan.id_posisi')
+            ->where('tr_penempatan.status_penempatan', '=', 1)
+            ->when(!empty($request->term), function ($q) use ($request) {
+                $q->where('tr_pegawai.nama_lengkap', 'like', '%' . $request->term . '%');
+            })
             ->orderBy('remaining_days', 'ASC');
 
         $placements = DataTables::eloquent($model)
@@ -67,6 +71,7 @@ class PlacementService
                 $query->where('nama_lengkap', 'LIKE', "%$request->q%");
             })
             ->where('users.role', '!=', 1)
+            ->whereNotIn('tr_pegawai.id', Placement::select('id_pegawai')->get()->toArray())
             ->get();
 
         return response()->json($employees);
@@ -90,6 +95,15 @@ class PlacementService
             function () use ($request) {
                 $user_id = Employee::find($request['id_pegawai'])->user_id;
 
+                $old_placement = Placement::where('id_pegawai', '=', $user_id)->latest()->first();
+
+                if ($old_placement != null) {
+                    $old_placement->update(
+                        [
+                            'status_penempatan' => 0
+                        ]
+                    );
+                }
 
                 $placement = Placement::create(
                     [
@@ -98,6 +112,7 @@ class PlacementService
                         'id_posisi' => $request['id_posisi'],
                         'tanggal_mulai' => $request['tanggal_mulai'],
                         'tanggal_selesai' => $request['tanggal_selesai'],
+                        'status_penempatan' => 1
                     ]
                 );
 

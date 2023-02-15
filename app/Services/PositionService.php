@@ -11,6 +11,6 @@ class PositionService
     {
         $employee_id = Employee::where('nip', '=', $nip)->firstOrFail()->id;
 
-        return Placement::where('id_pegawai', '=', $employee_id)->latest()->first();
+        return Placement::where('id_pegawai', '=', $employee_id)->latest()->firstOrFail();
     }
 }

@@ -60,6 +60,7 @@ Route::middleware('custom_auth')->group(function () {
     });
 
     Route::get('image', [FileController::class, 'displayImage'])->name('image');
+    Route::get('download', [FileController::class, 'downloadFile'])->name('download');
 
     Route::get('kajian', [KajianController::class, 'index'])->name('kajian.index');
 
@@ -77,7 +78,6 @@ Route::middleware('custom_auth')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
         Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
         Route::resource('attendance', AttendanceController::class);
-        // Route::resource('salary', SalaryController::class);
         Route::group(['prefix' => 'salary'], function () {
             Route::get('month/{month}', [SalaryController::class, 'index'])->name('salary.index');
             Route::get('create', [SalaryController::class, 'create'])->name('salary.create');
@@ -85,6 +85,7 @@ Route::middleware('custom_auth')->group(function () {
             Route::get('show/{year}/{month}/{nip}', [SalaryController::class, 'show'])->name('salary.show');
             Route::post('create', [SalaryController::class, 'store'])->name('salary.store');
         });
+        Route::get('placement/{employee_id}/new_contract', [PlacementController::class, 'create_new_contract'])->name('placement.new-contract');
     });
 
     Route::resource('financing-partner', FinancingPartnerController::class);

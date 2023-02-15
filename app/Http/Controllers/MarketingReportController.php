@@ -19,16 +19,15 @@ class MarketingReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         Gate::authorize('admin');
+        // return MarketingReportService::MarketingReportIndex($request);
+        if ($request->ajax()) {
+            return MarketingReportService::MarketingReportIndex($request);
+        }
 
-        return view('admin.marketing-reports.index')
-            ->with(
-                [
-                    'employees' => MarketingReportService::MarketingReportIndex()
-                ]
-            );
+        return view('admin.marketing-reports.index');
     }
 
     /**

@@ -5,25 +5,17 @@
     @endpush
 
     <x-slot:title>
-        Marketing Report
+        Mitra
     </x-slot:title>
 
     <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-end">
-                <div class="form-group d-flex align-items-center">
-                    <span class="col-4 mr-0">Search</span>
-                    <input type="text" name="term" id="term" class="form-control form-control-sm col-8">
-                </div>
-            </div>
             <div class="table-responsive">
                 <table class="table rounded overflow-hidden" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col" style="width: 50%">Nama</th>
-                            <th scope="col" style="width: 20%">Jumlah Mitra</th>
-                            <th scope="col" style="width: 20%">Mitra Akad</th>
-                            <th scope="col" style="width: 10%"></th>
+                            <th scope="col" style="width: 20%">Marketing</th>
                         </tr>
                     </thead>
                 </table>
@@ -39,7 +31,7 @@
             var year = $('#year').val();
             var table = $('#dataTable').DataTable({
                 serverSide: true,
-                searching: false,
+                // searching: false,
                 ordering: false,
                 lengthChange: false,
                 bInfo: false,
@@ -49,10 +41,10 @@
                         previous: "‹",
                     }
                 },
-                pageLength: 5,
+                pageLength: 10,
                 ordering: false,
                 ajax: {
-                    url: "{{ route('marketing-reports.index') }}",
+                    url: "{{ route('financing-partner.index') }}",
                     type: "GET",
                     data: function (data) {
                         data.term = $('#term').val();
@@ -68,12 +60,8 @@
                         }
                     },
                     {
-                        data: 'reports',
-                        name: 'reports'
-                    },
-                    {
-                        data: 'finished_reports',
-                        name: 'finished_reports'
+                        data: 'employee',
+                        name: 'employee'
                     },
                 ]
             });
