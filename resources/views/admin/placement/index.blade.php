@@ -35,6 +35,7 @@
                             <th>Mulai</th>
                             <th>Berakhir</th>
                             <th>Sisa</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -115,6 +116,11 @@
                         // render: function (data) {
                         //     return data + " hari"
                         // }
+                    },
+                    {
+                        data: 'status_penempatan',
+                        name: 'status_penempatan',
+                        orderable: false,
                     },
                 ]
             });

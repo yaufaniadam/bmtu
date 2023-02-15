@@ -19,18 +19,18 @@ class UserSeeder extends Seeder
     {
 
         $users = [
-            [
-                'user_name' => 'uang.wari',
-                'nama_lengkap' => 'Uang Wari, S.E., M.EK.',
-                'alamat' => 'Mejing Lor Rt/Rw 004/001 Ambarketawang Gamping Sleman Yogyakarta',
-                'tempat_lahir' => 'Kuningan',
-                'tanggal_lahir' => date("Y/m/d", strtotime('22 january 1978')),
-                'telepon' => '081904278277',
-                'email' => 'uwangwari@gmail.com',
-                'jenis_kelamin' => 'P',
-                'nip' => '1210001',
-                'role' => 4,
-            ],
+            // [
+            //     'user_name' => 'uang.wari',
+            //     'nama_lengkap' => 'Uang Wari, S.E., M.EK.',
+            //     'alamat' => 'Mejing Lor Rt/Rw 004/001 Ambarketawang Gamping Sleman Yogyakarta',
+            //     'tempat_lahir' => 'Kuningan',
+            //     'tanggal_lahir' => date("Y/m/d", strtotime('22 january 1978')),
+            //     'telepon' => '081904278277',
+            //     'email' => 'uwangwari@gmail.com',
+            //     'jenis_kelamin' => 'P',
+            //     'nip' => '1210001',
+            //     'role' => 4,
+            // ],
             [
                 'user_name' => 'cahyo.halim',
                 'nama_lengkap' => 'Cahyo Halim Istiqlal, SEI., M.EK',
