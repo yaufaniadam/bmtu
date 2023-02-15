@@ -6,7 +6,7 @@ use App\Models\Employee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
-class profile extends Component
+class Profile extends Component
 {
     public $employee_name;
     public $employee_photo;
