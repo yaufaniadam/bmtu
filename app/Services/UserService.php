@@ -134,8 +134,10 @@ class UserService
                         isset($request['foto']),
                         function ($q) use ($request, $user) {
 
-                            if (Storage::exists($user->employee->foto)) {
-                                Storage::delete($user->employee->foto);
+                            if ($user->employee->foto != null) {
+                                if (Storage::exists($user->employee->foto)) {
+                                    Storage::delete($user->employee->foto);
+                                }
                             }
 
                             $file = $request['foto'];
