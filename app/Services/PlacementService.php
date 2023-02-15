@@ -38,7 +38,7 @@ class PlacementService
 
         $placements = DataTables::eloquent($model)
             ->addColumn('photo', function ($placement) {
-                return view('datatables.photo')->with(['src' => $placement->employee_photo]);
+                return view('datatables.photo')->with(['src' => url('image?file=' . $placement->employee_photo)]);
             })
             ->editColumn('remaining_days', function ($placement) {
                 return $placement->remaining_days . ' hari';

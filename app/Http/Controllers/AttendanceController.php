@@ -37,7 +37,24 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        dd(Excel::toArray(new AttendanceImport, $request->file_excel));
+        $raw = Excel::toArray(new AttendanceImport, $request->file_excel);
+        // dump($raw[0]);
+
+        foreach ($raw as $key => $value) {
+            // dump($value);
+
+            foreach ($value as $key => $value) {
+                if ($key != 1) {
+                    dump($value);
+                }
+            }
+            // foreach ($value[0] as $key => $value) {
+            //     if ($key > 1 && $value != null) {
+            //         dump($value);
+            //     }
+            // }
+        }
+        die();
     }
 
     /**
