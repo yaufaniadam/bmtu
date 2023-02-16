@@ -15,17 +15,22 @@ class UserService
 {
     public static $user;
 
-    public static function UserIndex(): JsonResponse
+    public static function UserIndex($request): JsonResponse
     {
         $model = User::select('users.id', 'users.name')
-            ->where('role', '!=', 1)
+            ->leftJoin('tr_pegawai', 'tr_pegawai.user_id', '=', 'users.id')
+            ->where('users.role', '!=', 1)
             ->with(
                 [
                     'employee' => function ($query) {
                         $query->select('user_id', 'nama_lengkap', 'telepon', 'email',);
                     }
                 ]
-            );
+            )
+            ->when(!empty($request->term), function ($q) use ($request) {
+                $q->where('tr_pegawai.nama_lengkap', 'like', '%' . $request->term . '%')
+                    ->orWhere('tr_pegawai.email', 'like', '%' . $request->term . '%');
+            });
 
         $users = DataTables::eloquent($model)
             ->addColumn(

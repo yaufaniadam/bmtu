@@ -21,8 +21,10 @@ class UserController extends Controller
     public function index(Request $request)
     {
         Gate::authorize('admin');
+        // return UserService::UserIndex($request);
+
         if ($request->ajax()) {
-            return UserService::UserIndex();
+            return UserService::UserIndex($request);
         }
 
         return view('admin.users.index');

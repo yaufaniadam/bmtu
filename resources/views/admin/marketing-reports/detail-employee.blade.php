@@ -158,7 +158,6 @@
                     month = $('#month').val();
                     year = $('#year').val();
                     table.draw(true);
-                    console.log(month, year)
                 });
             });
 

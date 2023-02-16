@@ -46,11 +46,13 @@
                         <label for="position" class="col-sm-4 col-form-label">Jabatan</label>
                         <div class="col-sm-8">
                             <select
-                                class="form-control {{ $errors->has('id_cabang') ? 'is-invalid' : '' }}"
+                                class="form-control {{ $errors->has('id_posisi') ? 'is-invalid' : '' }}"
                                 id="id_posisi" name="id_posisi">
                                 <option>Pilih jabatan</option>
                                 @foreach($positions as $position)
-                                    <option value="{{ $position->id }}">{{ $position->posisi }}</option>
+                                    <option value="{{ $position->id }}"
+                                        {{ old('id_posisi') == $position->id ? 'selected' : '' }}>
+                                        {{ $position->posisi }}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
@@ -128,9 +130,6 @@
                         }
                     }
                 });
-            });
-
-            $(document).ready(function () {
                 $('#id_cabang').select2({
                     theme: 'bootstrap4',
                     placeholder: 'Cari berdasarkan nama cabang',
@@ -160,6 +159,29 @@
             });
 
         </script>
+
+        @if(old('id_pegawai')!=null)
+            <script>
+                const id_pegawai = "{{ old('id_pegawai') }}";
+                const nama_pegawai =
+                    "{{ App\Models\Employee::find(old('id_pegawai'))->nama_lengkap }}";
+                $("#id_pegawai").html('<option value="' + id_pegawai + '" selected>' + nama_pegawai +
+                    '</option>');
+
+            </script>
+        @endif
+
+        @if(old('id_cabang')!=null)
+            <script>
+                const id_cabang = "{{ old('id_cabang') }}";
+                const nama_cabang =
+                    "{{ App\Models\Branch::find(old('id_cabang'))->cabang }}";
+                $("#id_cabang").html('<option value="' + id_cabang + '" selected>' + nama_cabang +
+                    '</option>');
+
+            </script>
+        @endif
+
     @endpush
 
 </x-layout>

@@ -35,68 +35,62 @@
         <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
         <script>
-            var month = $('#month').val();
-            var year = $('#year').val();
-            var table = $('#dataTable').DataTable({
-                serverSide: true,
-                searching: false,
-                ordering: false,
-                lengthChange: false,
-                bInfo: false,
-                language: {
-                    paginate: {
-                        next: "›",
-                        previous: "‹",
-                    }
-                },
-                pageLength: 5,
-                ordering: false,
-                ajax: {
-                    url: "{{ route('marketing-reports.index') }}",
-                    type: "GET",
-                    data: function (data) {
-                        data.term = $('#term').val();
-                        data.month = $('#month').val();
-                        data.year = $('#year').val();
-                    }
-                },
-                columns: [{
-                        data: 'nama_lengkap',
-                        name: 'nama_lengkap',
-                        render: function (data) {
-                            return data
+            $(document).ready(function () {
+                var month = $('#month').val();
+                var year = $('#year').val();
+                var table = $('#dataTable').DataTable({
+                    serverSide: true,
+                    searching: false,
+                    ordering: false,
+                    lengthChange: false,
+                    bInfo: false,
+                    language: {
+                        paginate: {
+                            next: "›",
+                            previous: "‹",
                         }
                     },
-                    {
-                        data: 'reports',
-                        name: 'reports'
+                    pageLength: 5,
+                    ordering: false,
+                    ajax: {
+                        url: "{{ route('marketing-reports.index') }}",
+                        type: "GET",
+                        data: function (data) {
+                            data.term = $('#term').val();
+                            data.month = $('#month').val();
+                            data.year = $('#year').val();
+                        }
                     },
-                    {
-                        data: 'finished_reports',
-                        name: 'finished_reports'
-                    },
-                ]
-            });
+                    columns: [{
+                            data: 'nama_lengkap',
+                            name: 'nama_lengkap',
+                            render: function (data) {
+                                return data
+                            }
+                        },
+                        {
+                            data: 'reports',
+                            name: 'reports'
+                        },
+                        {
+                            data: 'finished_reports',
+                            name: 'finished_reports'
+                        },
+                    ]
+                });
 
-            function delay(fn, ms) {
-                let timer = 0
-                return function (...args) {
-                    clearTimeout(timer)
-                    timer = setTimeout(fn.bind(this, ...args), ms || 0)
+                function delay(fn, ms) {
+                    let timer = 0
+                    return function (...args) {
+                        clearTimeout(timer)
+                        timer = setTimeout(fn.bind(this, ...args), ms || 0)
+                    }
                 }
-            }
 
-            $(document).ready(function () {
                 $('#term').keyup(delay(function () {
                     table.draw(true);
                 }, 500));
 
-                $(".filter").change(function () {
-                    month = $('#month').val();
-                    year = $('#year').val();
-                    table.draw(true);
-                    console.log(month, year)
-                });
             });
 
         </script>
