@@ -14,14 +14,48 @@
                         <thead class="bg-light">
                             <tr>
                                 <th>Tanggal</th>
-                                <th>Hari</th>
-                                <th>Jam Masuk</th>
-                                <th>Jam Pulang</th>
-                                <th>Terlambat</th>
-                                <th>Hadir</th>
-                                <th>Keterangan</th>
+                                <th class="text-center">Hari</th>
+                                <th class="text-center">Jam Masuk</th>
+                                <th class="text-center">Jam Pulang</th>
+                                <th class="text-center">Terlambat</th>
+                                <th class="text-center">Hadir</th>
+                                <th class="text-center">Keterangan</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach($attendances as $attendance)
+                                <tr>
+                                    <td>
+                                        {{ $attendance->tanggal->isoFormat('D MMMM') }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $attendance->tanggal->isoFormat('dddd') }}
+                                    </td>
+                                    <td class="text-center">{{ $attendance->jam_masuk }}</td>
+                                    <td class="text-center">{{ $attendance->jam_pulang }}</td>
+                                    <td class="text-center">
+                                        {{ $attendance->terlambat == "" ? '-' : $attendance->terlambat }}
+                                    </td>
+                                    <td class="text-center text-success">
+                                        @if($attendance->jam_masuk != "")
+                                            <i class="fa-regular fa-circle-check"></i>
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if($attendance->keterangan != "")
+                                            <span class="badge badge-danger" data-toggle="modal" data-target="#ketModal"
+                                                id="{{ $attendance->id }}">
+                                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                            </span>
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -54,4 +88,39 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="ketModal" tabindex="-1" aria-labelledby="ketModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ketModalLabel">Alasan tidak hadir</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="keterangan"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @push('js')
+        <script>
+            $(document).on('shown.bs.modal', '#ketModal', function (event) {
+                var triggerElement = $(event.relatedTarget);
+                var triggerElementId = triggerElement.attr('id');
+                let php_url = "{{ $url }}";
+                $.ajax({
+                    url: `${php_url}?keterangan=${triggerElementId}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#keterangan").html(data.keterangan)
+                    }
+                });
+            });
+
+        </script>
+    @endpush
 </x-layout>

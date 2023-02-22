@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\AttendanceImport;
+use App\Http\Requests\StoreAttendanceRequest;
+use App\Services\AttendanceService;
+use App\Services\EmployeeService;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Gate;
 
 class AttendanceController extends Controller
 {
@@ -15,7 +17,6 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        return view('admin.attendance.index');
     }
 
     /**
@@ -23,9 +24,33 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        Gate::authorize('admin');
+
+        if ($request->ajax()) {
+            return EmployeeService::EmployeeSelection($request);
+        }
+
+        $months = [
+            1 => 'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        ];
+
+        return view('admin.attendance.create')
+            ->with([
+                'months' => $months
+            ]);
     }
 
     /**
@@ -34,27 +59,11 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAttendanceRequest $request)
     {
-        // dd($request->all());
-        $raw = Excel::toArray(new AttendanceImport, $request->file_excel);
-        // dump($raw[0]);
-
-        foreach ($raw as $key => $value) {
-            // dump($value);
-
-            foreach ($value as $key => $value) {
-                if ($key != 1) {
-                    dump($value);
-                }
-            }
-            // foreach ($value[0] as $key => $value) {
-            //     if ($key > 1 && $value != null) {
-            //         dump($value);
-            //     }
-            // }
-        }
-        die();
+        Gate::authorize('admin');
+        AttendanceService::StoreEmployeeAttendances($request->validated());
+        return redirect()->back()->with('success', 'Data Presensi berhasil diunggah.');
     }
 
     /**
@@ -63,9 +72,17 @@ class AttendanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nip, $month, Request $request)
     {
-        return view('admin.attendance.detail');
+        if ($request->ajax() && $request->has('keterangan')) {
+            return AttendanceService::EmployeeAbsenceDetail($request);
+        }
+
+        return view('admin.attendance.detail')
+            ->with([
+                'attendances' => AttendanceService::EmployeeAttendanceDetail($nip, $month),
+                'url' => url()->current()
+            ]);
     }
 
     /**
