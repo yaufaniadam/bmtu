@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAttendanceRequest;
+use App\Models\Employee;
 use App\Services\AttendanceService;
 use App\Services\EmployeeService;
 use Illuminate\Http\Request;
@@ -78,10 +79,34 @@ class AttendanceController extends Controller
             return AttendanceService::EmployeeAbsenceDetail($request);
         }
 
+        // dd(AttendanceService::EmployeeAttendanceSummary($nip, $month));
+
+        $months = [
+            1 => 'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        ];
+
+        $exploded_url = explode('/', url()->current());
+
         return view('admin.attendance.detail')
             ->with([
                 'attendances' => AttendanceService::EmployeeAttendanceDetail($nip, $month),
-                'url' => url()->current()
+                'attendance_summary' => AttendanceService::EmployeeAttendanceSummary($nip, $month),
+                'url' => url()->current(),
+                'months' => $months,
+                'nip' => $nip,
+                'employee_name' => Employee::where('nip', '=', $nip)->firstOrFail()->nama_lengkap,
+                'selected_month' => $months[$exploded_url[6]],
             ]);
     }
 

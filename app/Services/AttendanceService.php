@@ -61,7 +61,7 @@ class AttendanceService
 
     public static function EmployeeAttendanceDetail($nip, $month)
     {
-        return Attendance::select(
+        $attendances = Attendance::select(
             'tr_presensi.*'
         )
             ->where([
@@ -70,6 +70,30 @@ class AttendanceService
             ])
             ->leftJoin('tr_pegawai', 'tr_pegawai.nip', '=', 'tr_presensi.nip')
             ->get();
+
+        return $attendances;
+    }
+
+    public static function EmployeeAttendanceSummary($nip, $month)
+    {
+        $day_in = Attendance::where([
+            ['tr_presensi.nip', '=', $nip],
+            ['tr_presensi.bulan', '=', $month],
+            ['tr_presensi.hadir', '!=', " "]
+        ])->count();
+
+        $late = Attendance::where([
+            ['tr_presensi.nip', '=', $nip],
+            ['tr_presensi.bulan', '=', $month],
+            ['tr_presensi.terlambat', '!=', " "]
+        ])->count();
+
+        $attendance_summary = [
+            'day_in' => $day_in,
+            'late' => $late
+        ];
+
+        return $attendance_summary;
     }
 
     public static function EmployeeAbsenceDetail($request)

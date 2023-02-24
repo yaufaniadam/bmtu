@@ -7,9 +7,28 @@
         <div class="col-9">
             <div class="card">
                 <div class="card-header">
-                    Presensi
+                    <div class="d-flex justify-content-between">
+                        <span>Presensi {{ $employee_name }}</span>
+                        <span>{{ $selected_month }}</span>
+                    </div>
                 </div>
                 <div class="card-body">
+                    <div class="d-flex justify-content-end mb-3">
+                        <div class="dropdown">
+                            <a class="btn btn-outline-secondary btn-sm dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown" aria-expanded="false">
+                                Pilih bulan
+                            </a>
+
+                            <div class="dropdown-menu">
+                                @foreach($months as $key => $month)
+                                    <a class="dropdown-item"
+                                        href="{{ route('attendance.show',[$nip,$key]) }}">{{ $month }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
                     <table class="table rounded overflow-hidden border-top border-bottom">
                         <thead class="bg-light">
                             <tr>
@@ -37,7 +56,7 @@
                                         {{ $attendance->terlambat == "" ? '-' : $attendance->terlambat }}
                                     </td>
                                     <td class="text-center text-success">
-                                        @if($attendance->jam_masuk != "")
+                                        @if($attendance->hadir == "ya")
                                             <i class="fa-regular fa-circle-check"></i>
                                         @else
                                             -
@@ -66,7 +85,7 @@
                     <small class="text-warning">REKAP</small>
                     <div class="d-flex justify-content-between border-bottom py-1">
                         <small>Hadir</small>
-                        <small>24</small>
+                        <small>{{ $attendance_summary['day_in'] }}</small>
                     </div>
                     <div class="d-flex justify-content-between border-bottom py-1">
                         <small>Izin</small>
@@ -82,7 +101,7 @@
                     </div>
                     <div class="d-flex justify-content-between border-bottom py-1">
                         <small>Terlambat</small>
-                        <small>1</small>
+                        <small>{{ $attendance_summary['late'] }}</small>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,13 @@
                     </div> --}}
                     <div class="form-group d-flex align-items-center">
                         <span for="bulan" class="col-4">File Excel</span>
-                        <input type="file" name="file_excel" id="" class="form-control col-7">
+                        <div class="col-7 row">
+                            <input type="file" name="file_excel" id="excel"
+                                class="form-control {{ $errors->has('file_excel') ? 'is-invalid' : '' }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('file_excel') }}
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <span for="bulan" class="col-4"></span>
