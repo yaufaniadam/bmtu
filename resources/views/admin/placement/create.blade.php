@@ -88,6 +88,9 @@
                             <input type="file" name="file_sk"
                                 class="form-control {{ $errors->has('file_sk') ? 'is-invalid' : '' }}"
                                 id="file_sk" value="{{ old('file_sk') }}">
+                            <small class="text-secondary">
+                                *) Format file .pdf
+                            </small>
                             <div class="invalid-feedback">
                                 {{ $errors->first('file_sk') }}
                             </div>

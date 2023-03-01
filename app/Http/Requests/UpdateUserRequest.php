@@ -26,6 +26,8 @@ class UpdateUserRequest extends FormRequest
         return [
             'role' => ['string', 'exists:roles,id', 'max:255'],
             'nama_lengkap' => ['required', 'string', 'max:255'],
+            'jenis_kelamin' => ['required', 'string', 'max:255', "in:laki-laki,perempuan"],
+            'status' => ['numeric', 'max:1'],
             'telepon' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],

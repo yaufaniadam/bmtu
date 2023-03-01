@@ -95,9 +95,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        if (Auth::user()->role != 1 && UserService::DetailUser($id)->get()->id != Auth::id()) {
-            abort(403);
-        }
+        Gate::authorize('admin');
 
         UserService::DetailUser($id)->UpdateUserProfile($request->validated());
         return redirect()->back()->with('success', 'Perubahan Data Pegawai Berhasil Diubah.');

@@ -28,7 +28,7 @@ class UpdatePlacementRequest extends FormRequest
             'id_posisi' => ['required', 'exists:mstr_posisi,id', 'numeric'],
             'tanggal_mulai' => ['required', 'date'],
             'tanggal_selesai' => ['required', 'date', 'after:tanggal_mulai'],
-            'file_sk' => ['required', 'sometimes', 'file', 'mimes:jpg,png,pdf'],
+            'file_sk' => ['required', 'sometimes', 'file', 'mimes:pdf'],
         ];
     }
 }

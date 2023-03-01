@@ -11,7 +11,7 @@
 
     <div class="mb-5">
         <div class="col-6 mx-auto">
-            <div class="d-flex flex-row mb-3">
+            <div class="d-flex flex-row align-items-center mb-3">
                 <div class="mr-3">
                     <div class="" style="max-width: 80px; max-height: 80px;min-width: 80px; min-height: 80px">
                         <div class="img-thumbnail rounded-circle" style="background-image: url( {{ asset($partner->foto) }});
@@ -22,8 +22,9 @@
                 <div class="">
                     <h6 class="mb-0"><b>{{ $partner->nama_lengkap }}</b></h6>
                     <span>ID Mitra : {{ $partner->id }}</span><br>
-                    <span>{{ $partner->alamat }}</span>
-                    <p>{{ $partner->telepon }}</p>
+                    <span>Nama Marketing : {{ $partner->employee->nama_lengkap }}</span><br>
+                    <span>{{ $partner->alamat }}</span><br>
+                    <span>{{ $partner->telepon }}</span>
                 </div>
             </div>
         </div>

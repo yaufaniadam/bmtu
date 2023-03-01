@@ -4,7 +4,7 @@
         <link href="{{ asset('css/select2-bootstrap4.min.css') }}" rel="stylesheet">
     @endpush
     <x-slot:title>
-        Edit Data Penempatan Pegawai
+        Perbarui Kontrak Penempatan Pegawai
     </x-slot:title>
 
     <div class="card col-8 mx-auto">
@@ -84,7 +84,9 @@
                         <input type="file" name="file_sk"
                             class="form-control {{ $errors->has('file_sk') ? 'is-invalid' : '' }}"
                             id="file_sk" value="{{ old('file_sk') }}">
-                        <small>*) format file jpg,png,pdf</small>
+                        <small class="text-secondary">
+                            *) Format file .pdf
+                        </small>
                         <div class="invalid-feedback">
                             {{ $errors->first('file_sk') }}
                         </div>

@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="tanggal_selesai" class="col-sm-4 col-form-label">Tanggal Mulai</label>
+                    <label for="tanggal_selesai" class="col-sm-4 col-form-label">Tanggal Selesai</label>
                     <div class="col-sm-8">
                         <input type="date" name="tanggal_selesai"
                             class="form-control {{ $errors->has('tanggal_selesai') ? 'is-invalid' : '' }}"
@@ -87,6 +87,9 @@
                         <input type="file" name="file_sk"
                             class="form-control {{ $errors->has('file_sk') ? 'is-invalid' : '' }}"
                             id="file_sk" value="{{ old('file_sk') }}">
+                        <small class="text-secondary">
+                            *) Format file .pdf
+                        </small>
                         <div class="invalid-feedback">
                             {{ $errors->first('file_sk') }}
                         </div>

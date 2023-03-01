@@ -17,7 +17,9 @@
                     <th scope="col">Lembaga</th>
                     <th scope="col" class="text-center">Tahun</th>
                     <th scope="col" class="text-center">Ijazah</th>
-                    <th scope="col"></th>
+                    @can('admin')
+                        <th scope="col"></th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -39,36 +41,39 @@
                         <td class="text-center">
                             <small>
                                 <b>
-                                    <a href="{{ url('image?file='.$education_history->file_ijazah) }}">
+                                    <a
+                                        href="{{ url('image?file='.$education_history->file_ijazah) }}">
                                         <i class="fas fa-fw fa-file-pdf"></i>
                                     </a>
                                 </b>
                             </small>
                         </td>
-                        <td class="d-flex align-items-center">
-                            <small>
-                                <b>
-                                    <a
-                                        href="{{ route('education.edit',[$user_id,$education_history->id]) }}">
-                                        <i class="fas fa-fw fa-edit"></i>
-                                    </a>
-                                </b>
-                            </small>
-                            <small>
-                                <b>
-                                    <form
-                                        onsubmit="return confirm('Data yang sudah dihapus tidak dapat dikembalikan. Lanjutkan?');"
-                                        action="{{ route('education.destroy',[$user_id,$education_history->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="text-danger btn btn-sm">
-                                            <i class="fas fa-fw fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </b>
-                            </small>
-                        </td>
+                        @can('admin')
+                            <td class="d-flex align-items-center">
+                                <small>
+                                    <b>
+                                        <a
+                                            href="{{ route('education.edit',[$user_id,$education_history->id]) }}">
+                                            <i class="fas fa-fw fa-edit"></i>
+                                        </a>
+                                    </b>
+                                </small>
+                                <small>
+                                    <b>
+                                        <form
+                                            onsubmit="return confirm('Data yang sudah dihapus tidak dapat dikembalikan. Lanjutkan?');"
+                                            action="{{ route('education.destroy',[$user_id,$education_history->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-danger btn btn-sm">
+                                                <i class="fas fa-fw fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </b>
+                                </small>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>

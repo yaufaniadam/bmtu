@@ -18,7 +18,9 @@
                     <th scope="col">Status</th>
                     <th scope="col" class="text-center">L/P</th>
                     <th scope="col" class="text-center">TTL</th>
-                    <th scope="col"></th>
+                    @can('admin')
+                        <th scope="col"></th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -41,29 +43,32 @@
                                     </b>
                             </small>
                         </td>
-                        <td class="d-flex align-items-center">
-                            <small>
+                        @can('admin')
+                            <td class="d-flex align-items-center">
+                                <small>
                                     <b>
-                                        <a href="{{ route('family-member.edit',[$user_id,$family->id]) }}">
+                                        <a
+                                            href="{{ route('family-member.edit',[$user_id,$family->id]) }}">
                                             <i class="fas fa-fw fa-edit"></i>
                                         </a>
                                     </b>
-                            </small>
-                            <small>
-                                <b>
-                                    <form
-                                        onsubmit="return confirm('Data yang sudah dihapus tidak dapat dikembalikan. Lanjutkan?');"
-                                        action="{{ route('family-member.destroy',[$user_id,$family->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="text-danger btn btn-sm">
-                                            <i class="fas fa-fw fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </b>
-                            </small>
-                        </td>
+                                </small>
+                                <small>
+                                    <b>
+                                        <form
+                                            onsubmit="return confirm('Data yang sudah dihapus tidak dapat dikembalikan. Lanjutkan?');"
+                                            action="{{ route('family-member.destroy',[$user_id,$family->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-danger btn btn-sm">
+                                                <i class="fas fa-fw fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </b>
+                                </small>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>

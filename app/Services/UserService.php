@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class UserService
@@ -68,9 +67,11 @@ class UserService
     {
         DB::transaction(
             function () use ($request) {
+                $user_name = explode('@', $request['email']);
+
                 $user = User::create(
                     [
-                        'name' => $request['name'],
+                        'name' => $user_name[0],
                         'email' => $request['email'],
                         'password' => Hash::make($request['password']),
                         'role' => $request['role'],
@@ -83,22 +84,14 @@ class UserService
                     $file = $request['foto'];
                     $fileName = $file->getClientOriginalName();
                     $fileLocation = 'users/photo/' . $user->id . '/';
-                    // $file->move($fileLocation, $fileName);
-
-
 
                     Storage::putFileAs($fileLocation, $file, $fileName);
-
-                    // disk('local')->put();
-
-                    // $file->storeAs($fileLocation . $fileName, $file);
-                    // die();
-
 
                     Employee::create(
                         [
                             'user_id' => $user->id,
                             'nama_lengkap' => $request['nama_lengkap'],
+                            'jenis_kelamin' => $request['jenis_kelamin'],
                             'nip' => $request['nip'],
                             'email' => $request['email'],
                             'telepon' => $request['telepon'],
@@ -134,6 +127,20 @@ class UserService
                     );
                 }
 
+                if (isset($request['status']) == 1) {
+                    $user->update(
+                        [
+                            'status' => 1
+                        ]
+                    );
+                } else {
+                    $user->update(
+                        [
+                            'status' => 0
+                        ]
+                    );
+                }
+
                 $user->employee()
                     ->when(
                         isset($request['foto']),
@@ -160,6 +167,7 @@ class UserService
                     ->update(
                         [
                             'nama_lengkap' => $request['nama_lengkap'],
+                            'jenis_kelamin' => $request['jenis_kelamin'],
                             'tempat_lahir' => $request['tempat_lahir'],
                             'tanggal_lahir' => $request['tanggal_lahir'],
                             'nip' => $request['nip'],
