@@ -13,12 +13,18 @@ class PartnerService
     protected static $financing_partner;
     protected static $partner_id;
 
-    public static function PartnerIndex($role)
+    public static function PartnerIndex($role, $request)
     {
         if ($role == 1) {
             $partners = FinancingPartner::orderBy('created_at', 'DESC')->paginate(10);
         } else {
-            $partners = FinancingPartner::orderBy('created_at', 'DESC')->paginate(10);
+            $partners = FinancingPartner::when(isset($request->term), function ($q) use ($request) {
+                $q->where('nama_lengkap', 'like', "%" . $request->term . "%");
+            })
+                ->orderBy('created_at', 'DESC')
+                // ->
+                ->paginate(10)
+                ->withQueryString();
         }
         return $partners;
     }

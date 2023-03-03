@@ -93,7 +93,11 @@ Route::middleware('custom_auth')->group(function () {
         Route::get('placement/{employee_id}/new_contract', [PlacementController::class, 'create_new_contract'])->name('placement.new-contract');
     });
 
-    Route::resource('financing-partner', FinancingPartnerController::class);
+    Route::get('financing-partner', [FinancingPartnerController::class, 'index'])->name('financing-partner.index');
+    Route::get('financing-partner/create', [FinancingPartnerController::class, 'create'])->name('financing-partner.create');
+    Route::post('financing-partner', [FinancingPartnerController::class, 'store'])->name('financing-partner.create');
+    Route::get('financing-partner/{financing_partner_id}', [FinancingPartnerController::class, 'show'])->name('financing-partner.show');
+    // Route::resource('financing-partner', FinancingPartnerController::class);
     Route::resource('user', UserController::class);
     Route::resource('placement', PlacementController::class);
     Route::resource('user/{id}/family-member', FamilyController::class);

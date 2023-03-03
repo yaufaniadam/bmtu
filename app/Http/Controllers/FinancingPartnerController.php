@@ -18,17 +18,25 @@ class FinancingPartnerController extends Controller
      */
     public function index(Request $request)
     {
+        // if ($request->term != "") {
+        // dd($request->all());
+        // }
+
         if (auth()->user()->role == 1) {
             if ($request->ajax()) {
                 return PartnerService::PartnerIndexJson($request);
             }
             return view('admin.financing-partner.index');
         }
-        // dd(Employee::where('user_id', '=', auth()->id())->first()->id);
+
         return view('employee.financing-partner.index')
             ->with(
                 [
-                    'partners' => PartnerService::PartnerIndex(auth()->user()->role, Employee::where('user_id', '=', auth()->id())->first()->id)
+                    'partners' => PartnerService::PartnerIndex(
+                        auth()->user()->role,
+                        // Employee::where('user_id', '=', auth()->id())->first()->id,
+                        $request
+                    )
                 ]
             );
     }
