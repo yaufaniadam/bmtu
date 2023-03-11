@@ -43,36 +43,46 @@
                                 </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center">
-                                    <img src="{{ asset('img/presensi.png') }}" />
-                                    <p>Presensi</p>
-                                </div>
+                                <a href="{{ route('attendance.create') }}">
+                                    <div class="text-center">
+                                        <img src="{{ asset('img/presensi.png') }}" />
+                                        <p>Presensi</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center">
-                                    <img src="{{ asset('img/gaji.png') }}" />
-                                    <p>Gaji</p>
-                                </div>
+                                <a href="{{ route('salary.create') }}">
+                                    <div class="text-center">
+                                        <img src="{{ asset('img/gaji.png') }}" />
+                                        <p>Gaji</p>
+                                    </div>
+                                </a>
                             </div>
 
 
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center">
-                                    <img src="{{ asset('img/marketing-report.png') }}" />
-                                    <p>Marketing Report</p>
-                                </div>
+                                <a href="{{ route('marketing-reports.index') }}">
+                                    <div class="text-center">
+                                        <img src="{{ asset('img/marketing-report.png') }}" />
+                                        <p>Marketing Report</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center">
-                                    <img src="{{ asset('img/mitra-pembiayaan.png') }}" />
-                                    <p>Mitra Pembiayaan</p>
-                                </div>
+                                <a href="{{ route('financing-partner.index') }}">
+                                    <div class="text-center">
+                                        <img src="{{ asset('img/mitra-pembiayaan.png') }}" />
+                                        <p>Mitra Pembiayaan</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center">
-                                    <img src="{{ asset('img/kajian.png') }}" />
-                                    <p>Kajian</p>
-                                </div>
+                                <a href="{{ route('kajian.index') }}">
+                                    <div class="text-center">
+                                        <img src="{{ asset('img/kajian.png') }}" />
+                                        <p>Kajian</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
                                 <div class="text-center">
@@ -95,23 +105,31 @@
                                 </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center menu rounded">
-                                    <img src="{{ asset('img/presensi.png') }}" />
-                                    <p>Presensi</p>
-                                </div>
+                                <a href="{{ route('attendance.index') }}">
+                                    <div class="text-center menu rounded">
+                                        <img src="{{ asset('img/presensi.png') }}" />
+                                        <p>Presensi</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center menu rounded">
-                                    <img src="{{ asset('img/sk-penempatan.png') }}" />
-                                    <span>SK Penempatan</span>
-                                </div>
+                                <a href="{{ route('placement.index') }}">
+                                    <div class="text-center menu rounded">
+                                        <img src="{{ asset('img/sk-penempatan.png') }}" />
+                                        <span>SK Penempatan</span>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center menu rounded">
-                                    <img src="{{ asset('img/marketing-report.png') }}" />
-                                    <p>Marketing Report</p>
-                                </div>
-                            </div>
+                            {{-- <div class="col-xl-3 col-lg-3 col-4"> --}}
+                            {{-- <a href="{{ route('marketing-reports.index') }}">
+                            --}}
+                            {{-- <div class="text-center menu rounded"> --}}
+                            {{-- <img src="{{ asset('img/marketing-report.png') }}"
+                            /> --}}
+                            {{-- <p>Marketing Report</p> --}}
+                            {{-- </div> --}}
+                            {{-- </a> --}}
+                            {{-- </div> --}}
                             <div class="col-xl-3 col-lg-3 col-4">
                                 <a href="{{ route('financing-partner.index') }}">
                                     <div class="text-center menu rounded">

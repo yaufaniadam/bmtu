@@ -23,7 +23,7 @@
                             <th scope="col" style="width: 50%">Nama</th>
                             <th scope="col" style="width: 20%">Jumlah Mitra</th>
                             <th scope="col" style="width: 20%">Mitra Akad</th>
-                            <th scope="col" style="width: 10%"></th>
+                            {{-- <th scope="col" style="width: 10%"></th> --}}
                         </tr>
                     </thead>
                 </table>
