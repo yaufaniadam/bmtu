@@ -10,6 +10,7 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FinancingCycleController;
 use App\Http\Controllers\FinancingPartnerController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\MarketingReportController;
 use App\Http\Controllers\PlacementController;
@@ -91,6 +92,8 @@ Route::middleware('custom_auth')->group(function () {
             Route::post('create', [SalaryController::class, 'store'])->name('salary.store');
         });
         Route::get('placement/{employee_id}/new_contract', [PlacementController::class, 'create_new_contract'])->name('placement.new-contract');
+        Route::get('information', [InformationController::class, 'index'])->name('information.index');
+        Route::get('information-detail/{id}', [InformationController::class, 'show'])->name('information.detail');
     });
 
     Route::get('financing-partner', [FinancingPartnerController::class, 'index'])->name('financing-partner.index');

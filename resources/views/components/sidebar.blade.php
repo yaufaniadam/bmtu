@@ -101,6 +101,19 @@
         </a>
     </li>
 
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="sidebar-heading">
+        Lain - lain
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('information.index') }}">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>Info</span>
+        </a>
+    </li>
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
