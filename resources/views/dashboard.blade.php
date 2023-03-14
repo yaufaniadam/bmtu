@@ -85,10 +85,12 @@
                                 </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <div class="text-center">
-                                    <img src="{{ asset('img/info.png') }}" />
-                                    <p>Informasi</p>
-                                </div>
+                                <a href="{{ route('information.index') }}">
+                                    <div class="text-center">
+                                        <img src="{{ asset('img/info.png') }}" />
+                                        <p>Informasi</p>
+                                    </div>
+                                </a>
                             </div>
 
                         </div>

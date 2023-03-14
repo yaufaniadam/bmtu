@@ -14,7 +14,7 @@ class InformationService
 
     public static function InformationIndex()
     {
-        static::$posts = Http::withoutVerifying()->withHeaders([])->get("https://igov.umy.ac.id/wp-json/wp/v2/posts", [
+        static::$posts = Http::withoutVerifying()->withHeaders([])->get("https://bmtumy.com/wp-json/wp/v2/posts", [
             "per_page" => 15,
             "_embed" => ''
         ])->json();
@@ -24,7 +24,7 @@ class InformationService
 
     public static function InformationDetail($id)
     {
-        $post = Http::withoutVerifying()->withHeaders([])->get("https://igov.umy.ac.id/wp-json/wp/v2/posts", [
+        $post = Http::withoutVerifying()->withHeaders([])->get("https://bmtumy.com/wp-json/wp/v2/posts", [
             "include[]" => $id,
             "_embed" => ''
         ])->json();
