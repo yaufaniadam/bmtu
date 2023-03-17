@@ -34,6 +34,33 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="gender" class="col-sm-4 col-form-label">Jenis Kelamin</label>
+                    <div class="col-sm-8 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input
+                                class="form-check-input {{ $errors->has('jenis_kelamin') ? 'is-invalid' : '' }}"
+                                type="radio" name="jenis_kelamin" id="pria" value="laki-laki"
+                                {{ $user->employee->jenis_kelamin == 'laki-laki' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="pria">laki-laki</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input
+                                class="form-check-input {{ $errors->has('jenis_kelamin') ? 'is-invalid' : '' }}"
+                                type="radio" name="jenis_kelamin" id="wanita" value="perempuan"
+                                {{ $user->employee->jenis_kelamin == 'perempuan' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="wanita">perempuan</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
+                        @error('jenis_kelamin')
+                            <small class="text-danger">
+                                {{ $errors->first('jenis_kelamin') }}
+                            </small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="place-of-birth" class="col-sm-4 col-form-label">Tempat lahir</label>
                     <div class="col-sm-8">
                         <input type="text" name="tempat_lahir"
@@ -143,14 +170,26 @@
                     </label>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-8">
-                        <button type="submit" class="btn btn-warning btn-block">
-                            <i class="fas fa-fw fa-save"></i>
-                            Perbarui Data
-                        </button>
+                    <label for="password" class="col-sm-4 col-form-label"></label>
+                    <div for="" class="col-sm-4 d-flex flex-row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="status" value="1"
+                                {{ $user->status == 1 ? 'checked' : '' }}>
+                            <label class="form-check-label" for="inlineCheckbox1">Aktif</label>
+                        </div>
                     </div>
                 </div>
+                @can('admin')
+                    <div class="form-group row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-8">
+                            <button type="submit" class="btn btn-warning btn-block">
+                                <i class="fas fa-fw fa-save"></i>
+                                Perbarui Data
+                            </button>
+                        </div>
+                    </div>
+                @endcan
 
             </form>
         </div>

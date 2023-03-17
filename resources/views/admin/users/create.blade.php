@@ -16,17 +16,6 @@
                 <form action="{{ url('user') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
-                        <label for="username" class="col-sm-4 col-form-label">Nama Pengguna</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="name"
-                                class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                                id="username" value="{{ old('name') }}">
-                            <div class="invalid-feedback">
-                                {{ $errors->first('name') }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="fullname" class="col-sm-4 col-form-label">Nama Lengkap</label>
                         <div class="col-sm-8">
                             <input type="text" name="nama_lengkap"
@@ -35,6 +24,33 @@
                             <div class="invalid-feedback">
                                 {{ $errors->first('nama_lengkap') }}
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="gender" class="col-sm-4 col-form-label">Jenis Kelamin</label>
+                        <div class="col-sm-8 d-flex">
+                            <div class="form-check form-check-inline">
+                                <input
+                                    class="form-check-input {{ $errors->has('jenis_kelamin') ? 'is-invalid' : '' }}"
+                                    type="radio" name="jenis_kelamin" id="pria" value="laki-laki"
+                                    {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="pria">laki-laki</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input
+                                    class="form-check-input {{ $errors->has('jenis_kelamin') ? 'is-invalid' : '' }}"
+                                    type="radio" name="jenis_kelamin" id="wanita" value="perempuan"
+                                    {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="wanita">perempuan</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-8">
+                            @error('jenis_kelamin')
+                                <small class="text-danger">
+                                    {{ $errors->first('jenis_kelamin') }}
+                                </small>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
@@ -70,17 +86,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="nip" class="col-sm-4 col-form-label">NIP</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="nip"
-                                class="form-control {{ $errors->has('nip') ? 'is-invalid' : '' }}"
-                                id="nip" value="{{ old('nip') }}">
-                            <div class="invalid-feedback">
-                                {{ $errors->first('nip') }}
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="form-group row">
                         <label for="phone" class="col-sm-4 col-form-label">No. Telp</label>
                         <div class="col-sm-8">

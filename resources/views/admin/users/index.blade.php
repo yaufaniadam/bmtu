@@ -25,6 +25,12 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
+            <div class="d-flex justify-content-end">
+                <div class="form-group d-flex align-items-center">
+                    <span class="col-4 mr-0">Search</span>
+                    <input type="text" name="term" id="term" class="form-control form-control-sm col-8">
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -49,11 +55,24 @@
         {{-- <script src="{{ asset('js/demo/datatables-demo.js') }}">
         </script> --}}
         <script>
-            $('#dataTable').DataTable({
+            let table = $('#dataTable').DataTable({
                 serverSide: true,
-                // searching: false,
+                searching: false,
+                ordering: false,
+                lengthChange: false,
+                bInfo: false,
+                language: {
+                    paginate: {
+                        next: "›",
+                        previous: "‹",
+                    }
+                },
                 ajax: {
                     url: "{{ url('user') }}",
+                    type: "GET",
+                    data: function (data) {
+                        data.term = $('#term').val();
+                    }
                 },
                 columnDefs: [
                     { "searchable": false, "targets": 1 }
@@ -79,7 +98,7 @@
                     },
                     {
                         data: 'employee.email',
-                        name: 'employee.email'
+                        name: 'employee.email',
                     },
                     {
                         data: 'delete',
@@ -91,12 +110,17 @@
                 ]
             });
 
-            // $.ajax({
-            //     url: "{{ url('user') }}",
-            //     success: function (data) {
-            //         console.log(data.data[0].employee.email);
-            //     }
-            // })
+            function delay(fn, ms) {
+                let timer = 0
+                return function (...args) {
+                    clearTimeout(timer)
+                    timer = setTimeout(fn.bind(this, ...args), ms || 0)
+                }
+            }
+
+            $('#term').keyup(delay(function () {
+                table.draw(true);
+            }, 500));
 
         </script>
     @endpush

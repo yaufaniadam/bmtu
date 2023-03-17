@@ -29,7 +29,7 @@ class StorePlacementRequest extends FormRequest
             'id_posisi' => ['required', 'exists:mstr_posisi,id', 'numeric'],
             'tanggal_mulai' => ['required', 'date'],
             'tanggal_selesai' => ['required', 'date', 'after:tanggal_mulai'],
-            'file_sk' => ['required', 'file', 'mimes:jpg,png,pdf'],
+            'file_sk' => ['required', 'file', 'mimes:pdf'],
         ];
     }
 }

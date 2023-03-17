@@ -36,12 +36,12 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ url('user/create') }}">
-                <i class="fas fa-fw fa-plus-circle"></i>
-                <span>Tambah Pegawai</span>
-            </a>
-        </li>
+        <i class="fas fa-fw fa-plus-circle"></i>
+        <span>Tambah Pegawai</span>
+        </a>
+        </li> --}}
     @endcan
 
     <li class="nav-item">
@@ -53,7 +53,7 @@
 
     @can('admin')
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('attendance.index') }}">
+            <a class="nav-link" href="{{ route('attendance.create') }}">
                 <i class="fa-solid fa-clipboard-user"></i>
                 <span>Presensi</span>
             </a>
@@ -98,6 +98,19 @@
         <a class="nav-link" href="{{ route('kajian.index') }}">
             <i class="fa-solid fa-book-quran"></i>
             <span>Laporan Kajian</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="sidebar-heading">
+        Lain - lain
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('information.index') }}">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>Info</span>
         </a>
     </li>
 

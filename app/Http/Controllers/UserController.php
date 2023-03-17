@@ -21,8 +21,10 @@ class UserController extends Controller
     public function index(Request $request)
     {
         Gate::authorize('admin');
+        // return UserService::UserIndex($request);
+
         if ($request->ajax()) {
-            return UserService::UserIndex();
+            return UserService::UserIndex($request);
         }
 
         return view('admin.users.index');
@@ -93,9 +95,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        if (Auth::user()->role != 1 && UserService::DetailUser($id)->get()->id != Auth::id()) {
-            abort(403);
-        }
+        Gate::authorize('admin');
 
         UserService::DetailUser($id)->UpdateUserProfile($request->validated());
         return redirect()->back()->with('success', 'Perubahan Data Pegawai Berhasil Diubah.');

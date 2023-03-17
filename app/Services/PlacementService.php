@@ -38,7 +38,7 @@ class PlacementService
 
         $placements = DataTables::eloquent($model)
             ->addColumn('photo', function ($placement) {
-                return view('datatables.photo')->with(['src' => $placement->employee_photo]);
+                return view('datatables.photo')->with(['src' => url('image?file=' . $placement->employee_photo)]);
             })
             ->editColumn('remaining_days', function ($placement) {
                 return $placement->remaining_days . ' hari';
@@ -57,7 +57,7 @@ class PlacementService
 
     public static function LaravelPaginatedPlacementIndex($employee_id)
     {
-        $placements = Placement::where('id_pegawai', '=', $employee_id)->paginate(10);
+        $placements = Placement::where('id_pegawai', '=', $employee_id)->orderBy('tanggal_mulai', 'DESC')->paginate(10);
         $placements->withPath('placement');
         return $placements;
     }

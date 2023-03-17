@@ -26,7 +26,7 @@
                                 <td>{{ $placement->tanggal_mulai }}</td>
                                 <td>{{ $placement->tanggal_selesai }}</td>
                                 <td>
-                                    <a href="{{ asset($placement->file_sk) }}">
+                                    <a href="{{ url('image?file='.$placement->file_sk) }}">
                                         <i class="fas fa-fw fa-file-pdf"></i>
                                     </a>
                                 </td>

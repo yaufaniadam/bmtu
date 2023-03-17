@@ -15,7 +15,9 @@
                 <tr>
                     <th scope="col">Keterangan</th>
                     <th scope="col" class="text-center">Tanggal</th>
-                    <th scope="col"></th>
+                    @can('admin')
+                        <th scope="col"></th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -27,31 +29,33 @@
                         <td class="text-center">
                             <small><b>{{ $achievement->tanggal->isoFormat('D MMMM Y') }}</b></small>
                         </td>
-                        <td class="d-flex align-items-center">
-                            <small>
-                                <b>
-                                    <a
-                                        href="{{ route('achievement.edit',[$user_id,$achievement->id]) }}">
-                                        <i class="fas fa-fw fa-edit"></i>
-                                    </a>
-                                </b>
-                            </small>
+                        @can('admin')
+                            <td class="d-flex align-items-center">
+                                <small>
+                                    <b>
+                                        <a
+                                            href="{{ route('achievement.edit',[$user_id,$achievement->id]) }}">
+                                            <i class="fas fa-fw fa-edit"></i>
+                                        </a>
+                                    </b>
+                                </small>
 
-                            <small>
-                                <b>
-                                    <form
-                                        onsubmit="return confirm('Data yang sudah dihapus tidak dapat dikembalikan. Lanjutkan?');"
-                                        action="{{ route('achievement.destroy',[$user_id,$achievement->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="text-danger btn btn-sm">
-                                            <i class="fas fa-fw fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </b>
-                            </small>
-                        </td>
+                                <small>
+                                    <b>
+                                        <form
+                                            onsubmit="return confirm('Data yang sudah dihapus tidak dapat dikembalikan. Lanjutkan?');"
+                                            action="{{ route('achievement.destroy',[$user_id,$achievement->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-danger btn btn-sm">
+                                                <i class="fas fa-fw fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </b>
+                                </small>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>

@@ -10,6 +10,7 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FinancingCycleController;
 use App\Http\Controllers\FinancingPartnerController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\MarketingReportController;
 use App\Http\Controllers\PlacementController;
@@ -78,6 +79,11 @@ Route::middleware('custom_auth')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
         Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
         Route::resource('attendance', AttendanceController::class);
+        Route::group(['prefix' => 'attendance'], function () {
+            Route::get('create', [AttendanceController::class, 'create'])->name('attendance.create');
+            Route::post('store', [AttendanceController::class, 'store'])->name('attendance.store');
+            Route::get('show/{nip}/{month}', [AttendanceController::class, 'show'])->name('attendance.show');
+        });
         Route::group(['prefix' => 'salary'], function () {
             Route::get('month/{month}', [SalaryController::class, 'index'])->name('salary.index');
             Route::get('create', [SalaryController::class, 'create'])->name('salary.create');
@@ -86,9 +92,15 @@ Route::middleware('custom_auth')->group(function () {
             Route::post('create', [SalaryController::class, 'store'])->name('salary.store');
         });
         Route::get('placement/{employee_id}/new_contract', [PlacementController::class, 'create_new_contract'])->name('placement.new-contract');
+        Route::get('information', [InformationController::class, 'index'])->name('information.index');
+        Route::get('information-detail/{id}', [InformationController::class, 'show'])->name('information.detail');
     });
 
-    Route::resource('financing-partner', FinancingPartnerController::class);
+    Route::get('financing-partner', [FinancingPartnerController::class, 'index'])->name('financing-partner.index');
+    Route::get('financing-partner/create', [FinancingPartnerController::class, 'create'])->name('financing-partner.create');
+    Route::post('financing-partner', [FinancingPartnerController::class, 'store'])->name('financing-partner.create');
+    Route::get('financing-partner/{financing_partner_id}', [FinancingPartnerController::class, 'show'])->name('financing-partner.show');
+    // Route::resource('financing-partner', FinancingPartnerController::class);
     Route::resource('user', UserController::class);
     Route::resource('placement', PlacementController::class);
     Route::resource('user/{id}/family-member', FamilyController::class);

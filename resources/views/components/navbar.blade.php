@@ -6,7 +6,7 @@
     </button>
 
     <!-- <h3 class="d-md-none d-block">Dashboard</h3> -->
-    
+
 
     <!-- Topbar Search -->
     <x-search :title="$title" />
