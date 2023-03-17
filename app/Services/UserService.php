@@ -41,6 +41,18 @@ class UserService
                 }
             )
             ->addColumn(
+                'photo',
+                function ($user) {
+                    return view('datatables.photo')
+                        ->with(
+                            [
+                                'src' => url('user' . '/' . $user->id),
+                                'placeholder' => $user->employee->nama_lengkap
+                            ]
+                        );
+                }
+            )
+            ->addColumn(
                 'delete',
                 function ($user) {
                     return view('datatables.delete-button')

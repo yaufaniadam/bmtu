@@ -29,6 +29,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Nama Lengkap</th>
                             <th>No. Telp</th>
                             <th>Email</th>
@@ -54,7 +55,18 @@
                 ajax: {
                     url: "{{ url('user') }}",
                 },
+                columnDefs: [
+                    { "searchable": false, "targets": 1 }
+                ],
                 columns: [{
+                        data: 'photo',
+                        name: 'photo',
+                        orderable: false,
+                        render: function (data) {
+                            return data
+                        }
+                    },
+                    {
                         data: 'detail',
                         name: 'detail',
                         render: function (data) {
