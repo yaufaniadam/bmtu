@@ -47,9 +47,9 @@ class SalaryService
             ->addColumn('total_salary', function ($q) {
                 return "Rp " . number_format($q->where('judul', '=', 'Gaji Bersih')->first()->value, 0, ",", ".");
             })
-            ->addColumn('paid_leave', function ($q) {
-                return $q->where('judul', '=', 'Jatah Cuti')->first()->value;
-            })
+            // ->addColumn('paid_leave', function ($q) {
+            //     return $q->where('judul', '=', 'Jatah Cuti')->first()->value;
+            // })
             ->toJson();
 
         return $salary_index;
@@ -58,6 +58,39 @@ class SalaryService
     public static function ImportSalaryFromExcel($request): Void
     {
         $raws = Excel::toArray(new SalaryImport, $request['file_excel']);
+
+        $employees = [];
+        $fields = [];
+        foreach ($raws as $key => $slice_1) {
+            $employees = array_chunk($slice_1[2], 4);
+            foreach ($slice_1 as $key => $slice_2) {
+                if ($key > 6) {
+                    $fields[] = array_chunk($slice_2, 4);
+                }
+            }
+        }
+        // dump($fields);
+        // die();
+        foreach ($fields as $key => $field) {
+            foreach ($field as $key => $value) {
+                $field_title = $value[0];
+                $field_value = $value[2];
+                $nip = $employees[$key][3];
+
+                DB::transaction(function () use ($field_title, $field_value, $nip, $request) {
+                    Salary::create(
+                        [
+                            'bulan' => $request['month'],
+                            'tahun' => $request['year'],
+                            'nip' => $nip,
+                            'judul' => $field_title,
+                            'value' => $field_value,
+                        ]
+                    );
+                });
+            }
+        }
+        die();
 
         foreach ($raws as $key => $value) {
             $column_name = $value[0];
@@ -98,6 +131,8 @@ class SalaryService
             ['bulan', '=', $month],
             ['nip', '=', $nip],
         ])->get();
+
+        // dd($q);
 
         return $q;
     }

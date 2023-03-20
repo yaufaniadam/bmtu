@@ -103,6 +103,8 @@ class SalaryController extends Controller
      */
     public function show($year, $month, $nip)
     {
+        // dd(SalaryService::SalaryDetail($year, $month, $nip));
+        // dd(PositionService::EmployeePositionByNip($nip)->position->posisi);
         return view('admin.salary.detail')
             ->with([
                 'employee' => EmployeeService::DetailEmployeeByNip($nip)->get(),
