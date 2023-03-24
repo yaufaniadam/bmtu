@@ -15,6 +15,12 @@
                     </div>
                 @endif
 
+                @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
+
                 <form action="{{ route('salary.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
