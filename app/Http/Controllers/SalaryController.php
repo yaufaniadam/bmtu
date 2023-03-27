@@ -9,6 +9,7 @@ use App\Models\Salary;
 use App\Services\EmployeeService;
 use App\Services\PositionService;
 use App\Services\SalaryService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -91,7 +92,13 @@ class SalaryController extends Controller
     {
         // $raw = Excel::toArray(new SalaryImport, $request->file_excel);
         // dd($raw);
-        SalaryService::ImportSalaryFromExcel($request->validated());
+
+        try {
+            SalaryService::ImportSalaryFromExcel($request->validated());
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['msg' => $e->getMessage()]);
+            // dd();
+        }
         return redirect()->back()->with('success', 'Laporan gaji pegawai berhasil diimport');
     }
 

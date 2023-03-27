@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Imports\SalaryImport;
 use App\Models\Employee;
 use App\Models\Salary;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -59,6 +60,17 @@ class SalaryService
     {
         $raws = Excel::toArray(new SalaryImport, $request['file_excel']);
 
+        $salary = Salary::where([
+            ['bulan', '=', $request['month']],
+            ['tahun', '=', $request['year']],
+        ])
+            ->distinct('bulan')
+            ->count();
+
+        if ($salary > 0) {
+            throw new Exception("Data gaji bulan ini sudah ada.");
+        }
+
         $employees = [];
         $fields = [];
         foreach ($raws as $key => $slice_1) {
@@ -69,8 +81,7 @@ class SalaryService
                 }
             }
         }
-        // dump($fields);
-        // die();
+
         foreach ($fields as $key => $field) {
             foreach ($field as $key => $value) {
                 $field_title = $value[0];
@@ -90,33 +101,33 @@ class SalaryService
                 });
             }
         }
-        die();
+        // die();
 
-        foreach ($raws as $key => $value) {
-            $column_name = $value[0];
-            foreach ($value as $key => $value) {
-                if ($key > 0) {
-                    $nip = $value[0];
-                    foreach ($value as $key => $value) {
-                        if ($key > 0) {
-                            DB::transaction(
-                                function () use ($column_name, $value, $request, $nip, $key) {
-                                    Salary::create(
-                                        [
-                                            'bulan' => $request['month'],
-                                            'tahun' => $request['year'],
-                                            'nip' => $nip,
-                                            'judul' => $column_name[$key],
-                                            'value' => $value
-                                        ]
-                                    );
-                                }
-                            );
-                        }
-                    }
-                }
-            }
-        }
+        // foreach ($raws as $key => $value) {
+        //     $column_name = $value[0];
+        //     foreach ($value as $key => $value) {
+        //         if ($key > 0) {
+        //             $nip = $value[0];
+        //             foreach ($value as $key => $value) {
+        //                 if ($key > 0) {
+        //                     DB::transaction(
+        //                         function () use ($column_name, $value, $request, $nip, $key) {
+        //                             Salary::create(
+        //                                 [
+        //                                     'bulan' => $request['month'],
+        //                                     'tahun' => $request['year'],
+        //                                     'nip' => $nip,
+        //                                     'judul' => $column_name[$key],
+        //                                     'value' => $value
+        //                                 ]
+        //                             );
+        //                         }
+        //                     );
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     public static function SalaryReportYear(): Collection
