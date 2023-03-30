@@ -49,7 +49,7 @@
                                     <th>Gaji Variabel</th>
                                     <th>Potongan</th>
                                     <th>Total</th>
-                                    <th>Cuti</th>
+                                    {{-- <th>Cuti</th> --}}
                                 </tr>
                             </thead>
                         </table>
@@ -115,10 +115,10 @@
                         data: 'total_salary',
                         name: 'total_salary'
                     },
-                    {
-                        data: 'paid_leave',
-                        name: 'paid_leave'
-                    },
+                    // {
+                    //     data: 'paid_leave',
+                    //     name: 'paid_leave'
+                    // },
                     // {
                     //     data: 'detail',
                     //     name: 'detail',

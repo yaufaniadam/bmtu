@@ -4,16 +4,6 @@
         Dashboard
     </x-slot:title>
 
-    @can('admin')
-
-        <div class="row">
-
-
-
-        </div>
-
-    @endcan
-
     <!-- Content Row -->
 
     <div class="row">
