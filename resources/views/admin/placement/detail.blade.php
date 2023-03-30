@@ -14,7 +14,7 @@
             <div class="d-flex flex-row align-items-center mb-3">
                 <div class="col-3">
                     <div class="" style="max-width: 100px; max-height: 100px;min-width: 100px; min-height: 100px">
-                        <div class="img-thumbnail rounded-circle" style="background-image: url( {{ asset($employee->foto) }});
+                        <div class="img-thumbnail rounded-circle" style="background-image: url( {{ url('image?file='.$employee->foto) }});
                         background-size:cover;background-position: center;height: 100px;">
                         </div>
                     </div>
