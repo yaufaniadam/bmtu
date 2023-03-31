@@ -74,7 +74,7 @@ class AttendanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nip = null, $month = null, Request $request)
+    public function show(Request $request, $nip = null, $month = null)
     {
         if ($request->ajax() && $request->has('keterangan')) {
             return AttendanceService::EmployeeAbsenceDetail($request);
