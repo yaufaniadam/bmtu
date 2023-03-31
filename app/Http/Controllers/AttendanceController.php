@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Services\AttendanceService;
 use App\Services\EmployeeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AttendanceController extends Controller
@@ -73,7 +74,7 @@ class AttendanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nip, $month, Request $request)
+    public function show($nip = null, $month = null, Request $request)
     {
         if ($request->ajax() && $request->has('keterangan')) {
             return AttendanceService::EmployeeAbsenceDetail($request);
@@ -98,6 +99,12 @@ class AttendanceController extends Controller
 
         $exploded_url = explode('/', url()->current());
 
+        if ($nip == null || $month == null) {
+            $nip = Employee::where('user_id', '=', Auth::id())->first()->nip;
+            $month = date('n');
+            $exploded_url = explode('/', route('attendance.show', [$nip, $month]));
+        }
+
         return view('admin.attendance.detail')
             ->with([
                 'attendances' => AttendanceService::EmployeeAttendanceDetail($nip, $month),
@@ -118,7 +125,7 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -130,7 +137,7 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -141,6 +148,6 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 }

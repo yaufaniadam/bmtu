@@ -75,15 +75,16 @@ Route::middleware('custom_auth')->group(function () {
         });
     });
 
+    Route::group(['prefix' => 'attendance'], function () {
+        Route::get('create', [AttendanceController::class, 'create'])->name('attendance.create');
+        Route::post('store', [AttendanceController::class, 'store'])->name('attendance.store');
+        Route::get('show/{nip?}/{month?}', [AttendanceController::class, 'show'])->name('attendance.show');
+    });
+
     Route::middleware('can:admin')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
         Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
-        Route::resource('attendance', AttendanceController::class);
-        Route::group(['prefix' => 'attendance'], function () {
-            Route::get('create', [AttendanceController::class, 'create'])->name('attendance.create');
-            Route::post('store', [AttendanceController::class, 'store'])->name('attendance.store');
-            Route::get('show/{nip}/{month}', [AttendanceController::class, 'show'])->name('attendance.show');
-        });
+        // Route::resource('attendance', AttendanceController::class);
         Route::group(['prefix' => 'salary'], function () {
             Route::get('month/{month}', [SalaryController::class, 'index'])->name('salary.index');
             Route::get('create', [SalaryController::class, 'create'])->name('salary.create');

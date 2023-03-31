@@ -97,7 +97,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-4">
-                                <a href="{{ route('attendance.index') }}">
+                                <a href="{{ route('attendance.show') }}">
                                     <div class="text-center menu rounded">
                                         <img src="{{ asset('img/presensi.png') }}" />
                                         <p>Presensi</p>
