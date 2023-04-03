@@ -116,8 +116,9 @@
                                     <div class="col-6 d-flex justify-content-end">
                                         <div
                                             style="max-width: 250px; max-height: 150px;min-width: 250px; min-height: 150px">
-                                            <div class="img-thumbnail"
-                                                style="background-image: url( {{ asset($cycle->foto) }}); background-size:cover;background-position: center;height: 150px;">
+                                            <div class="img-thumbnail" style="background-image: url(
+                                                {{ url('image?file='.$cycle->foto) }});
+                                                background-size:cover;background-position: center;height: 150px;">
                                             </div>
                                         </div>
                                     </div>

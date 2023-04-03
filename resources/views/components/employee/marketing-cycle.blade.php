@@ -33,7 +33,8 @@
                             <small class="mr-1"><i class="fas fa-fw fa-image"></i></small>
                             <span class="mr-1"><b>Foto</b></span>
                             @if($financing_cycles->foto != null)
-                                <a href="{{ asset($financing_cycles->foto) }}" class="badge badge-success">
+                                <a href="{{ url('image?file='.$financing_cycles->foto) }}"
+                                    class="badge badge-success">
                                     Lihat Foto
                                 </a>
                             @endif
