@@ -22,6 +22,8 @@ class FinancingPartnerController extends Controller
         // dd($request->all());
         // }
 
+        // dd('asdasd');
+
         if (auth()->user()->role == 1) {
             if ($request->ajax()) {
                 return PartnerService::PartnerIndexJson($request);
