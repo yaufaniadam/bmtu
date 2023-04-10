@@ -170,6 +170,7 @@ class UserService
                     ->update(
                         [
                             'nama_lengkap' => $request['nama_lengkap'],
+                            'nama_panggilan' => $request['nama_panggilan'],
                             'jenis_kelamin' => $request['jenis_kelamin'],
                             'tempat_lahir' => $request['tempat_lahir'],
                             'tanggal_lahir' => $request['tanggal_lahir'],

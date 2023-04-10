@@ -16,8 +16,7 @@ class Attendance extends Model
     ];
 
     protected $fillable = [
-        'id_pegawai',
-        'nip',
+        'nama_panggilan',
         'tanggal',
         'bulan',
         'tahun',

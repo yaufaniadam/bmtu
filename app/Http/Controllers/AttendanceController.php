@@ -74,13 +74,13 @@ class AttendanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $nip = null, $month = null)
+    public function show(Request $request, $nama_panggilan = null, $month = null)
     {
         if ($request->ajax() && $request->has('keterangan')) {
             return AttendanceService::EmployeeAbsenceDetail($request);
         }
 
-        // dd(AttendanceService::EmployeeAttendanceSummary($nip, $month));
+        // dd(AttendanceService::EmployeeAttendanceSummary($nama_panggilan, $month));
 
         $months = [
             1 => 'Januari',
@@ -99,20 +99,20 @@ class AttendanceController extends Controller
 
         $exploded_url = explode('/', url()->current());
 
-        if ($nip == null || $month == null) {
-            $nip = Employee::where('user_id', '=', Auth::id())->first()->nip;
+        if ($nama_panggilan == null || $month == null) {
+            $nama_panggilan = Employee::where('user_id', '=', Auth::id())->first()->nama_panggilan;
             $month = date('n');
-            $exploded_url = explode('/', route('attendance.show', [$nip, $month]));
+            $exploded_url = explode('/', route('attendance.show', [$nama_panggilan, $month]));
         }
 
         return view('admin.attendance.detail')
             ->with([
-                'attendances' => AttendanceService::EmployeeAttendanceDetail($nip, $month),
-                'attendance_summary' => AttendanceService::EmployeeAttendanceSummary($nip, $month),
+                'attendances' => AttendanceService::EmployeeAttendanceDetail($nama_panggilan, $month),
+                'attendance_summary' => AttendanceService::EmployeeAttendanceSummary($nama_panggilan, $month),
                 'url' => url()->current(),
                 'months' => $months,
-                'nip' => $nip,
-                'employee_name' => Employee::where('nip', '=', $nip)->firstOrFail()->nama_lengkap,
+                'nip' => $nama_panggilan,
+                'employee_name' => Employee::where('nama_panggilan', '=', $nama_panggilan)->firstOrFail()->nama_lengkap,
                 'selected_month' => $months[$exploded_url[6]],
             ]);
     }

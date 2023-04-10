@@ -105,8 +105,9 @@
                             return {
                                 results: $.map(data, function (item) {
                                     return {
-                                        text: item.nama_lengkap + "(" + item.nip + ")",
-                                        id: item.nip
+                                        text: item.nama_lengkap + "(" + item
+                                            .nama_panggilan + ")",
+                                        id: item.nama_panggilan
                                     }
                                 })
                             };
@@ -116,9 +117,9 @@
 
                 $("#employee_attendance_detail").click(function () {
                     event.preventDefault();
-                    let nip = $("#id_pegawai").val()
+                    let nama_panggilan = $("#id_pegawai").val()
                     let month = $("#bulan").val()
-                    let url = `/attendance/show/${nip}/${month}`;
+                    let url = `/attendance/show/${nama_panggilan}/${month}`;
                     let php_url = "{{ url('') }}" + url;
                     // console.log(php_url);
                     window.location.href = php_url;
