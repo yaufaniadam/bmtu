@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAttendanceRequest;
 use App\Models\Employee;
 use App\Services\AttendanceService;
 use App\Services\EmployeeService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -64,7 +65,11 @@ class AttendanceController extends Controller
     public function store(StoreAttendanceRequest $request)
     {
         Gate::authorize('admin');
-        AttendanceService::StoreEmployeeAttendances($request->validated());
+        try {
+            AttendanceService::StoreEmployeeAttendances($request->validated());
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['msg' => $e->getMessage()]);
+        }
         return redirect()->back()->with('success', 'Data Presensi berhasil diunggah.');
     }
 

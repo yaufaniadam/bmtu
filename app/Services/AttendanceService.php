@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Imports\AttendanceImport;
 use App\Models\Attendance;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -15,6 +16,17 @@ class AttendanceService
         $raw_date = explode("~", $raw[0][2][2]);
         $month = date("n", strtotime($raw_date[0]));
         $year = date("Y", strtotime($raw_date[0]));
+
+        $attendance = Attendance::where([
+            'bulan' => $month,
+            'tahun' => $year
+        ])
+            ->distinct('bulan')
+            ->count();
+
+        if ($attendance > 0) {
+            throw new Exception("Data presensi bulan ini sudah ada.");
+        }
         // dump($month);
         // dump($year);
 

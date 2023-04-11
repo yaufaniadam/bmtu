@@ -14,6 +14,17 @@
                 Import Rekap Presensi
             </div>
             <div class="card-body">
+                @if(session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
                 <form action="{{ route('attendance.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
