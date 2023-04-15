@@ -32,14 +32,16 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-4">
-                                <a href="{{ route('attendance.create') }}">
-                                    <div class="text-center">
-                                        <img src="{{ asset('img/presensi.png') }}" />
-                                        <p>Presensi</p>
-                                    </div>
-                                </a>
-                            </div>
+                            {{-- <div class="col-xl-3 col-lg-3 col-4"> --}}
+                            {{-- <a href="{{ route('attendance.create') }}">
+                            --}}
+                            {{-- <div class="text-center"> --}}
+                            {{-- <img src="{{ asset('img/presensi.png') }}" />
+                            --}}
+                            {{-- <p>Presensi</p> --}}
+                            {{-- </div> --}}
+                            {{-- </a> --}}
+                            {{-- </div> --}}
                             <div class="col-xl-3 col-lg-3 col-4">
                                 <a href="{{ route('salary.create') }}">
                                     <div class="text-center">
@@ -96,14 +98,15 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-4">
-                                <a href="{{ route('attendance.show') }}">
-                                    <div class="text-center menu rounded">
-                                        <img src="{{ asset('img/presensi.png') }}" />
-                                        <p>Presensi</p>
-                                    </div>
-                                </a>
-                            </div>
+                            {{-- <div class="col-xl-3 col-lg-3 col-4"> --}}
+                            {{-- <a href="{{ route('attendance.show') }}"> --}}
+                            {{-- <div class="text-center menu rounded"> --}}
+                            {{-- <img src="{{ asset('img/presensi.png') }}" />
+                            --}}
+                            {{-- <p>Presensi</p> --}}
+                            {{-- </div> --}}
+                            {{-- </a> --}}
+                            {{-- </div> --}}
                             <div class="col-xl-3 col-lg-3 col-4">
                                 <a href="{{ route('placement.index') }}">
                                     <div class="text-center menu rounded">

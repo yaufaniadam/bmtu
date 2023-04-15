@@ -49,16 +49,6 @@ Route::put('/reset_password', [AuthController::class, 'ResetUserPassword'])->mid
 Route::middleware('custom_auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('test', function () {
-        Gate::authorize('admin');
-        if (Storage::disk('local')->exists('users/photo/55/dummy.jpg')) {
-            $content = Storage::get('users/photo/55/dummy.jpg');
-            $mime = Storage::mimeType('users/photo/55/dummy.jpg');
-            $response = Response::make($content, 200);
-            $response->header("Content-Type", $mime);
-            return $response;
-        }
-    });
 
     Route::get('image', [FileController::class, 'displayImage'])->name('image');
     Route::get('download', [FileController::class, 'downloadFile'])->name('download');
@@ -75,11 +65,11 @@ Route::middleware('custom_auth')->group(function () {
         });
     });
 
-    Route::group(['prefix' => 'attendance'], function () {
-        Route::get('create', [AttendanceController::class, 'create'])->name('attendance.create');
-        Route::post('store', [AttendanceController::class, 'store'])->name('attendance.store');
-        Route::get('show/{nip?}/{month?}', [AttendanceController::class, 'show'])->name('attendance.show');
-    });
+    // Route::group(['prefix' => 'attendance'], function () {
+    //     Route::get('create', [AttendanceController::class, 'create'])->name('attendance.create');
+    //     Route::post('store', [AttendanceController::class, 'store'])->name('attendance.store');
+    //     Route::get('show/{nip?}/{month?}', [AttendanceController::class, 'show'])->name('attendance.show');
+    // });
 
     Route::middleware('can:admin')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
