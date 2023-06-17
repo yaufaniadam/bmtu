@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-    <div class="col-7 mx-auto">
+    <div class="col-7 mx-auto mb-3">
         <div class="card">
             <div class="card-header">
                 Lihat Rekap Gaji

@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Services\InformationService;
 
-class InformationController extends Controller
+class DocumentController extends Controller
 {
     public function index()
     {
-        return view('admin.information.index')
+        return view('document.index')
             ->with(['informations' => InformationService::InformationIndex()]);
     }
 
     public function show($id)
     {
         // dd(InformationService::InformationDetail($id));
-        return view('admin.information.detail')
+        return view('document.detail')
             ->with(['postdetail' => InformationService::InformationDetail($id)]);
     }
 }

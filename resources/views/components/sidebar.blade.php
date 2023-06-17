@@ -114,6 +114,12 @@
             <span>Info</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('document.index') }}">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>Dokumen</span>
+        </a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

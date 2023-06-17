@@ -27,7 +27,7 @@ class PlacementFactory extends Factory
             'tanggal_mulai' => $this->faker->date(),
             'tanggal_selesai' => $this->faker->dateTimeBetween('+1 week', '+1 month'),
             'file_sk' => '',
-            'status_penempatan' => ''
+            'status_penempatan' => 1
         ];
     }
 }

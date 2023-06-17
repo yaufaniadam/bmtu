@@ -5,6 +5,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChangeUserCredentialController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FileController;
@@ -87,6 +88,9 @@ Route::middleware('custom_auth')->group(function () {
 
     Route::get('information', [InformationController::class, 'index'])->name('information.index');
     Route::get('information-detail/{id}', [InformationController::class, 'show'])->name('information.detail');
+
+    Route::get('documents', [DocumentController::class, 'index'])->name('document.index');
+    Route::get('documents/{id}', [DocumentController::class, 'show'])->name('document.detail');
 
     Route::get('financing-partner', [FinancingPartnerController::class, 'index'])->name('financing-partner.index');
     Route::get('financing-partner/create', [FinancingPartnerController::class, 'create'])->name('financing-partner.create');
