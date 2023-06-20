@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -15,7 +17,8 @@ class DashboardController extends Controller
     {
         return view('dashboard')
             ->with([
-                'title' => 'Dashboard'
+                'title' => 'Dashboard',
+                'name' => Employee::find(Auth::id())->nama_lengkap
             ]);
     }
 
