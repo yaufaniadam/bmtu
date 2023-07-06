@@ -10,7 +10,8 @@
     <div class="col-12 my-3">
         <span>{{ $postdetail['date'] }}</span>
         <h1 class="mb-3 text-dark">{{ $postdetail['title'] }}</h1>
-        <img src="{{ $postdetail['featured_image'] }}" class="img-fluid mb-3" alt="thumbnail">
+        {{-- <img src="{{ $postdetail['featured_image'] }}"
+        class="img-fluid mb-3" alt="thumbnail"> --}}
         <p>
             {!! $postdetail['content'] !!}
         </p>
