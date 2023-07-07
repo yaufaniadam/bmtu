@@ -22,16 +22,6 @@ class InformationService
         return self::paginate(static::$posts, 6, null, ['path' => route('information.index')]);
     }
 
-    public static function DocumentIndex()
-    {
-        static::$posts = Http::withoutVerifying()->withHeaders([])->get("https://hrd.bmtumy.com/wp-json/wp/v2/posts", [
-            "per_page" => 15,
-            "_embed" => ''
-        ])->json();
-
-        return self::paginate(static::$posts, 6, null, ['path' => route('document.index')]);
-    }
-
     public static function InformationDetail($id)
     {
         $post = Http::withoutVerifying()->withHeaders([])->get("https://bmtumy.com/wp-json/wp/v2/posts", [
@@ -53,25 +43,31 @@ class InformationService
         return $postdetail;
     }
 
-    public static function DocumentDetail($id)
+    public static function DocumentIndex()
     {
-        $post = Http::withoutVerifying()->withHeaders([])->get("https://hrd.bmtumy.com/wp-json/wp/v2/posts", [
-            "include[]" => $id,
+        static::$posts = Http::withoutVerifying()->withHeaders([])->get("https://hrd.bmtumy.com/wp-json/wp/v2/categories", [
+            "per_page" => 15,
             "_embed" => ''
         ])->json();
 
-        $date = Carbon::parse($post[0]['date']);
+        return self::paginate(static::$posts, 6, null, ['path' => route('document.index')]);
+    }
 
-        $postdetail = [
-            "id"    => $id,
-            "title" => $post[0]['title']['rendered'],
-            "featured_image" => $post[0]['_embedded']['wp:featuredmedia'][0]['source_url'] ?? asset('images/noimage.jpg'),
-            "content" => $post[0]['content']['rendered'],
-            "date" => $date->isoFormat('D MMMM Y'),
-            "link" => $post[0]['link'],
-        ];
+    public static function DocumentDetail($id)
+    {
 
-        return $postdetail;
+        // https://hrd.bmtumy.com/wp-json/wp/v2/posts
+        $sop = Http::withoutVerifying()->withHeaders([])->get("https://hrd.bmtumy.com/wp-json/wp/v2/posts?categories=$id")->json();
+
+        return $sop;
+        dd($sop);
+    }
+
+    public static function DownloadDocument($query)
+    {
+        $sop = Http::withoutVerifying()->withHeaders([])->get("https://hrd.bmtumy.com/wp-json/wp/v2/media?parent=$query")->json();
+        // dd($sop);
+        return $sop[0]['source_url'];
     }
 
     private static function paginate($items, $perPage = 6, $currentPage = null, $options = [])

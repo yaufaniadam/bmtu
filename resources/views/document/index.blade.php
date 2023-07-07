@@ -4,26 +4,17 @@
     @endpush
 
     <x-slot:title>
-        Info
+        SOP BMT UMY
     </x-slot:title>
 
     <div class="col-12">
         @foreach($informations as $info)
-            @php
-                $date = \Carbon\Carbon::parse( $info['date']);
-            @endphp
             <div class="mb-3">
                 <a href="{{ route('document.detail',$info['id']) }}"
-                    class="text-secondary">
-                    <h5 class="m-0 text-dark">
-                        {{ $info['title']['rendered'] }}
+                    class="text-light btn btn-block bg-dark">
+                    <h5 class="m-0">
+                        {{ strtoupper($info['name']) }}
                     </h5>
-                    <div class="d-flex">
-                        <span>
-                            <i class="fa-solid fa-calendar mr-2"></i>
-                            {{ $date->isoFormat('D MMMM Y') }}
-                        </span>
-                    </div>
                 </a>
             </div>
         @endforeach

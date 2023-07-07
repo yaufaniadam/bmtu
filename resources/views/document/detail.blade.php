@@ -4,17 +4,23 @@
     @endpush
 
     <x-slot:title>
-        Info
+        Download Dokumen
     </x-slot:title>
 
-    <div class="col-12 my-3">
-        <span>{{ $postdetail['date'] }}</span>
-        <h1 class="mb-3 text-dark">{{ $postdetail['title'] }}</h1>
-        {{-- <img src="{{ $postdetail['featured_image'] }}"
-        class="img-fluid mb-3" alt="thumbnail"> --}}
-        <p>
-            {!! $postdetail['content'] !!}
-        </p>
-    </div>
+    @foreach($sop as $sop)
+        <div class="col-12 my-3">
+            @php
+                $exploded_url = explode('/',$sop['_links']['wp:attachment'][0]['href']);
+                $query = $exploded_url[6];
+                // dump($exploded_url);
+            @endphp
+            <a href="{{ route('document.download',$query) }}" target="_blank"
+                class="text-secondary">
+                <h5 class="text-dark">
+                    {{ $sop['title']['rendered'] }}
+                </h5>
+            </a>
+        </div>
+    @endforeach
 
 </x-layout>

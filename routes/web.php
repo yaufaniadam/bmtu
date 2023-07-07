@@ -91,6 +91,7 @@ Route::middleware('custom_auth')->group(function () {
 
     Route::get('documents', [DocumentController::class, 'index'])->name('document.index');
     Route::get('documents/{id}', [DocumentController::class, 'show'])->name('document.detail');
+    Route::get('documents/download/{query}', [DocumentController::class, 'download'])->name('document.download');
 
     Route::get('financing-partner', [FinancingPartnerController::class, 'index'])->name('financing-partner.index');
     Route::get('financing-partner/create', [FinancingPartnerController::class, 'create'])->name('financing-partner.create');
