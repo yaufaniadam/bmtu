@@ -48,7 +48,7 @@ class Employee extends Model
     {
         return $this->marketingReports()
             ->leftJoin('tr_status_pembiayaan', 'tr_status_pembiayaan.id_laporan_marketing', '=', 'tr_laporan_marketing.id')
-            ->where('tr_status_pembiayaan.id_cycle', '>=', 4);
+            ->where('tr_status_pembiayaan.id_cycle', '=', 5);
     }
 
     public function sermons()

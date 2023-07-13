@@ -5,6 +5,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChangeUserCredentialController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FileController;
@@ -49,16 +50,6 @@ Route::put('/reset_password', [AuthController::class, 'ResetUserPassword'])->mid
 Route::middleware('custom_auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('test', function () {
-        Gate::authorize('admin');
-        if (Storage::disk('local')->exists('users/photo/55/dummy.jpg')) {
-            $content = Storage::get('users/photo/55/dummy.jpg');
-            $mime = Storage::mimeType('users/photo/55/dummy.jpg');
-            $response = Response::make($content, 200);
-            $response->header("Content-Type", $mime);
-            return $response;
-        }
-    });
 
     Route::get('image', [FileController::class, 'displayImage'])->name('image');
     Route::get('download', [FileController::class, 'downloadFile'])->name('download');
@@ -75,15 +66,16 @@ Route::middleware('custom_auth')->group(function () {
         });
     });
 
+    // Route::group(['prefix' => 'attendance'], function () {
+    //     Route::get('create', [AttendanceController::class, 'create'])->name('attendance.create');
+    //     Route::post('store', [AttendanceController::class, 'store'])->name('attendance.store');
+    //     Route::get('show/{nip?}/{month?}', [AttendanceController::class, 'show'])->name('attendance.show');
+    // });
+
     Route::middleware('can:admin')->group(function () {
         Route::resource('marketing-reports', MarketingReportController::class);
         Route::get('marketing-report/detail/{marketing_report_id}', [MarketingReportController::class, 'detail'])->name('marketing-report.detail');
-        Route::resource('attendance', AttendanceController::class);
-        Route::group(['prefix' => 'attendance'], function () {
-            Route::get('create', [AttendanceController::class, 'create'])->name('attendance.create');
-            Route::post('store', [AttendanceController::class, 'store'])->name('attendance.store');
-            Route::get('show/{nip}/{month}', [AttendanceController::class, 'show'])->name('attendance.show');
-        });
+        // Route::resource('attendance', AttendanceController::class);
         Route::group(['prefix' => 'salary'], function () {
             Route::get('month/{month}', [SalaryController::class, 'index'])->name('salary.index');
             Route::get('create', [SalaryController::class, 'create'])->name('salary.create');
@@ -92,9 +84,14 @@ Route::middleware('custom_auth')->group(function () {
             Route::post('create', [SalaryController::class, 'store'])->name('salary.store');
         });
         Route::get('placement/{employee_id}/new_contract', [PlacementController::class, 'create_new_contract'])->name('placement.new-contract');
-        Route::get('information', [InformationController::class, 'index'])->name('information.index');
-        Route::get('information-detail/{id}', [InformationController::class, 'show'])->name('information.detail');
     });
+
+    Route::get('information', [InformationController::class, 'index'])->name('information.index');
+    Route::get('information-detail/{id}', [InformationController::class, 'show'])->name('information.detail');
+
+    Route::get('documents', [DocumentController::class, 'index'])->name('document.index');
+    Route::get('documents/{id}', [DocumentController::class, 'show'])->name('document.detail');
+    Route::get('documents/download/{query}', [DocumentController::class, 'download'])->name('document.download');
 
     Route::get('financing-partner', [FinancingPartnerController::class, 'index'])->name('financing-partner.index');
     Route::get('financing-partner/create', [FinancingPartnerController::class, 'create'])->name('financing-partner.create');

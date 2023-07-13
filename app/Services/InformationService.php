@@ -19,7 +19,7 @@ class InformationService
             "_embed" => ''
         ])->json();
 
-        return self::paginate(static::$posts);
+        return self::paginate(static::$posts, 6, null, ['path' => route('information.index')]);
     }
 
     public static function InformationDetail($id)
@@ -43,8 +43,36 @@ class InformationService
         return $postdetail;
     }
 
+    public static function DocumentIndex()
+    {
+        static::$posts = Http::withoutVerifying()->withHeaders([])->get("https://hrd.bmtumy.com/wp-json/wp/v2/categories", [
+            "per_page" => 15,
+            "_embed" => ''
+        ])->json();
+
+        return self::paginate(static::$posts, 6, null, ['path' => route('document.index')]);
+    }
+
+    public static function DocumentDetail($id)
+    {
+
+        // https://hrd.bmtumy.com/wp-json/wp/v2/posts
+        $sop = Http::withoutVerifying()->withHeaders([])->get("https://hrd.bmtumy.com/wp-json/wp/v2/posts?categories=$id")->json();
+
+        return $sop;
+        dd($sop);
+    }
+
+    public static function DownloadDocument($query)
+    {
+        $sop = Http::withoutVerifying()->withHeaders([])->get("https://hrd.bmtumy.com/wp-json/wp/v2/media?parent=$query")->json();
+        // dd($sop);
+        return $sop[0]['source_url'];
+    }
+
     private static function paginate($items, $perPage = 6, $currentPage = null, $options = [])
     {
+        // 'path' => route('information.index')
         $currentPage = $currentPage ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
         return new LengthAwarePaginator(
@@ -52,7 +80,7 @@ class InformationService
             $items->count(),
             $perPage,
             $currentPage,
-            ['path' => route('information.index')],
+            $options,
         );
     }
 }

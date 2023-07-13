@@ -24,7 +24,15 @@
                     @foreach($salary_detail as $item)
                         <div class="col-12 d-flex border-bottom my-3 justify-content-between">
                             <span class="font-weight-{{ $item->style }}">{{ $item->judul }}</span>
-                            <span>{{ $item->value != null ? number_format($item->value, 0, ",", ".") : '' }}</span>
+                            @php
+                                $new_value = $item->value;
+                                if ( is_numeric($item->value)) {
+                                $new_value = number_format($item->value, 0, ",", ".");
+                                }
+                                // is_string($item->value) != null ? $item->value : number_format($item->value, 0,
+                                // ",",".")
+                            @endphp
+                            <span>{{ $new_value }}</span>
                         </div>
                     @endforeach
                 @else

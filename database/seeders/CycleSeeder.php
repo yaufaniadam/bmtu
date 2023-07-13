@@ -25,10 +25,10 @@ class CycleSeeder extends Seeder
             'cycle' => 'Komite'
         ]);
         DB::table('mstr_cycle')->insert([
-            'cycle' => 'Akad'
+            'cycle' => 'Pembelian'
         ]);
         DB::table('mstr_cycle')->insert([
-            'cycle' => 'Pembelian'
+            'cycle' => 'Akad'
         ]);
     }
 }

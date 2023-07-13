@@ -22,7 +22,7 @@ class UserService
             ->with(
                 [
                     'employee' => function ($query) {
-                        $query->select('user_id', 'nama_lengkap', 'telepon', 'email',);
+                        $query->select('user_id', 'nama_lengkap', 'telepon', 'email', 'foto');
                     }
                 ]
             )
@@ -32,6 +32,9 @@ class UserService
             });
 
         $users = DataTables::eloquent($model)
+            ->addColumn('photo', function ($user) {
+                return view('datatables.photo')->with(['src' => url('image?file=' . $user->employee->foto)]);
+            })
             ->addColumn(
                 'detail',
                 function ($user) {
@@ -179,6 +182,7 @@ class UserService
                     ->update(
                         [
                             'nama_lengkap' => $request['nama_lengkap'],
+                            'nama_panggilan' => $request['nama_panggilan'],
                             'jenis_kelamin' => $request['jenis_kelamin'],
                             'tempat_lahir' => $request['tempat_lahir'],
                             'tanggal_lahir' => $request['tanggal_lahir'],

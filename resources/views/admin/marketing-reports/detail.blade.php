@@ -102,25 +102,37 @@
                             id="{{ $cycle->cycle->cycle }}" role="tabpanel" aria-labelledby="home-tab">
                             <div class="p-3">
                                 <div class="row">
-                                    <div class="col-6">
-                                        <div class="d-flex flex-row align-items-center mb-3 text-dark">
-                                            <small class="mr-1"><i class="fas fa-fw fa-calendar"></i></small>
-                                            {{ $cycle->tanggal != null ? $cycle->tanggal->isoFormat('D MMMM Y') : '' }}
+                                    @if($cycle->keterangan != null)
+                                        <div class="col-6">
+                                            <div class="d-flex flex-row align-items-center mb-3 text-dark">
+                                                <small class="mr-1"><i class="fas fa-fw fa-calendar"></i></small>
+                                                {{ $cycle->tanggal != null ? $cycle->tanggal->isoFormat('D MMMM Y') : '' }}
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center text-dark">
+                                                <small class="mr-1"><i class="fas fa-fw fa-edit"></i></small>
+                                                <b>Catatan</b>
+                                            </div>
+                                            <p>{{ $cycle->keterangan }}</p>
                                         </div>
-                                        <div class="d-flex flex-row align-items-center text-dark">
-                                            <small class="mr-1"><i class="fas fa-fw fa-edit"></i></small>
-                                            <b>Catatan</b>
-                                        </div>
-                                        <p>{{ $cycle->keterangan }}</p>
-                                    </div>
-                                    <div class="col-6 d-flex justify-content-end">
-                                        <div
-                                            style="max-width: 250px; max-height: 150px;min-width: 250px; min-height: 150px">
-                                            <div class="img-thumbnail"
-                                                style="background-image: url( {{ asset($cycle->foto) }}); background-size:cover;background-position: center;height: 150px;">
+                                        <div class="col-6 d-flex justify-content-end">
+                                            <div
+                                                style="max-width: 250px; max-height: 150px;min-width: 250px; min-height: 150px">
+                                                <div class="img-thumbnail" style="background-image: url(
+                                                {{ url('image?file='.$cycle->foto) }});
+                                                background-size:cover;background-position: center;height: 150px;">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <div class="col-6">
+                                            <div class="d-flex flex-row align-items-center text-dark">
+                                                <small class="mr-1"><i class="fas fa-fw fa-edit"></i></small>
+                                                <b>Catatan</b>
+                                            </div>
+                                            <p>Belum diproses</p>
+                                        </div>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>

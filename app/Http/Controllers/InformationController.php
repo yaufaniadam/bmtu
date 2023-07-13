@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\InformationService;
-use Illuminate\Support\Facades\Http;
 
 class InformationController extends Controller
 {

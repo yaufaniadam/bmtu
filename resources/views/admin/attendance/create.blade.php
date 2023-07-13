@@ -14,6 +14,17 @@
                 Import Rekap Presensi
             </div>
             <div class="card-body">
+                @if(session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
                 <form action="{{ route('attendance.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -105,8 +116,9 @@
                             return {
                                 results: $.map(data, function (item) {
                                     return {
-                                        text: item.nama_lengkap + "(" + item.nip + ")",
-                                        id: item.nip
+                                        text: item.nama_lengkap + "(" + item
+                                            .nama_panggilan + ")",
+                                        id: item.nama_panggilan
                                     }
                                 })
                             };
@@ -116,9 +128,9 @@
 
                 $("#employee_attendance_detail").click(function () {
                     event.preventDefault();
-                    let nip = $("#id_pegawai").val()
+                    let nama_panggilan = $("#id_pegawai").val()
                     let month = $("#bulan").val()
-                    let url = `/attendance/show/${nip}/${month}`;
+                    let url = `/attendance/show/${nama_panggilan}/${month}`;
                     let php_url = "{{ url('') }}" + url;
                     // console.log(php_url);
                     window.location.href = php_url;

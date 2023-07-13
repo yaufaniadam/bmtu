@@ -52,12 +52,13 @@
     </li>
 
     @can('admin')
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('attendance.create') }}">
-                <i class="fa-solid fa-clipboard-user"></i>
-                <span>Presensi</span>
-            </a>
-        </li>
+        {{-- <li class="nav-item"> --}}
+        {{-- <a class="nav-link" href="{{ route('attendance.create') }}">
+        --}}
+        {{-- <i class="fa-solid fa-clipboard-user"></i> --}}
+        {{-- <span>Presensi</span> --}}
+        {{-- </a> --}}
+        {{-- </li> --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ route('salary.create') }}">
                 <i class="fa-solid fa-money-check-dollar"></i>
@@ -111,6 +112,12 @@
         <a class="nav-link" href="{{ route('information.index') }}">
             <i class="fa-solid fa-circle-exclamation"></i>
             <span>Info</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('document.index') }}">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>Dokumen</span>
         </a>
     </li>
 

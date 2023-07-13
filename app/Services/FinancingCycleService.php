@@ -8,6 +8,7 @@ use App\Models\MarketingReport;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class FinancingCycleService
 {
@@ -41,13 +42,24 @@ class FinancingCycleService
                 );
 
                 if (isset($request['foto'])) {
-                    if (File::exists(public_path($financing_cycle->foto))) {
-                        File::delete(public_path($financing_cycle->foto));
+                    // if (File::exists(public_path($financing_cycle->foto))) {
+                    //     File::delete(public_path($financing_cycle->foto));
+                    // }
+                    // $file = $request['foto'];
+                    // $fileName = $file->getClientOriginalName();
+                    // $fileLocation = 'mitra/pembiayaan/' . $financing_cycle->id_laporan_marketing . '/' . $financing_cycle->id . '/';
+                    // $file->move($fileLocation, $fileName);
+
+                    if ($financing_cycle->foto != null) {
+                        if (Storage::exists($financing_cycle->foto)) {
+                            Storage::delete($financing_cycle->foto);
+                        }
                     }
+
                     $file = $request['foto'];
-                    $fileName = $file->getClientOriginalName();
+                    $fileName = str_replace(" ", "_", $file->getClientOriginalName());
                     $fileLocation = 'mitra/pembiayaan/' . $financing_cycle->id_laporan_marketing . '/' . $financing_cycle->id . '/';
-                    $file->move($fileLocation, $fileName);
+                    Storage::putFileAs($fileLocation, $file, $fileName);
 
                     $financing_cycle->update(
                         [

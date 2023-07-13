@@ -34,6 +34,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="nickname" class="col-sm-4 col-form-label">Nama Panggilan</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="nama_panggilan"
+                            class="form-control {{ $errors->has('nama_panggilan') ? 'is-invalid' : '' }}"
+                            id="nickname" value="{{ $user->employee->nama_panggilan }}">
+                        <div class="invalid-feedback">
+                            {{ $errors->first('nama_panggilan') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="gender" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                     <div class="col-sm-8 d-flex">
                         <div class="form-check form-check-inline">
